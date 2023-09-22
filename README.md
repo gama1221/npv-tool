@@ -78,3 +78,5 @@
       "eject": "react-scripts eject"
   }
   ```
+- **Author**
+- [Linkedin](https://www.linkedin.com/in/getinet-mekonnen/)
