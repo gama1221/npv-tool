@@ -1,3 +1,4 @@
+import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { FaUndo } from "react-icons/fa";
 import NPVScenarioLists from "../data/NPVScenarioLists.json";
@@ -24,7 +25,7 @@ const NPVToolPage = () => {
           title="Click it go back"
           onClick={goBackToScenarios}
         >
-          {selectedNPVScenario.map((productLine) => productLine.name)}
+          {selectedNPVScenario.map((scenario) => scenario.name)}
         </button>
       </header>
       <section>
@@ -36,7 +37,32 @@ const NPVToolPage = () => {
                   {pr.name} scenario description
                 </header>
                 <div className="px-8 items-center justify-center">
-                  {pr.description}
+                <p className="text-sm font-small m-4">{pr.description}</p>
+                <p className="text-sm font-bold m-4 text-green-600">{pr.formulas}</p>
+                <h2 className="text-sm font-bold m-4 text-green-600">Where</h2>
+                <ul className="ml-10">
+                  {
+                    pr.where.map((res)=>(
+                      <React.Fragment key={res.id}>                        
+                      <li className="text-sm">
+                           <span className="text-green-600 font-semibold">{res.title.substring(0,1)}</span>{res.title.substring(1)}
+                       </li>                       
+                      </React.Fragment>
+                    ))
+                  }
+                </ul>
+                <h2 className="text-sm font-bold m-4 text-green-600">About Parameters</h2>
+                <ul className="ml-10">
+                  {
+                    pr.sub.map((res)=>(
+                      <React.Fragment key={res.id}>                        
+                      <li className="text-sm">
+                           <span className="text-green-600 font-semibold p-2">{res.id})</span>{res.title}
+                       </li>                       
+                      </React.Fragment>
+                    ))
+                  }
+                </ul>
                 </div>
               </div>
             ))}

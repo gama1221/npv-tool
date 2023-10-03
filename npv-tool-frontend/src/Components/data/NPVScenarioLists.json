@@ -3,64 +3,732 @@
     {
       "id": 1,
       "name": "Normal",
-      "description": "Principal waived NPV, also known as Principal Forgiveness NPV, is a variant of the Net Present Value (NPV) analysis that considers the impact of principal forgiveness or debt reduction on the profitability of an investment or project.",
-      "formulas": "normal npv formula",
+      "description": "If you're referring to calculating the Net Present Value (NPV) without considering restructuring, waving, or extension, you can use the basic formula for NPV.",
+      "formulas": "A =( r * P )/ (n * (1 - (1 + r/n)^(-nt)))",
+      "where": [
+        {
+          "id": 2,
+          "title": "A= scheduled repayment"
+        },
+        {
+          "id": 3,
+          "title": "r=annual interest rate"
+        },
+        {
+          "id": 4,
+          "title": "t=time in terms of year"
+        },
+        {
+          "id": 5,
+          "title": "n=number of payment per annum"
+        },
+        {
+          "id": 6,
+          "title": "P= Original loan"
+        }
+      ],
+      "sub": [
+        {
+          "id": 1,
+          "title": "Annual interest rate ( r)"
+        },
+        {
+          "id": 2,
+          "title": "Risk premium (RP).……3% (default)"
+        },
+        {
+          "id": 3,
+          "title": "Risk adjusted discount rate (R) =Annual interest rate (r) + risk premium (RP)"
+        },
+        {
+          "id": 4,
+          "title": "Original loan (P)= Today’s Debt outstanding"
+        },
+        {
+          "id": 5,
+          "title": "Remaining loan life in year (t)"
+        },
+        {
+          "id": 6,
+          "title": "Allowed Grace period in year (G)"
+        },
+        {
+          "id": 7,
+          "title": "Grace period interest payment= Original loan *r*G"
+        },
+        {
+          "id": 8,
+          "title": "Repayment modality …. drop down (monthly, quarterly, semi-annually, annually)"
+        },
+        {
+          "id": 9,
+          "title": "Number of payment per annum (n)=number of repayments within a year"
+        },
+        {
+          "id": 10,
+          "title": "Total number of repayment = t * n"
+        },
+        {
+          "id": 11,
+          "title": "Scheduled repayment (A)= use the above formula"
+        },
+        {
+          "id": 12,
+          "title": "A =( r * P )/ (n * (1 - (1 + r/n)^(-nt)))"
+        },
+        {
+          "id": 13,
+          "title": "Annual Principal payment =the summation of periodic principal payment within a year"
+        },
+        {
+          "id": 14,
+          "title": "Annual interest payment =the summation of periodic interest payment within a year"
+        },
+        {
+          "id": 15,
+          "title": "Annual scheduled payment = scheduled payment*repayment modality "
+        },
+        {
+          "id": 16,
+          "title": "Annual Cash flow = grace period interest payment + scheduled payment*repayment modality "
+        },
+        {
+          "id": 16,
+          "title": "NPV = (Annual cash flow/Discount factor)"
+        }        
+      ],
       "type": "single"
     },
     {
       "id": 2,
       "name": "Principal Waiver",
-      "description": "Principal waived NPV, also known as Principal Forgiveness NPV, is a variant of the Net Present Value (NPV) analysis that considers the impact of principal forgiveness or debt reduction on the profitability of an investment or project.",
-      "formulas": "normal npv formula",
+      "description": "Principal Waiver Net Present Value (NPV) is a financial analysis technique used in investment evaluation. It involves adjusting the cash flows of a project or investment to account for a partial waiver of the principal amount owed. By incorporating the reduction in debt obligation resulting from the principal waiver, the Principal Waiver NPV provides a more accurate assessment of the project's financial viability. This analysis helps determine the profitability and feasibility of the investment by considering the impact of debt reduction on the project's cash flows. It is commonly utilized in scenarios involving debt restructuring or forgiveness, enabling stakeholders to make informed decisions about the economic prospects of the project.",
+      "formulas": "A =( r * P )/ (n * (1 - (1 + r/n)^(-nt)))",
+      "where": [
+        {
+          "id": 2,
+          "title": "A= scheduled repayment"
+        },
+        {
+          "id": 3,
+          "title": "r=annual interest rate"
+        },
+        {
+          "id": 4,
+          "title": "t=time in terms of year"
+        },
+        {
+          "id": 5,
+          "title": "n=number of payment per annum"
+        },
+        {
+          "id": 6,
+          "title": "P= Original loan"
+        }
+      ],
+      "sub": [
+        {
+          "id": 1,
+          "title": "Annual interest rate ( r)"
+        },
+        {
+          "id": 2,
+          "title": "Risk premium (RP).……3% (default)"
+        },
+        {
+          "id": 3,
+          "title": "Risk adjusted discount rate (R) =Annual interest rate (r) + risk premium (RP)"
+        },
+        {
+          "id": 4,
+          "title": "Original loan (P)= Today’s Debt outstanding"
+        },
+        {
+          "id": 5,
+          "title": "Remaining loan life in year (t)"
+        },
+        {
+          "id": 6,
+          "title": "Allowed Grace period in year (G)"
+        },
+        {
+          "id": 7,
+          "title": "Grace period interest payment= Original loan *r*G"
+        },
+        {
+          "id": 8,
+          "title": "Repayment modality …. drop down (monthly, quarterly, semi-annually, annually)"
+        },
+        {
+          "id": 9,
+          "title": "Number of payment per annum (n)=number of repayments within a year"
+        },
+        {
+          "id": 10,
+          "title": "Total number of repayment = t * n"
+        },
+        {
+          "id": 11,
+          "title": "Scheduled repayment (A)= use the above formula"
+        },
+        {
+          "id": 12,
+          "title": "A =( r * P )/ (n * (1 - (1 + r/n)^(-nt)))"
+        }
+      ],
       "type": "single"
     },
     {
       "id": 3,
       "name": "Interest Waiver",
-      "description": "Principal waived NPV, also known as Principal Forgiveness NPV, is a variant of the Net Present Value (NPV) analysis that considers the impact of principal forgiveness or debt reduction on the profitability of an investment or project.",
-      "formulas": "normal npv formula",
+      "description": "Interest Waiver Net Present Value (NPV) is a financial evaluation method used to assess the financial feasibility of a project or investment by incorporating the impact of an interest waiver. In certain situations, lenders or investors may agree to waive or reduce the interest payments associated with a loan or investment. By adjusting the cash flows to reflect the interest savings resulting from the waiver, the Interest Waiver NPV provides a more accurate picture of the project's profitability and financial viability. This analysis helps stakeholders make informed decisions by considering the modified cash flows and determining if the investment is economically viable, given the interest relief. Accurate modeling of cash flows, consideration of the timing and amount of the interest waiver, and appropriate discount rate selection are crucial in calculating the Interest Waiver NPV. It is commonly employed in debt restructuring agreements, loan modifications, or investment scenarios where interest relief occurs.",
+      "formulas": "A =( r * P )/ (n * (1 - (1 + r/n)^(-nt)))",
+      "where": [
+        {
+          "id": 2,
+          "title": "A= scheduled repayment"
+        },
+        {
+          "id": 3,
+          "title": "r=annual interest rate"
+        },
+        {
+          "id": 4,
+          "title": "t=time in terms of year"
+        },
+        {
+          "id": 5,
+          "title": "n=number of payment per annum"
+        },
+        {
+          "id": 6,
+          "title": "P= Original loan"
+        }
+      ],
+      "sub": [
+        {
+          "id": 1,
+          "title": "Annual interest rate ( r)"
+        },
+        {
+          "id": 2,
+          "title": "Risk premium (RP).……3% (default)"
+        },
+        {
+          "id": 3,
+          "title": "Risk adjusted discount rate (R) =Annual interest rate (r) + risk premium (RP)"
+        },
+        {
+          "id": 4,
+          "title": "Original loan (P)= Today’s Debt outstanding"
+        },
+        {
+          "id": 5,
+          "title": "Remaining loan life in year (t)"
+        },
+        {
+          "id": 6,
+          "title": "Allowed Grace period in year (G)"
+        },
+        {
+          "id": 7,
+          "title": "Grace period interest payment= Original loan *r*G"
+        },
+        {
+          "id": 8,
+          "title": "Repayment modality …. drop down (monthly, quarterly, semi-annually, annually)"
+        },
+        {
+          "id": 9,
+          "title": "Number of payment per annum (n)=number of repayments within a year"
+        },
+        {
+          "id": 10,
+          "title": "Total number of repayment = t * n"
+        },
+        {
+          "id": 11,
+          "title": "Scheduled repayment (A)= use the above formula"
+        },
+        {
+          "id": 12,
+          "title": "A =( r * P )/ (n * (1 - (1 + r/n)^(-nt)))"
+        }
+      ],
       "type": "single"
     },
     {
       "id": 4,
       "name": "Extension",
-      "description": "Principal waived NPV, also known as Principal Forgiveness NPV, is a variant of the Net Present Value (NPV) analysis that considers the impact of principal forgiveness or debt reduction on the profitability of an investment or project.",
-      "formulas": "normal npv formula",
+      "description": "An additional year extension refers to the prolongation of a project, contract, or agreement by an additional year beyond its original term. This extension is often granted to provide more time for project completion, allow for further evaluation or adjustment of goals, or accommodate unforeseen circumstances or delays. The decision to grant an additional year extension is typically based on a thorough assessment of the project's progress, feasibility, and potential benefits. It allows stakeholders to reassess and adapt their strategies, allocate resources effectively, and maximize the project's chances of success. The extension period provides an opportunity for further planning, implementation, and evaluation, ensuring that project objectives are met and facilitating a smoother transition to completion.",
+      "formulas": "A =( r * P )/ (n * (1 - (1 + r/n)^(-nt)))",
+      "where": [
+        {
+          "id": 2,
+          "title": "A= scheduled repayment"
+        },
+        {
+          "id": 3,
+          "title": "r=annual interest rate"
+        },
+        {
+          "id": 4,
+          "title": "t=time in terms of year"
+        },
+        {
+          "id": 5,
+          "title": "n=number of payment per annum"
+        },
+        {
+          "id": 6,
+          "title": "P= Original loan"
+        }
+      ],
+      "sub": [
+        {
+          "id": 1,
+          "title": "Annual interest rate ( r)"
+        },
+        {
+          "id": 2,
+          "title": "Risk premium (RP).……3% (default)"
+        },
+        {
+          "id": 3,
+          "title": "Risk adjusted discount rate (R) =Annual interest rate (r) + risk premium (RP)"
+        },
+        {
+          "id": 4,
+          "title": "Original loan (P)= Today’s Debt outstanding"
+        },
+        {
+          "id": 5,
+          "title": "Remaining loan life in year (t)"
+        },
+        {
+          "id": 6,
+          "title": "Allowed Grace period in year (G)"
+        },
+        {
+          "id": 7,
+          "title": "Grace period interest payment= Original loan *r*G"
+        },
+        {
+          "id": 8,
+          "title": "Repayment modality …. drop down (monthly, quarterly, semi-annually, annually)"
+        },
+        {
+          "id": 9,
+          "title": "Number of payment per annum (n)=number of repayments within a year"
+        },
+        {
+          "id": 10,
+          "title": "Total number of repayment = t * n"
+        },
+        {
+          "id": 11,
+          "title": "Scheduled repayment (A)= use the above formula"
+        },
+        {
+          "id": 12,
+          "title": "A =( r * P )/ (n * (1 - (1 + r/n)^(-nt)))"
+        }
+      ],
       "type": "single"
     },
     {
       "id": 5,
       "name": "Interest and Principal Waiver",
-      "description": "Principal waived NPV, also known as Principal Forgiveness NPV, is a variant of the Net Present Value (NPV) analysis that considers the impact of principal forgiveness or debt reduction on the profitability of an investment or project.",
-      "formulas": "normal npv formula",
+      "description": "Interest and Principal Waiver refers to a financial arrangement in which a lender or investor agrees to waive or reduce both the interest payments and the principal amount owed by the borrower or project. This waiver is often granted in situations where the borrower is facing financial hardship or when it is mutually beneficial for both parties involved. By forgiving or reducing the interest and principal, the borrower's debt burden is alleviated, providing immediate financial relief. This can help the borrower overcome financial challenges, improve cash flow, and potentially avoid default or bankruptcy. For the lender or investor, the interest and principal waiver may be seen as a strategic decision to mitigate losses, maintain a positive relationship with the borrower, or support a project with long-term potential. The interest and principal waiver can have a significant impact on the financial viability and sustainability of the borrower or project, allowing for a fresh start and the opportunity to regain financial stability.",
+      "formulas": "A =( r * P )/ (n * (1 - (1 + r/n)^(-nt)))",
+      "where": [
+        {
+          "id": 2,
+          "title": "A= scheduled repayment"
+        },
+        {
+          "id": 3,
+          "title": "r=annual interest rate"
+        },
+        {
+          "id": 4,
+          "title": "t=time in terms of year"
+        },
+        {
+          "id": 5,
+          "title": "n=number of payment per annum"
+        },
+        {
+          "id": 6,
+          "title": "P= Original loan"
+        }
+      ],
+      "sub": [
+        {
+          "id": 1,
+          "title": "Annual interest rate ( r)"
+        },
+        {
+          "id": 2,
+          "title": "Risk premium (RP).……3% (default)"
+        },
+        {
+          "id": 3,
+          "title": "Risk adjusted discount rate (R) =Annual interest rate (r) + risk premium (RP)"
+        },
+        {
+          "id": 4,
+          "title": "Original loan (P)= Today’s Debt outstanding"
+        },
+        {
+          "id": 5,
+          "title": "Remaining loan life in year (t)"
+        },
+        {
+          "id": 6,
+          "title": "Allowed Grace period in year (G)"
+        },
+        {
+          "id": 7,
+          "title": "Grace period interest payment= Original loan *r*G"
+        },
+        {
+          "id": 8,
+          "title": "Repayment modality …. drop down (monthly, quarterly, semi-annually, annually)"
+        },
+        {
+          "id": 9,
+          "title": "Number of payment per annum (n)=number of repayments within a year"
+        },
+        {
+          "id": 10,
+          "title": "Total number of repayment = t * n"
+        },
+        {
+          "id": 11,
+          "title": "Scheduled repayment (A)= use the above formula"
+        },
+        {
+          "id": 12,
+          "title": "A =( r * P )/ (n * (1 - (1 + r/n)^(-nt)))"
+        }
+      ],
       "type": "double"
     },
     {
       "id": 6,
       "name": "Principal Waiver & Extension",
-      "description": "Principal waived NPV, also known as Principal Forgiveness NPV, is a variant of the Net Present Value (NPV) analysis that considers the impact of principal forgiveness or debt reduction on the profitability of an investment or project.",
-      "formulas": "normal npv formula",
+      "description": "Principal Waiver and Extension is a financial arrangement that combines the forgiveness or reduction of the principal amount owed with an extension of the loan or project timeline. This arrangement is typically implemented when a borrower or project is facing financial difficulties and requires additional support to meet their obligations. The principal waiver provides immediate relief by reducing the overall debt burden, while the extension of the loan or project timeline allows for more time to repay the remaining principal and fulfill the contractual obligations. This combined approach aims to alleviate immediate financial strain and provide the borrower or project with an opportunity to regain stability and achieve long-term sustainability. The principal waiver and extension can be a mutually beneficial solution, as it helps the borrower address financial challenges while providing the lender or investor with increased confidence in the borrower's ability to recover and meet their obligations in the extended timeframe.",
+      "formulas": "A =( r * P )/ (n * (1 - (1 + r/n)^(-nt)))",
+      "where": [
+        {
+          "id": 2,
+          "title": "A= scheduled repayment"
+        },
+        {
+          "id": 3,
+          "title": "r=annual interest rate"
+        },
+        {
+          "id": 4,
+          "title": "t=time in terms of year"
+        },
+        {
+          "id": 5,
+          "title": "n=number of payment per annum"
+        },
+        {
+          "id": 6,
+          "title": "P= Original loan"
+        }
+      ],
+      "sub": [
+        {
+          "id": 1,
+          "title": "Annual interest rate ( r)"
+        },
+        {
+          "id": 2,
+          "title": "Risk premium (RP).……3% (default)"
+        },
+        {
+          "id": 3,
+          "title": "Risk adjusted discount rate (R) =Annual interest rate (r) + risk premium (RP)"
+        },
+        {
+          "id": 4,
+          "title": "Original loan (P)= Today’s Debt outstanding"
+        },
+        {
+          "id": 5,
+          "title": "Remaining loan life in year (t)"
+        },
+        {
+          "id": 6,
+          "title": "Allowed Grace period in year (G)"
+        },
+        {
+          "id": 7,
+          "title": "Grace period interest payment= Original loan *r*G"
+        },
+        {
+          "id": 8,
+          "title": "Repayment modality …. drop down (monthly, quarterly, semi-annually, annually)"
+        },
+        {
+          "id": 9,
+          "title": "Number of payment per annum (n)=number of repayments within a year"
+        },
+        {
+          "id": 10,
+          "title": "Total number of repayment = t * n"
+        },
+        {
+          "id": 11,
+          "title": "Scheduled repayment (A)= use the above formula"
+        },
+        {
+          "id": 12,
+          "title": "A =( r * P )/ (n * (1 - (1 + r/n)^(-nt)))"
+        }
+      ],
       "type": "double"
     },
     {
       "id": 7,
       "name": "Interest Waiver & Extension",
-      "description": "Principal waived NPV, also known as Principal Forgiveness NPV, is a variant of the Net Present Value (NPV) analysis that considers the impact of principal forgiveness or debt reduction on the profitability of an investment or project.",
-      "formulas": "normal npv formula",
+      "description": "Interest Waiver and Extension is a financial arrangement that involves the forgiveness or reduction of interest payments along with an extension of the loan or project duration. This arrangement is commonly utilized when a borrower or project is experiencing financial difficulties and requires additional breathing room to fulfill their obligations. The interest waiver provides immediate relief by reducing the interest expense, thereby easing the financial burden on the borrower. Simultaneously, the extension of the loan or project timeline allows for an extended repayment period, giving the borrower more time to recover financially and meet their obligations. The combination of interest waiver and extension aims to provide a temporary respite, enabling the borrower or project to regain stability and work towards long-term financial sustainability. This arrangement can be beneficial for both the borrower and the lender or investor, as it supports the borrower's financial recovery while maintaining a positive relationship and increasing the likelihood of successful loan repayment or project completion.",
+      "formulas": "A =( r * P )/ (n * (1 - (1 + r/n)^(-nt)))",
+      "where": [
+        {
+          "id": 2,
+          "title": "A= scheduled repayment"
+        },
+        {
+          "id": 3,
+          "title": "r=annual interest rate"
+        },
+        {
+          "id": 4,
+          "title": "t=time in terms of year"
+        },
+        {
+          "id": 5,
+          "title": "n=number of payment per annum"
+        },
+        {
+          "id": 6,
+          "title": "P= Original loan"
+        }
+      ],
+      "sub": [
+        {
+          "id": 1,
+          "title": "Annual interest rate ( r)"
+        },
+        {
+          "id": 2,
+          "title": "Risk premium (RP).……3% (default)"
+        },
+        {
+          "id": 3,
+          "title": "Risk adjusted discount rate (R) =Annual interest rate (r) + risk premium (RP)"
+        },
+        {
+          "id": 4,
+          "title": "Original loan (P)= Today’s Debt outstanding"
+        },
+        {
+          "id": 5,
+          "title": "Remaining loan life in year (t)"
+        },
+        {
+          "id": 6,
+          "title": "Allowed Grace period in year (G)"
+        },
+        {
+          "id": 7,
+          "title": "Grace period interest payment= Original loan *r*G"
+        },
+        {
+          "id": 8,
+          "title": "Repayment modality …. drop down (monthly, quarterly, semi-annually, annually)"
+        },
+        {
+          "id": 9,
+          "title": "Number of payment per annum (n)=number of repayments within a year"
+        },
+        {
+          "id": 10,
+          "title": "Total number of repayment = t * n"
+        },
+        {
+          "id": 11,
+          "title": "Scheduled repayment (A)= use the above formula"
+        },
+        {
+          "id": 12,
+          "title": "A =( r * P )/ (n * (1 - (1 + r/n)^(-nt)))"
+        }
+      ],
       "type": "double"
     },
     {
       "id": 8,
       "name": "Interest plus Principal Waiver & Extension",
-      "description": "Principal waived NPV, also known as Principal Forgiveness NPV, is a variant of the Net Present Value (NPV) analysis that considers the impact of principal forgiveness or debt reduction on the profitability of an investment or project.",
-      "formulas": "normal npv formula",
+      "description": "Interest plus Principal Waiver and Extension is a comprehensive financial arrangement that involves the forgiveness or reduction of both interest payments and the principal amount owed, alongside an extension of the loan or project timeline. This arrangement is typically implemented when a borrower or project is facing significant financial challenges and requires substantial support to overcome their financial difficulties. By waiving or reducing both the interest and principal, the borrower's debt burden is significantly alleviated, providing immediate relief and improving their cash flow position. Furthermore, the extension of the loan or project timeline offers additional time to repay the remaining debt and fulfill contractual obligations. This combined approach aims to provide a holistic solution, allowing the borrower or project to regain financial stability and work towards long-term sustainability. It also fosters a positive relationship between the borrower and lender or investor by demonstrating support and flexibility during challenging times. The interest plus principal waiver and extension provide a valuable opportunity for the borrower or project to restructure and recover, ultimately increasing the likelihood of successful debt repayment or project completion.",
+      "formulas": "A =( r * P )/ (n * (1 - (1 + r/n)^(-nt)))",
+      "where": [
+        {
+          "id": 2,
+          "title": "A= scheduled repayment"
+        },
+        {
+          "id": 3,
+          "title": "r=annual interest rate"
+        },
+        {
+          "id": 4,
+          "title": "t=time in terms of year"
+        },
+        {
+          "id": 5,
+          "title": "n=number of payment per annum"
+        },
+        {
+          "id": 6,
+          "title": "P= Original loan"
+        }
+      ],
+      "sub": [
+        {
+          "id": 1,
+          "title": "Annual interest rate ( r)"
+        },
+        {
+          "id": 2,
+          "title": "Risk premium (RP).……3% (default)"
+        },
+        {
+          "id": 3,
+          "title": "Risk adjusted discount rate (R) =Annual interest rate (r) + risk premium (RP)"
+        },
+        {
+          "id": 4,
+          "title": "Original loan (P)= Today’s Debt outstanding"
+        },
+        {
+          "id": 5,
+          "title": "Remaining loan life in year (t)"
+        },
+        {
+          "id": 6,
+          "title": "Allowed Grace period in year (G)"
+        },
+        {
+          "id": 7,
+          "title": "Grace period interest payment= Original loan *r*G"
+        },
+        {
+          "id": 8,
+          "title": "Repayment modality …. drop down (monthly, quarterly, semi-annually, annually)"
+        },
+        {
+          "id": 9,
+          "title": "Number of payment per annum (n)=number of repayments within a year"
+        },
+        {
+          "id": 10,
+          "title": "Total number of repayment = t * n"
+        },
+        {
+          "id": 11,
+          "title": "Scheduled repayment (A)= use the above formula"
+        },
+        {
+          "id": 12,
+          "title": "A =( r * P )/ (n * (1 - (1 + r/n)^(-nt)))"
+        }
+      ],
       "type": "triple"
     },
     {
       "id": 9,
       "name": "Injection",
-      "description": "Principal waived NPV, also known as Principal Forgiveness NPV, is a variant of the Net Present Value (NPV) analysis that considers the impact of principal forgiveness or debt reduction on the profitability of an investment or project.",
-      "formulas": "normal npv formula",
+      "description": "An injection of additional money refers to the infusion of additional funds into a project, business, or financial endeavor. This injection of capital can come from various sources such as investors, shareholders, lenders, or personal funds. The purpose of injecting additional money is to provide a financial boost to support growth, expansion, or to address financial challenges. The additional funds can be used for various purposes, including expanding operations, investing in new technology or equipment, hiring additional staff, marketing initiatives, or debt repayment. This injection of capital can have a transformative effect on the entity by providing the necessary resources to pursue opportunities, overcome financial hurdles, or enhance competitiveness. The decision to inject additional money requires careful consideration of the financial implications, potential returns, and alignment with the entity's strategic objectives. When executed effectively, an injection of additional money can contribute to the long-term success and sustainability of the project or business.",
+      "formulas": "A =( r * P )/ (n * (1 - (1 + r/n)^(-nt)))",
+      "where": [
+        {
+          "id": 2,
+          "title": "A= scheduled repayment"
+        },
+        {
+          "id": 3,
+          "title": "r=annual interest rate"
+        },
+        {
+          "id": 4,
+          "title": "t=time in terms of year"
+        },
+        {
+          "id": 5,
+          "title": "n=number of payment per annum"
+        },
+        {
+          "id": 6,
+          "title": "P= Original loan"
+        }
+      ],
+      "sub": [
+        {
+          "id": 1,
+          "title": "Annual interest rate ( r)"
+        },
+        {
+          "id": 2,
+          "title": "Risk premium (RP).……3% (default)"
+        },
+        {
+          "id": 3,
+          "title": "Risk adjusted discount rate (R) =Annual interest rate (r) + risk premium (RP)"
+        },
+        {
+          "id": 4,
+          "title": "Original loan (P)= Today’s Debt outstanding"
+        },
+        {
+          "id": 5,
+          "title": "Remaining loan life in year (t)"
+        },
+        {
+          "id": 6,
+          "title": "Allowed Grace period in year (G)"
+        },
+        {
+          "id": 7,
+          "title": "Grace period interest payment= Original loan *r*G"
+        },
+        {
+          "id": 8,
+          "title": "Repayment modality …. drop down (monthly, quarterly, semi-annually, annually)"
+        },
+        {
+          "id": 9,
+          "title": "Number of payment per annum (n)=number of repayments within a year"
+        },
+        {
+          "id": 10,
+          "title": "Total number of repayment = t * n"
+        },
+        {
+          "id": 11,
+          "title": "Scheduled repayment (A)= use the above formula"
+        },
+        {
+          "id": 12,
+          "title": "A =( r * P )/ (n * (1 - (1 + r/n)^(-nt)))"
+        }
+      ],
       "type": "single"
     }
   ]

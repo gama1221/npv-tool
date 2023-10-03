@@ -1,5 +1,6 @@
+import CustomerComponent from "../customer/CustomerComponent";
 const NPVToolPage = () => {
-    return <div>NPV TOOL page</div>;
+    return <div><CustomerComponent /></div>;
   };
   export default NPVToolPage;
   

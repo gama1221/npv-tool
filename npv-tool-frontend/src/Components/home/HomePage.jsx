@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { useState, useEffect } from "react";
+import React,{ useState, useEffect } from "react";
 import classNames from "classnames";
 import SpecificEligibilityLoanData from "../data/NPVScenarioLists.json";
 import { FaSpinner } from "react-icons/fa";
@@ -78,22 +78,19 @@ const HomePage = () => {
                     About {npvScenario.name} NPV
                   </NavLink>
                 </header>
-                <p>{npvScenario.description}</p>
-                <ul>
-                  {/* {npvScenario.group.map((productGroup, index) => (
-                  <>
-                    <li className="p-2" key={productGroup.id}>
-                      <Link
-                        to={`/product/${npvScenario.id}/${productGroup.id}`}
-                      >
-                        <h3 className="hover:font-bold hover:text-[purple] hover:underline first:capitalize hover:uppercase">
-                          <strong className="px-2">{index + 1} </strong>
-                          {productGroup.name}
-                        </h3>
-                      </Link>
-                    </li>
-                  </>
-                ))} */}
+                <p className="text-sm font-small m-4">{npvScenario.description.substring(0, 160)}</p>
+                <p className="text-sm font-bold m-4 text-green-600">{npvScenario.formulas}</p>
+                <h2 className="text-sm font-bold m-4 text-green-600">Where</h2>
+                <ul className="ml-10">
+                  {
+                    npvScenario.where.map((res)=>(
+                      <React.Fragment key={res.id}>                        
+                      <li className="text-sm">
+                           <span className="text-green-600 font-semibold">{res.title.substring(0,1)}</span>{res.title.substring(1)}
+                       </li>                       
+                      </React.Fragment>
+                    ))
+                  }
                 </ul>
               </article>
             </div>

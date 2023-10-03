@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+import "./Style.css";
 const ContactPage = () => {
   const handleContact = (e) => {
     e.preventDefault();
@@ -21,6 +23,7 @@ const ContactPage = () => {
             required
             id="name"
             name="name"
+            placeholder="Enter name"
             class="w-full px-3 py-2 placeholder-gray-400 border rounded-md focus:outline-none focus:ring-green-500 focus:border-green-500"
           />
         </div>
@@ -33,6 +36,7 @@ const ContactPage = () => {
           </label>
           <input
             type="email"
+            placeholder="Enter email"
             required
             id="email"
             name="email"
@@ -47,6 +51,7 @@ const ContactPage = () => {
             Message
           </label>
           <textarea
+          placeholder="Enter message..."
             required
             id="message"
             name="message"
@@ -58,13 +63,10 @@ const ContactPage = () => {
           type="submit"
           class="px-4 py-2 text-white bg-green-500 rounded-md hover:bg-green-600"
         >
-          Submit
+          <Link to="mailto:example@example.com">Submit</Link>          
         </button>
-        {/* <h1>
-          <p>Radical: &#x221A; or &#8730;</p>
-          <p>Radical: &#x221A;(x + y)</p>
-        </h1> */}
-        {/* Contact page */}
+        <div>
+    </div>
       </form>
     </div>
   );
