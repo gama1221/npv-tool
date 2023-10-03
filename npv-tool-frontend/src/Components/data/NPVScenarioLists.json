@@ -1,0 +1,67 @@
+{
+  "npv_scenarios": [
+    {
+      "id": 1,
+      "name": "Normal",
+      "description": "Principal waived NPV, also known as Principal Forgiveness NPV, is a variant of the Net Present Value (NPV) analysis that considers the impact of principal forgiveness or debt reduction on the profitability of an investment or project.",
+      "formulas": "normal npv formula",
+      "type": "single"
+    },
+    {
+      "id": 2,
+      "name": "Principal Waiver",
+      "description": "Principal waived NPV, also known as Principal Forgiveness NPV, is a variant of the Net Present Value (NPV) analysis that considers the impact of principal forgiveness or debt reduction on the profitability of an investment or project.",
+      "formulas": "normal npv formula",
+      "type": "single"
+    },
+    {
+      "id": 3,
+      "name": "Interest Waiver",
+      "description": "Principal waived NPV, also known as Principal Forgiveness NPV, is a variant of the Net Present Value (NPV) analysis that considers the impact of principal forgiveness or debt reduction on the profitability of an investment or project.",
+      "formulas": "normal npv formula",
+      "type": "single"
+    },
+    {
+      "id": 4,
+      "name": "Extension",
+      "description": "Principal waived NPV, also known as Principal Forgiveness NPV, is a variant of the Net Present Value (NPV) analysis that considers the impact of principal forgiveness or debt reduction on the profitability of an investment or project.",
+      "formulas": "normal npv formula",
+      "type": "single"
+    },
+    {
+      "id": 5,
+      "name": "Interest and Principal Waiver",
+      "description": "Principal waived NPV, also known as Principal Forgiveness NPV, is a variant of the Net Present Value (NPV) analysis that considers the impact of principal forgiveness or debt reduction on the profitability of an investment or project.",
+      "formulas": "normal npv formula",
+      "type": "double"
+    },
+    {
+      "id": 6,
+      "name": "Principal Waiver & Extension",
+      "description": "Principal waived NPV, also known as Principal Forgiveness NPV, is a variant of the Net Present Value (NPV) analysis that considers the impact of principal forgiveness or debt reduction on the profitability of an investment or project.",
+      "formulas": "normal npv formula",
+      "type": "double"
+    },
+    {
+      "id": 7,
+      "name": "Interest Waiver & Extension",
+      "description": "Principal waived NPV, also known as Principal Forgiveness NPV, is a variant of the Net Present Value (NPV) analysis that considers the impact of principal forgiveness or debt reduction on the profitability of an investment or project.",
+      "formulas": "normal npv formula",
+      "type": "double"
+    },
+    {
+      "id": 8,
+      "name": "Interest plus Principal Waiver & Extension",
+      "description": "Principal waived NPV, also known as Principal Forgiveness NPV, is a variant of the Net Present Value (NPV) analysis that considers the impact of principal forgiveness or debt reduction on the profitability of an investment or project.",
+      "formulas": "normal npv formula",
+      "type": "triple"
+    },
+    {
+      "id": 9,
+      "name": "Injection",
+      "description": "Principal waived NPV, also known as Principal Forgiveness NPV, is a variant of the Net Present Value (NPV) analysis that considers the impact of principal forgiveness or debt reduction on the profitability of an investment or project.",
+      "formulas": "normal npv formula",
+      "type": "single"
+    }
+  ]
+}

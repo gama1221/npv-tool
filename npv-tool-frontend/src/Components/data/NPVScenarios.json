@@ -1,0 +1,1648 @@
+{
+  "product_line": [
+    {
+      "id": 1,
+      "name": "Credit facility",
+      "group": [
+        {
+          "id": 1,
+          "name": "overdraft facility",
+          "product": [
+            {
+              "id": 1,
+              "name": "Fresh overdraft facility (non-export)",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "Custom declaration for imported goods",
+                "Valid credit sales invoices for local purchase",
+                "Production report for manufacturing",
+                "Fast moving items",
+                "Not be perishable goods (like Chemicals except fertilizer, Packed Foods, Pharmaceuticals, Batteries, Butter, Oil, Yeast, easily perishable agricultural produces, etc).",
+                "The storeroom is made of stone or bricks or hollow blocks or thick metal (yes/no)",
+                "Internal door are sealed firmly with metal or strong metal (yes/no)",
+                "Evidence of wateperson recruitement for cumbersomer items stored in fenced compound",
+                "The door(s) are made of sheet metal having a minimum thickness of 0.2 mm (yes/no)",
+                "Ownership evidence of the store",
+                "If owner of the store is other than the applicant, rent agreement with store owner",
+                "Store rent payment receipt",
+                "The windows and any ventilation openings are grilled with iron bars.",
+                "The locks are of high quality and acceptable to the Bank.",
+                "Fire extinguishers are placed at appropriate locations.",
+                "Evidence of adequate security recruitment and arrangement",
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "Pledge a collateral as per the risk grade",
+                "If there is OD facility in other bank, pledge a collateral that covers 100% of overdraft facility",
+                "Select collateral type, fill the required information, and upload evidence of collateral"
+              ]
+            },
+            {
+              "id": 2,
+              "name": "Overdraft facility renewal (non-export)",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form"
+              ]
+            },
+            {
+              "id": 3,
+              "name": "Fresh export overdraft facility",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "Custom declaration for imported goods",
+                "Valid credit sales invoices for local purchase",
+                "Production report for manufacturing",
+                "Fast moving items",
+                "Not be perishable goods (like Chemicals except fertilizer, Packed Foods, Pharmaceuticals, Batteries, Butter, Oil, Yeast, easily perishable agricultural produces, etc).",
+                "The storeroom is made of stone or bricks or hollow blocks or thick metal (yes/no)",
+                "Internal door are sealed firmly with metal or strong metal (yes/no)",
+                "Evidence of wateperson recruitement for cumbersomer items stored in fenced compound",
+                "The door(s) are made of sheet metal having a minimum thickness of 0.2 mm (yes/no)",
+                "Ownership evidence of the store",
+                "If owner of the store is other than the applicant, rent agreement with store owner",
+                "Store rent payment receipt",
+                "The windows and any ventilation openings are grilled with iron bars.",
+                "The locks are of high quality and acceptable to the Bank.",
+                "Fire extinguishers are placed at appropriate locations.",
+                "Evidence of adequate security recruitment and arrangement",
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "Pledge a collateral as per the risk grade",
+                "If there is OD facility in other bank, pledge a collateral that covers 100% of overdraft facility",
+                "Select collateral type, fill the required information, and upload evidence of collateral"
+              ]
+            },
+            {
+              "id": 4,
+              "name": "Export overdraft facility renewal",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form"
+              ]
+            },
+            {
+              "id": 5,
+              "name": "Overdraft facility limit increase (non-export)",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "If there is OD facility at our bank and want increase it, pledge a collateral that covers 100% of increased overdraft facility",
+                "Select collateral type, fill the required information, and upload evidence of new collateral"
+              ]
+            },
+            {
+              "id": 6,
+              "name": "Export overdraft facility limit increase",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "If there is OD facility at our bank and want increase it, pledge a collateral that covers 100% of increased overdraft facility",
+                "Select collateral type, fill the required information, and upload evidence of new collateral"
+              ]
+            },
+            {
+              "id": 7,
+              "name": "overdraft overdraft facility limit decrease",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form"
+              ]
+            },
+            {
+              "id": 8,
+              "name": "Export overdraft facility limit decrease",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form"
+              ]
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "merchandise facility",
+          "product": [
+            {
+              "id": 1,
+              "name": "Fresh merchandise facility one time",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "Custom declaration for imported goods",
+                "Valid credit sales invoices for local purchase",
+                "Production report for manufacturing",
+                "Fast moving items",
+                "Not be perishable goods (like Chemicals except fertilizer, Packed Foods, Pharmaceuticals, Batteries, Butter, Oil, Yeast, easily perishable agricultural produces, etc).",
+                "The storeroom is made of stone or bricks or hollow blocks or thick metal (yes/no)",
+                "Internal door are sealed firmly with metal or strong metal (yes/no)",
+                "Evidence of wateperson recruitement for cumbersomer items stored in fenced compound",
+                "The door(s) are made of sheet metal having a minimum thickness of 0.2 mm (yes/no)",
+                "Ownership evidence of the store",
+                "If owner of the store is other than the applicant, rent agreement with store owner",
+                "Store rent payment receipt",
+                "The windows and any ventilation openings are grilled with iron bars.",
+                "The locks are of high quality and acceptable to the Bank.",
+                "Fire extinguishers are placed at appropriate locations.",
+                "Evidence of adequate security recruitment and arrangement"
+              ]
+            },
+            {
+              "id": 2,
+              "name": "Merchandise facility increase limit",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "Custom declaration for imported goods",
+                "Valid credit sales invoices for local purchase",
+                "Production report for manufacturing",
+                "Is the store room different from the original store room (yes/no), if yes",
+                "The storeroom is made of stone or bricks or hollow blocks or thick metal (yes/no)",
+                "Internal door are sealed firmly with metal or strong metal (yes/no)",
+                "Evidence of wateperson recruitement for cumbersomer items stored in fenced compound",
+                "The door(s) are made of sheet metal having a minimum thickness of 0.2 mm (yes/no)",
+                "Ownership evidence of the store",
+                "If owner of the store is other than the applicant, rent agreement with store owner",
+                "Store rent payment receipt",
+                "The windows and any ventilation openings are grilled with iron bars.",
+                "The locks are of high quality and acceptable to the Bank.",
+                "Evidence of adequate security recruitment and arrangement",
+                "Fire extinguishers are placed at appropriate locations."
+              ]
+            },
+            {
+              "id": 3,
+              "name": "Merchandise facility decrease limit",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form"
+              ]
+            },
+            {
+              "id": 4,
+              "name": "Merchandise facility renewal",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter ",
+                "Credit application form"
+              ]
+            },
+            {
+              "id": 5,
+              "name": "Fresh merchandise facility revolving",
+              "specificEligibilityCriteria": []
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "name": " Preshipment facility",
+          "product": [
+            {
+              "id": 1,
+              "name": "Fresh pre-shipment facility",
+              "specificEligibilityCriteria": [
+                "Fulfil general legibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "Valid export sales contract agreement with foreign buyer",
+                "Registered by NBE for coffee export",
+                "Registered by ministry of trade for pulses and oilseeds",
+                "Receipts for export proceeds for  the last 12 consecutive  months, for existing  exporters",
+                "Acceptable method of payment are advance payment, CAD, LC",
+                "Export LC, if described in sales contract agreement",
+                "In case of advance payment, payment date shall be after the loan is approved by the bank"
+              ]
+            },
+            {
+              "id": 2,
+              "name": "Pre-shipment facility renewal",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "Valid export sales contract agreement with foreign buyer",
+                "Registered by NBE for coffee export",
+                "Registered by ministry of trade for pulses and oilseeds",
+                "Acceptable method of payment are advance payment, CAD, LC",
+                "Export LC, if described in sales contract agreement",
+                "In case of advance payment, payment date shall be after the loan is approved by the bank"
+              ]
+            },
+            {
+              "id": 3,
+              "name": "Pre-shipment facility limit increase",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "Valid export sales contract agreement with foreign buyer",
+                "Registered by NBE for coffee export",
+                "Registered by ministry of trade for pulses and oilseeds",
+                "Acceptable method of payment are advance payment, CAD, LC",
+                "Export LC, if described in sales contract agreement",
+                "In case of advance payment, payment date shall be after the loan is approved by the bank"
+              ]
+            },
+            {
+              "id": 4,
+              "name": "Pre-shipment facility limit decrease",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "Valid export sales contract agreement",
+                "Export performance report"
+              ]
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Guarantee facility",
+          "product": [
+            {
+              "id": 1,
+              "name": "Fresh guarantee facility one-time",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                " Credit application letter",
+                "Credit application form",
+                "Valid bid, if applicable",
+                "Award letter, if applicable",
+                "Contract agreement, if applicable",
+                " Custom duty, if applicable"
+              ]
+            },
+            {
+              "id": 2,
+              "name": "Fresh guarantee facility revolving",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                " Credit application letter",
+                "Credit application form",
+                "Valid bid, if applicable",
+                "Award letter, if applicable",
+                "Contract agreement, if applicable",
+                " Custom duty, if applicable"
+              ]
+            },
+            {
+              "id": 3,
+              "name": "Guarantee facility renewal",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "Valid bid, if applicable",
+                "Award letter, if applicable",
+                "Contract agreement, if applicable",
+                "Custom duty, if applicable"
+              ]
+            },
+            {
+              "id": 4,
+              "name": "Guarantee facility limit increase",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "Valid bid, if applicable",
+                "Award letter, if applicable",
+                "Contract agreement, if applicable",
+                "Custom duty, if applicable"
+              ]
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "name": "Import Letter of Credit Facility",
+          "product": [
+            {
+              "id": 1,
+              "name": "Fresh import LC facility one-time",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "Proforma invoice",
+                "NBE FCY approval letter, if applicable",
+                "CBE FCY allocation signed by IBD and approval letter by the branch",
+                "Forecasted cashflow statement",
+                "Present all documents/information demanded by the bank"
+              ]
+            },
+            {
+              "id": 2,
+              "name": "Fresh import LC facility revolving",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "Proforma invoice",
+                "Present all documents/information demanded by the bank"
+              ]
+            },
+            {
+              "id": 3,
+              "name": "Import LC facility renewal",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "Proforma invoice"
+              ]
+            },
+            {
+              "id": 4,
+              "name": "Import LC facility limit increase",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "Proforma invoice",
+                "Present all documents/information demanded by the bank"
+              ]
+            },
+            {
+              "id": 5,
+              "name": "Import LC facility limit decrease",
+              "specificEligibilityCriteria": []
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "name": "Back to Back Letters of Credit Financing",
+          "product": [
+            {
+              "id": 1,
+              "name": "Fresh B2B LC facility one-time",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "Exportable goods manufacturing",
+                "Intended to import raw materials or other intermediary inputs used to facilitate export business.",
+                "Export LC",
+                "Import LC",
+                "Proforma invoice for imported items",
+                "The value of import LC shall be a maximum value of 20% of export LC value as per NBE directive",
+                "Forecasted cashflow statement"
+              ]
+            },
+            {
+              "id": 2,
+              "name": "Fresh B2B LC facility revolving",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "Exportable goods manufacturing",
+                "Intended to import raw materials or other intermediary inputs used to facilitate export business.",
+                "Export LC",
+                "Import LC",
+                "Proforma invoice for imported items",
+                "The value of import LC shall be a maximum value of 20% of export LC value as per NBE directive",
+                "Forecasted cashflow statement"
+              ]
+            },
+            {
+              "id": 3,
+              "name": "B2B renewal",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "Export LC",
+                "Proforma invoice for imported items"
+              ]
+            },
+            {
+              "id": 4,
+              "name": "B2B LC facility limit increase",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "Exportable goods manufacturing",
+                "Intended to import raw materials or other intermediary inputs used to facilitate export business.",
+                "Export LC",
+                "Import LC",
+                "The value of import LC shall be a maximum value of 20% of export LC value as per NBE directive"
+              ]
+            },
+            {
+              "id": 5,
+              "name": "B2B LC facility limit decrease",
+              "specificEligibilityCriteria": []
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "name": "Warehouse Receipt Financing ECX",
+          "product": [
+            {
+              "id": 1,
+              "name": "Fresh WRF facility",
+              "specificEligibilityCriteria": []
+            },
+            {
+              "id": 2,
+              "name": "WRF facility renewal",
+              "specificEligibilityCriteria": []
+            },
+            {
+              "id": 3,
+              "name": "WRF facility limit increase",
+              "specificEligibilityCriteria": []
+            },
+            {
+              "id": 4,
+              "name": "WRF facility limit decreasee",
+              "specificEligibilityCriteria": []
+            },
+            {
+              "id": 5,
+              "name": "Fresh WRF facility",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "e-GRN issued by warehouse operator",
+                "confirmation letter about the genuinty of e-GRN from ministry of trade",
+                "warehouse operator LHC",
+                "warehouse operator renewed trade license",
+                "warehouse operator traderegistration certificate",
+                "warehouse operator competence certificate",
+                "warehouse operator tin number"
+              ]
+            },
+            {
+              "id": 6,
+              "name": "WRF facility renewal",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "e-GRN issued by warehouse operator",
+                "confirmation letter about the genuinty of e-GRN from ministry of trade",
+                "warehouse operator LHC",
+                "warehouse operator renewed trade license",
+                "warehouse operator traderegistration certificate",
+                "warehouse operator competence certificate",
+                "warehouse operator tin number"
+              ]
+            },
+            {
+              "id": 7,
+              "name": "WRF facility limit increase",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "e-GRN issued by warehouse operator",
+                "confirmation letter about the genuinty of e-GRN from ministry of trade",
+                "warehouse operator LHC",
+                "warehouse operator renewed trade license",
+                "warehouse operator traderegistration certificate",
+                "warehouse operator competence certificate",
+                "warehouse operator tin number"
+              ]
+            },
+            {
+              "id": 8,
+              "name": "WRF facility limit decrease",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "e-GRN issued by warehouse operator",
+                "confirmation letter about the genuinty of e-GRN from ministry of trade",
+                "warehouse operator LHC",
+                "warehouse operator renewed trade license",
+                "warehouse operator traderegistration certificate",
+                "warehouse operator competence certificate",
+                "warehouse operator tin number"
+              ]
+            }
+          ]
+        },
+        {
+          "id": 8,
+          "name": "Agricultural Output Financing for Cooperatives /Unions against Forward Delivery Contract with WFP",
+          "product": [
+            {
+              "id": 1,
+              "name": "Fresh AOF facility-one time",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "Valid contract agreement with WFP",
+                "Cooperative/union license"
+              ]
+            },
+            {
+              "id": 2,
+              "name": "Fresh AOF facility-revolving",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "Valid contract agreement with WFP",
+                "Cooperative/union license"
+              ]
+            },
+            {
+              "id": 3,
+              "name": "AOF facility renewal",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "Valid contract agreement with WFP",
+                "Cooperative/union license"
+              ]
+            },
+            {
+              "id": 4,
+              "name": "AOF facility limit increase",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "Valid contract agreement with WFP",
+                "Cooperative/union license"
+              ]
+            },
+            {
+              "id": 5,
+              "name": "AOF facility limit decrease",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "Valid contract agreement with WFP",
+                "Cooperative/union license"
+              ]
+            }
+          ]
+        },
+        {
+          "id": 9,
+          "name": "Supply Chain Financing facility",
+          "product": [
+            {
+              "id": 1,
+              "name": "Fresh SCF facility-one time",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "Valid contract agreement with SMEs",
+                "SMEs profile shall be registered in the customer information"
+              ]
+            },
+            {
+              "id": 2,
+              "name": "Fresh SCF facility-revolving",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "Valid contract agreement with SMEs",
+                "SMEs profile shall be registered in the customer information"
+              ]
+            },
+            {
+              "id": 3,
+              "name": "SCF facility renewal",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form"
+              ]
+            },
+            {
+              "id": 4,
+              "name": "SCF facility limit increase",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "Valid contract agreement with SMEs",
+                "SMEs profile shall be registered in the customer information"
+              ]
+            },
+            {
+              "id": 5,
+              "name": "SCF facility limit decrease",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "Valid contract agreement with SMEs",
+                "SMEs profile shall be registered in the customer information"
+              ]
+            }
+          ]
+        },
+        {
+          "id": 10,
+          "name": "Warehouse Receipt Financing (WRF)-Private",
+          "product": [
+            {
+              "id": 1,
+              "name": "Fresh WRF facility",
+              "specificEligibilityCriteria": []
+            },
+            {
+              "id": 2,
+              "name": "WRF facility renewal",
+              "specificEligibilityCriteria": []
+            },
+            {
+              "id": 3,
+              "name": "WRF facility limit increase",
+              "specificEligibilityCriteria": []
+            },
+            {
+              "id": 4,
+              "name": "WRF facility limit decreasee",
+              "specificEligibilityCriteria": []
+            },
+            {
+              "id": 5,
+              "name": "Fresh WRF facility",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "e-GRN issued by warehouse operator",
+                "confirmation letter about the genuinty of e-GRN from ministry of trade",
+                "warehouse operator LHC",
+                "warehouse operator renewed trade license",
+                "warehouse operator traderegistration certificate",
+                "warehouse operator competence certificate",
+                "warehouse operator tin number"
+              ]
+            },
+            {
+              "id": 6,
+              "name": "WRF facility renewal",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "e-GRN issued by warehouse operator",
+                "confirmation letter about the genuinty of e-GRN from ministry of trade",
+                "warehouse operator LHC",
+                "warehouse operator renewed trade license",
+                "warehouse operator traderegistration certificate",
+                "warehouse operator competence certificate",
+                "warehouse operator tin number"
+              ]
+            },
+            {
+              "id": 7,
+              "name": "WRF facility limit increase",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "e-GRN issued by warehouse operator",
+                "confirmation letter about the genuinty of e-GRN from ministry of trade",
+                "warehouse operator LHC",
+                "warehouse operator renewed trade license",
+                "warehouse operator traderegistration certificate",
+                "warehouse operator competence certificate",
+                "warehouse operator tin number"
+              ]
+            },
+            {
+              "id": 8,
+              "name": "WRF facility limit decrease",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "e-GRN issued by warehouse operator",
+                "confirmation letter about the genuinty of e-GRN from ministry of trade",
+                "warehouse operator LHC",
+                "warehouse operator renewed trade license",
+                "warehouse operator traderegistration certificate",
+                "warehouse operator competence certificate",
+                "warehouse operator tin number"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Term Loan",
+      "group": [
+        {
+          "id": 1,
+          "name": "Fresh term loan",
+          "product": [
+            {
+              "id": 1,
+              "name": "Short term loan",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "Machine specification & machine operation manual from the manufacturer, if applicable",
+                "Confirmation letter from the concerned government organ about the compliance and fulfillment of standard requirements set for the rating/class proposed by the customer, if applicable.",
+                "Hotel and tourism",
+                "Health and pharmaceuticals etc",
+                "Assessment made for the particular species of cattle/poultary/seed regarding their productivity by ministry of agriculture, if applicable",
+                "Proof of ranch carrying capacity and herd size, if applicable",
+                "Offer acceptable collateral comparable to the requested loan amount",
+                "Tax estimation report from the concerned tax authority if the collateral to be seized is duty free.",
+                "Business plan and forecasted cash flow statement",
+                "Present documents/information demanded by the bank"
+              ]
+            },
+            {
+              "id": 2,
+              "name": "Medium and long term Loan",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "Equity Contribution of 30% or above the project cost,",
+                "Environmental impact assessment approved by respective gov., organ",
+                "Machine specification & machine operation manual from the manufacturer, if applicable",
+                "Confirmation letter from the concerned government organ about the compliance and fulfillment of standard requirements set for the rating/class proposed by the customer, if applicable.",
+                "Hotel and tourism",
+                "Health and pharmaceuticals etc",
+                "Assessment documents including the criteria used to assess the business or envisaged project by multinational company incase where it formed joint venture or affiliated with the applicant for the specific business or envisaged project, if applicable.",
+                "Proof of ranch carrying capacity and herd size for dairy farming, animal fattening, etc, if applicable",
+                "Assessment made for the particular species of livestock/poultary/seed regarding their productivity by ministry of agriculture, if applicable",
+                "At least three proforma invoice for the to-be-purchased fixed assets, if applicable",
+                "Letter from concerned gov., organ for installation of power, water and other required infrastructure with respective costs shall be disclosed, if applicable.",
+                "Commercial invoice and custom declaration (if any) for aleady purchased fixed asset of the project, if applicable.",
+                "Offer acceptable collateral comparable to the requested loan amount",
+                "Tax estimation report from the concerned tax authority if the collateral to be seized is duty free.",
+                "Detailed Project feasibility study and/or business plan,",
+                "Present documents/information demanded by the bank"
+              ]
+            },
+            {
+              "id": 3,
+              "name": "Export business working capital term loan",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "Valid export sales contract agreement with foreign buyer",
+                "Receipts of export proceeds for the past 12 consecutive months",
+                "Present documents/information demanded by the bank"
+              ]
+            },
+            {
+              "id": 4,
+              "name": "Export business project term loan",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "Valid export sales contract agreement with foreign buyer, if applicable",
+                "Receipts of export proceeds for the past 12 consecutive months, if applicable",
+                "Equity Contribution of 30% or above the project cost,",
+                "Environmental impact assessment approved by respective gov., organ",
+                "Detailed Project feasibility study and/or business plan,",
+                "Present documents/information demanded by the bank"
+              ]
+            },
+            {
+              "id": 5,
+              "name": "Motor Vehicle Loan",
+              "specificEligibilityCriteria": [
+                "Credit application letter",
+                "Credit application form",
+                "The  proforma invoice for brand new  Motor Vehicle to be purchased, ",
+                "Commercial invoice, custom declaration, packing list, evidence of custom duty payment, etc for brand new motor vehicles to be purchase.",
+                "Libre /ownership certificate ",
+                "The vehicle shall meet the standard specification of the Ministry of Transport.",
+                "Motor vehicle insurance (after loan approval before disbursement)",
+                "Minimum  loading capacity for dry cargo truck is 300 quintals,",
+                "Minimum loading capacity for fuel cargo truck is 40,000 liters,",
+                "Minimum  loading capacity for public transport bus is 25 seats,",
+                " Minimum  loading Capacity for dump truck is  9m3 ,",
+                "large-, medium- and small-sized trucks, mini-buses, pickups and automobiles that are needed to facilitate the borrower's existing business.",
+                "Equity contribution of 35% or above,",
+                "Bank financing, or any other type of borrowing, is not acceptable as a source of fund for the borrower's equity contribution.",
+                "Project feasibility study and/or business plan,",
+                "Additional collateral may be  requested,",
+                "Tax estimation report from the concerned tax authority if the motor vehicle to be purchased is duty free.",
+                "Present all the documents/information demanded by the Bank,"
+              ]
+            },
+            {
+              "id": 6,
+              "name": "Motor Vehicle loan for Exporters",
+              "specificEligibilityCriteria": [
+                "Credit application letter",
+                "Credit application form",
+                "Engaged in coffee and/or sesame export business",
+                "Earned at least USD1million from the export business during the last twelve month and all of which channelled via CBE.",
+                "no credit facility with CBE shall not be eligible for truck loan financing",
+                "The vehicle shall be dry cargo truck with trailer with minimum loading capacity of 300 quintals.",
+                "The vehicle shall meet the standard specification of the Ministry of Transport.",
+                "The  proforma invoice for brand new  Motor Vehicle to be purchased, ",
+                "Commercial invoice, custom declaration, packing list, evidence of custom duty payment, etc for brand new motor vehicles to be purchase.",
+                "Libre /ownership certificate ",
+                "Motor vehicle insurance (after loan approval before disbursement)",
+                "Equity contribution of 20% or above,",
+                "Bank financing, or any other type of borrowing, is not acceptable as a source of fund for the borrower's equity contribution.",
+                "Project feasibility study and/or business plan,",
+                "Additional collateral may be  requested, ",
+                "Tax estimation report from the concerned tax authority if the motor vehicle to be purchased is duty free.",
+                "Present all the documents/information demanded by the Bank,"
+              ]
+            },
+            {
+              "id": 7,
+              "name": "Construction Machinery Loan",
+              "specificEligibilityCriteria": [
+                "Credit application letter",
+                "Credit application form",
+                "engaged in a viable construction machinery leasing or construction business",
+                "shall meet the standard specification of the concerned government body",
+                "The construction machinery to be bought shall only be brand new",
+                "The applicant shall be in the business at least for one year.",
+                "Duty free evidence, if applicable",
+                "The  proforma invoice for brand new  construction machinery to be purchased, ",
+                "Commercial invoice, custom declaration, packing list, evidence of custom duty payment, etc for brand new motor vehicles to be purchase.",
+                "Libre /ownership certificate ",
+                "Motor vehicle and plant & machinery insurance (after loan approval before disbursement)",
+                "Equity contribution of 20% or above,",
+                "Bank financing, or any other type of borrowing, is not acceptable as a source of fund for the borrower's equity contribution.",
+                "Project feasibility study and/or business plan,",
+                "Additional collateral may be  requested, ",
+                "Tax estimation report from the concerned tax authority if the construction machinery to be purchased is duty free.",
+                "Present all the documents/information demanded by the Bank,"
+              ]
+            },
+            {
+              "id": 8,
+              "name": "Special Construction Machinery and Dump Truck Loan",
+              "specificEligibilityCriteria": [
+                "Credit application letter",
+                "Credit application form",
+                "Valid contracts with the Federal or Regional Governments offices and/or Public Enterprises",
+                "sub-contract agreement with principal contractor, if applicable",
+                "letter of intent from the Federal or Regional Governments offices and/or Public Enterprises which should state principal contractor has valid contract and sub-contractor is recoginized by them",
+                "Sub-contractors also shall have a valid contract at least for one year, if applicable",
+                "shall meet the standard specification of the concerned government body",
+                "The construction machinery to be bought shall only be brand new",
+                "The applicant shall be in the business at least for one year.",
+                "Duty free evidence, if applicable",
+                "The  proforma invoice for brand new  construction machinery to be purchased, ",
+                "Commercial invoice, custom declaration, packing list, evidence of custom duty payment, etc for brand new motor vehicles to be purchase.",
+                "Libre /ownership certificate ",
+                "Motor vehicle and plant & machinery insurance (after loan approval before disbursement)",
+                "Equity contribution of 30% or above,",
+                "Bank financing, or any other type of borrowing, is not acceptable as a source of fund for the borrower's equity contribution.",
+                "Project feasibility study and/or business plan,",
+                "A tri-partite agreement shall be signed between the Bank, the borrower and the employer",
+                "sign an undertaking to sign a tri-partite agreement with future employer and the Bank, if the current contract is terminated before full settlement of the loan",
+                "Open a Current Account, Special Proceed Account and Retention Account in the branch where the loan is to be disbursed.",
+                "Additional collateral may be  requested, ",
+                "Tax estimation report from the concerned tax authority if the construction machinery to be purchased is duty free.",
+                "Present all the documents/information demanded by the Bank,"
+              ]
+            },
+            {
+              "id": 9,
+              "name": "Agricultural Machinery loan",
+              "specificEligibilityCriteria": [
+                "Credit application letter",
+                "Credit application form",
+                "shall have atleast 2hectares of agricultural land in the name of the applicant",
+                "Shall meet the standard specification of the concerned government body",
+                "The agricultural machinery to be bought shall only be brand new",
+                "The agricultural machinery can be tractor, combine harvester, implements such as disc plough, disc harrow, trailer used for crop transport, seeder, etc.",
+                "Duty free evidence, if applicable",
+                "The  proforma invoice for brand new  agricultural machinery to be purchased, ",
+                "Commercial invoice, custom declaration, packing list, evidence of custom duty payment, etc for brand new motor vehicles to be purchase.",
+                "Libre /ownership certificate ",
+                "Motor vehicle and plant & machinery insurance (after loan approval before disbursement)",
+                "Equity contribution of 40% or above,",
+                "Bank financing, or any other type of borrowing, is not acceptable as a source of fund for the borrower's equity contribution.",
+                "Project feasibility study/or business plan,",
+                "Tax estimation report from the concerned tax authority if the agricultural machinery to be purchased is duty free.",
+                "Present all the documents/information demanded by the Bank,"
+              ]
+            },
+            {
+              "id": 10,
+              "name": "Infrastructure Construction Term Loan",
+              "specificEligibilityCriteria": [
+                "Credit application letter",
+                "Credit application form",
+                "Valid contracts with the Federal or Regional Governments offices and/or Public Enterprises to undertake infrastructure constructions such as universities, airports, sugar factories, and hospitals and shall present the same.",
+                "Sub-contract agreement with principal contractor, if applicable",
+                "Letter of intent from the Federal or Regional Governments offices and/or Public Enterprises which should state principal contractor has valid contract and sub-contractor is recoginized by them",
+                "Sub-contractors also shall have a valid contract at least for one year, if applicable",
+                "The Bank shall finance a maximum of 10% of the contract value.",
+                "Bank financing, or any other type of borrowing, is not acceptable as a source of fund for the borrower's equity contribution.",
+                "Project feasibility study and/or business plan,",
+                "A tri-partite agreement shall be signed between the Bank, the borrower and the employer",
+                "sign an undertaking to sign a tri-partite agreement with future employer and the Bank, if the current contract is terminated before full settlement of the loan",
+                "Open a Current Account, Special Proceed Account and Retention Account in the branch where the loan is to be disbursed.",
+                "Additional collateral may be  requested, ",
+                "Present all the documents/information demanded by the Bank,"
+              ]
+            },
+            {
+              "id": 11,
+              "name": "Investment Financing for Enterprises Operating in Industrial Parks",
+              "specificEligibilityCriteria": [
+                "Credit application letter",
+                "Credit application form",
+                "It is a term loans extended for the purpose of acquiring fixed assets such as machinery, equipment, furniture and fixtures, vehicles etc. as well as financing permanent (initial) working capital requirements.",
+                "The applicant must operate in an industrial park",
+                "The applicant shall secure the necessary permit from concerned organs to operate in an industrial park",
+                "Lease agreement for factory shade use right signed between IPDC must be presented. However, if the industry park is developed by the enterprise itself; the applicant shall present documentary evidences witnessing ownership of the park. Moreover, consent from the relevant government body allowing the enterprise to offer the developed park for bank loan mortgage must be obtained",
+                "The machinery/equipment/ vehicle to be bought shall be brand new",
+                "Equity contribution is 25% or above (for local investor), for foreing investor 40% and above.",
+                "If the Industrial Park Enterprise is also a developer of the park, the buildings /construction /civil works executed shall be considered as equity contribution",
+                "Duty-free evidence, if applicable",
+                "The  proforma invoice for brand new  machinery/equipment/vehicle to be purchased, ",
+                "Commercial invoice, custom declaration, packing list, evidence of custom duty payment, etc for brand new machinery/equipment/vehicle to be purchase.",
+                "ownership certificate ",
+                "plant & machinery insurance for machinery and equipment, motor vehicle insurance for vehicles (after loan approval before disbursement)",
+                "Bank financing, or any other type of borrowing, is not acceptable as a source of fund for the borrower's equity contribution.",
+                "Project feasibility study and/or business plan,",
+                "Additional collateral may be  requested, ",
+                "Present all the documents/information demanded by the Bank,"
+              ]
+            },
+            {
+              "id": 12,
+              "name": "Partial Financing",
+              "specificEligibilityCriteria": [
+                "Credit application letter",
+                "Credit application form",
+                "The purpose is to expedite the recovery of the Bank's non-performing loans",
+                "Reliable source of income for the repayment of the loan",
+                "Pay minimum cash down payment of 30% of the floor price for auction value; however, in case of building or business establishment if the value of which is greater than Birr 10 million, the Bank may relax the minimum down payment requirement up to 10%",
+                "Offer the property purchased as collateral",
+                "Properties covered by the partial financing scheme are buildings, vehicles, machinery and business establishments that are either held as collateral or acquired by the Bank.",
+                "Business plan and forecasted cash flow statement",
+                "Award letter issued by the resoective bank's unit",
+                "Auction documents specifically prepared and organized for the foreclosed property",
+                "A letter from the employer if the source of repayment is salary",
+                "Recent income tax payment from the employer which shall be verified by respective tax authority",
+                "Total repayment obligation should not exceed one third of his/her salary that has to be confirmed by a letter from the employer",
+                "The Bank may consider the salary of the spouse when the borrowers want to borrow jointly",
+                "Sign an undertaking to submit the business license and TIN soon after the purchased property is transferred if the applicant is new to the business and the source of repayment is the purchased property. ",
+                "Additional collateral may be requested",
+                "Present all the documents/information demanded by the Bank,"
+              ]
+            },
+            {
+              "id": 13,
+              "name": "Syndicate Loan",
+              "specificEligibilityCriteria": [
+                "Credit application letter",
+                "Credit application form",
+                "Provided by and shared between the CBE and other financers due to the volume of the fund.",
+                "The purpose is to finance medium or long-term investment ventures that demand a large amount of funding together with other financers",
+                "Used to acquire fixed assets and may also incorporate a working capital for the project under consideration",
+                "Co-financing agreement by the banks that promised to engage in the joint financing of a venture",
+                "Detailed project feasibility study and business plan",
+                "Equity contribution which will be requested if the loan request is accepted by the bank",
+                "Bank financing, or any other type of borrowing, is not acceptable as a source of fund for the borrower's equity contribution.",
+                "Additional collateral may be requested",
+                "Present all the documents/information demanded by the Bank,"
+              ]
+            },
+            {
+              "id": 14,
+              "name": "Agricultural Input Term Loan",
+              "specificEligibilityCriteria": [
+                "Credit application letter",
+                "Credit application form",
+                "The Regional State President shall sign on the loan application letter and present MOFEC guarantee if the applicat is regional state",
+                "If the applicant is a cooperative, associations or unions",
+                "legal personality from the concerned governmental organ ",
+                "Minutes of a resolution on the credit request passed by at least three-fourths of the members of the General Assembly or as per their memorandum and/or articles of association",
+                "at least one year business experience with a good business track record",
+                "a document (LHC & rent agreement) that confirms acquiring or renting basic infrastructure, such as appropriate office and store (working premises)",
+                "evidence of employment for emloying a professional Manager and an Accountant/Bookkeeper",
+                "Present all the documents/information demanded by the Bank,"
+              ]
+            },
+            {
+              "id": 15,
+              "name": "Commercial Farming Term Loan",
+              "specificEligibilityCriteria": [
+                "Credit application letter",
+                "Credit application form",
+                "a minimum of 30 hectares of agricultural land; however, high value crops (e.g., vegetables, fruits, etc.) farm may be entertained regardless of the size of the land",
+                "Is given for entities engaged in modern commercial farms or agro-processing industries for working capital and/or acquiring/leasing/constructing fixed assets",
+                "Priority is given to modern commercial agriculture ventures that produce for export market",
+                "The land holding/lease right shall be binding until the tenure of the loan period plus two years",
+                "present a letter from Woreda or Zone or Ministry of Agriculture regarding suitability of the weather and soil for production of the specified products",
+                "both rain fed and irrigation system farming may be financed,",
+                "present a permission letter to use the nearby river/water fall/ for irrigation purpose from the concerned government organ in case of irrigation farming ",
+                "land holding certificate and/or site plan",
+                "land lease agreement",
+                "lease payment receipt of the current period",
+                "project feasibility study",
+                "Equity contribution of 35% or above for new or expansion agricultural farming projects",
+                "If additional collateral is offered, the equity contribution shall be lowered to 20% in proportionate to the value of the collateral",
+                "In case of project expansion, the investment already undertaken by the promoter's own finance can be considered as equity contribution after valued by the Bank's valuator",
+                "Water test report by the independt body if the irrigation is from borehole",
+                "If the loan request involves civil works, the applicant shall provide design, specification and bill of quantities for farm infrastructure (buildings, constructions (irrigatin system, water pond, etc)",
+                "Professional license for the BOQ document",
+                "Both softcopy and scanned hardcopy of BOQ and feasibility study is required",
+                "Proof of evidence if the crop is planted before customer lease agreement (for perennial crops)",
+                "Purchase invoices for fruit seed purchased for perenial crops",
+                "Present all the documents/information demanded by the Ba"
+              ]
+            },
+            {
+              "id": 16,
+              "name": "Cotton Farm term loan financing Against DBE's Guarantee",
+              "specificEligibilityCriteria": [
+                "Credit application letter",
+                "Credit application form",
+                "a short-term loan granted to cotton producers",
+                "The maximum repayment period is one year",
+                "a minimum of 30 hectares of land for cotton growing ",
+                "Present bona-fide order from local buyers (textile or processing industries)",
+                "Provide a document that authorizes the use of land by way of renting or any other legally acceptable arrangement",
+                "If the cotton farm is found in Afar Regional State, an agreement signed with tribal chief or Clan leader/s and registered by the concerned organ ",
+                "Payment receipt for the rent or lease payment for the current (due) period ",
+                "Present sales receipt for one year from textile industries/ginners or documentary evidence about receipt of cotton export proceeds from local bank/s",
+                "Business plan and forecasted cash flow statement",
+                "Additional collateral may be requested ",
+                "Tri-partite agreement must be signed between the Bank, the borrower and the processing or textile industry buying the cotton produce to channel sales proceed through the Bank",
+                "Present all the documents/information demanded by the Bank,"
+              ]
+            },
+            {
+              "id": 6176,
+              "name": "Micro-Finance Institution's Loan",
+              "specificEligibilityCriteria": [
+                "Credit application letter",
+                "Credit application form",
+                "It is a short–to medium term loan",
+                "Legally registered with the NBE",
+                "Authorization certificate from NBE that certify to operate as MFI",
+                "Meet all relevant policy and Directives of NBE",
+                "Evidence of a high quality loan portfolio, saving mobilization, loan-approval system, loan recovery performance and other relevant performance indices",
+                "Business plan and forecasted cash flow statement",
+                "Offer acceptable collateral comparable to the requested loan amount",
+                "Present all the documents/information demanded by the Bank,"
+              ]
+            },
+            {
+              "id": 18,
+              "name": "Channel Financing",
+              "specificEligibilityCriteria": [
+                "Credit application letter",
+                "Credit application form",
+                "short-term loan rendered to potential credit customers recommended by existing CBE's prominent customers",
+                "CBE's prominent customer shall act as guarantor",
+                "The application is lodged by potential customers",
+                "Present purchase order and current sales contract",
+                "affiliated companies, associates or subsidiaries are not eligible",
+                "letter of consent and recommendation from guarantor",
+                "The guarantor shall provide personal and/or corporate guarantee to the Bank on behalf of the borrower",
+                "payment track record and level of purchases/sales for the past r/n ship from guarantor",
+                "Business plan and forecasted cash flow statement",
+                "Additional collateral may be requested",
+                "Present all the documents/information demanded by the Bank,"
+              ]
+            },
+            {
+              "id": 19,
+              "name": "Urban Utilities Financing",
+              "specificEligibilityCriteria": [
+                "Credit application letter",
+                "Credit application form",
+                "A short to medium-term loan",
+                "Granted for entities engaged in  supplying urban utilities such as dry and liquid waste management, abattoirs, public ambulance services, firefighting, street lighting, road asphalt and pavement works, sanitation, roadside public latrine service, and development of city parks",
+                "Fulfills all legal requirements",
+                "Feasibility study and/or business plan",
+                "Offer acceptable collateral comparable to the requested loan amount",
+                "Present all the documents/information demanded by the Bank,"
+              ]
+            },
+            {
+              "id": 20,
+              "name": "Consulting Firm Financing",
+              "specificEligibilityCriteria": [
+                "Credit application letter",
+                "Credit application form",
+                "A short-term loan",
+                "Granted for business professionals engaged in rendering professional services such as Engineering, ICT, Law, Accountancy, Management, Architecture, Art, etc.",
+                "Valid professional license from the concerned government body",
+                "A minimum of one-year experience",
+                "Business plan and forecasted cash flow statement",
+                "Offer acceptable collateral comparable to the requested loan amount",
+                "Present all the documents/information demanded by the Bank,"
+              ]
+            },
+            {
+              "id": 21,
+              "name": "Inter-Bank Lending",
+              "specificEligibilityCriteria": [
+                "Credit application letter",
+                "Credit application form",
+                "a short-term loan",
+                "a minimum of two years experience in banking busines",
+                "present document that confirms the fulfillment of the minimum reserve, provision, liquidity and other requirement of the NBE",
+                "The latest NPL position of the applicant bank should not be more than 10% as confirmed by the NBE supervision department",
+                "Business plan and forecasted cash flow statement",
+                "Additional collateral may be requested",
+                "Present all the documents/information demanded by the Bank,"
+              ]
+            },
+            {
+              "id": 22,
+              "name": "Idea Financing",
+              "specificEligibilityCriteria": [
+                "Credit application letter",
+                "Credit application form",
+                "Certificate of recognition in invention and innovation in scientific studies from the Intellectual Property Right Protection Office",
+                "granted for commercial/mass production and marketing of the creative idea",
+                "certificate from intellectual property right protection office may be waived if an applicant fulfills the following requirements",
+                "Ethiopian or Ethiopian origin Diasporas who are engaged in lawful business",
+                "more than 15 years of high level professional experience in the field related to investment area",
+                "a minimum of Bachelor's degree in the field related to the investment to be made",
+                "distinct technology know-how and/or accumulated experience and knowledge",
+                "product quality assurance certificate from concerned government organ",
+                "Feasibility study and/or business plan",
+                "Additional collateral or equity contribution may be required",
+                "Present all the documents/information demanded by the Bank,"
+              ]
+            },
+            {
+              "id": 23,
+              "name": "Import Letter of Credit Settlement Loan",
+              "specificEligibilityCriteria": [
+                "Credit application letter",
+                "Credit application form",
+                "Granted to convert the outstanding import letter of credit document's value to either a merchandise loan facility or a term loan for a maximum period of one year.",
+                "granted to existing high value customers of the Bank",
+                "If it is needed to convert to a merchandise loan facility, the requirements stated under merchandise loan facility shall apply",
+                "Business plan and forecasted cash flow statement",
+                "Offer acceptable collateral comparable to the requested loan amount if it is converted to term loan",
+                "Present all the documents/information demanded by the Bank,"
+              ]
+            },
+            {
+              "id": 24,
+              "name": "Loan Buyout",
+              "specificEligibilityCriteria": [
+                "Credit application letter",
+                "Credit application form",
+                "Undertaking letter to the CBE from the loan selling bank that it would release original title deed certificate/Librie and other documents",
+                "Business plan and forecasted cash flow statement",
+                "Present all the documents/information demanded by the Bank,"
+              ]
+            },
+            {
+              "id": 25,
+              "name": "Housing Development Loan",
+              "specificEligibilityCriteria": [
+                "Credit application letter",
+                "Credit application form",
+                "granted for the purpose of developing residential houses initiated by Regional/Federal government organ",
+                "coupon/municipal bond accompanied by MOFEC guarantee",
+                "MoU shall be signed between the  Bank and the Regional State/City Administration Council",
+                "forecasted cash flow statement",
+                "Present all the documents/information demanded by the Bank,"
+              ]
+            },
+            {
+              "id": 26,
+              "name": "Loan against Corporate (Coupon or Term) Bond",
+              "specificEligibilityCriteria": [
+                "Credit application letter",
+                "Credit application form",
+                "Long term loan",
+                "Granted to public enterprises against their issued bond",
+                "The seller of bond shall sign bond indenture agreement with the bank",
+                "MOFEC guarantee",
+                "forecasted cash flow statement",
+                "Present all the documents/information demanded by the Bank,"
+              ]
+            },
+            {
+              "id": 27,
+              "name": "Lease Financing",
+              "specificEligibilityCriteria": [
+                "Credit application letter",
+                "Credit application form",
+                "extended for the purchase of capital goods, construction of buildings related with the factory and working capital",
+                "Regional State or City Administration is the only eligible entities to apply for this loan; however, these entities may designate and delegate the Lease Financing Company or MFIs or other appropriate Institution for loan application.",
+                "Credit application letter shall be signed by the President of the Regional State or Mayor of the City Administration or Head of the Designated Institution.",
+                "MOFEC guarantee",
+                "The designated Institution to administer the loan (if any) shall fulfill all legal requirements",
+                "forecasted cash flow statement",
+                "Present all the documents/information demanded by the Bank,"
+              ]
+            },
+            {
+              "id": 28,
+              "name": "Real Estate Development loan",
+              "specificEligibilityCriteria": [
+                "Credit application letter",
+                "Credit application form",
+                "Renewed professional license for the contractor/s employed ",
+                "Land holding certificate issued by appropriate gov., organ",
+                "Lease agreement",
+                "lease payment receipt for the current (due) period",
+                "Present proven track records like location/site, property construction status, no. of floors per building, type and size of the house including value/selling price and sales progress/status, intended purpose, current condition, etc.",
+                "Present sales receipt for one year per each site together with construction status and sales progress report",
+                "Financing structure at current status per each site/location such as amount from own source, realized/unearned revenue, bank borrowings, construction status, etc",
+                "Summarized table for the company's engagement in real estate project with current project status including %completion, project cost, amount executed, remaining project cost, site taking over date, date completed or project completion date, etc.",
+                "Letter from concerned gov., organ for installation of power, water and other required infrastructure with respective costs shall be disclosed, if applicable.",
+                "Project feasibility study and/or Business plan",
+                "Additional collateral may be requested",
+                "Authorization letter to deduct loan processing fee from the account opened in the name of the company by specifying the account number & list of accounts the company has at CBE.",
+                "Present all the documents/information demanded by the Bank,"
+              ]
+            },
+            {
+              "id": 29,
+              "name": "Construction loan",
+              "specificEligibilityCriteria": [
+                "Credit application letter",
+                "Credit application form",
+                "Renewed professional license for the contractor/s employed",
+                "Land holding certificate issued by appropriate gov., organ, if applicable",
+                "Lease agreement, if applicable",
+                "Lease payment receipt for the current (due) period, if applicable",
+                "Certificate of testimony for the completed projects from the employer",
+                "Summarized table for the company's engagement in similar project with project status including %completion, project cost, amount executed, remaining project cost, site taking over date, project completion date, etc.",
+                "Letter of intent from the project owner that will support the contractor to get finance for the intended propose with justified reason and express its consent to get into tri-partite agreement in the process of loan repayment when deemed necessary (for gov. owned projects).",
+                "Construction status or % completion of under construction projects from the employer for which the loan is requested.",
+                "Letter from concerned gov., organ for installation of power, water and other required infrastructure with respective costs shall be disclosed, if applicable.",
+                "Project feasibility study and/or Business plan",
+                "Additional collateral may be requested",
+                "Authorization letter to deduct loan processing fee from the account opened in the name of the company by specifying the account number & list of accounts the company has at CBE.",
+                "Present all the documents/information demanded by the Bank,"
+              ]
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Incremental term loan",
+          "product": [
+            {
+              "id": 1,
+              "name": "Medium and long term loan",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "Equity Contribution of 30% or above the project cost,",
+                "Environmental impact assessment approved by respective gov., organ",
+                "Machine specification & machine operation manual from the manufacturer, if applicable",
+                "Confirmation letter from the concerned government organ about the compliance and fulfillment of standard requirements set for the rating/class proposed by the customer, if applicable.",
+                "Hotel and tourism",
+                "Health and pharmaceuticals etc",
+                "Assessment documents including the criteria used to assess the business or envisaged project by multinational company incase where it formed joint venture or affiliated with the applicant for the specific business or envisaged project, if applicable.",
+                "Proof of ranch carrying capacity and herd size for dairy farming, animal fattening, etc, if applicable",
+                "Assessment made for the particular species of livestock/poultary/seed regarding their productivity by ministry of agriculture, if applicable",
+                "At least three proforma invoice for the to-be-purchased fixed assets, if applicable",
+                "Letter from concerned gov., organ for installation of power, water and other required infrastructure with respective costs shall be disclosed, if applicable.",
+                "Commercial invoice and custom declaration (if any) for aleady purchased fixed asset of the project, if applicable.",
+                "Offer acceptable collateral comparable to the requested loan amount",
+                "Tax estimation report from the concerned tax authority if the collateral to be seized is duty free.",
+                "Detailed Project feasibility study and/or business plan,",
+                "Present documents/information demanded by the bank"
+              ]
+            },
+            {
+              "id": 2,
+              "name": "Export term loan",
+              "specificEligibilityCriteria": [
+                "Fulfill general elibility criteria and complete/update customer information",
+                "Credit application letter",
+                "Credit application form",
+                "Valid export sales contract agreement with foreign buyer",
+                "Receipts of export proceeds for the past 12 consecutive months",
+                "Present documents/information demanded by the bank"
+              ]
+            },
+            {
+              "id": 3,
+              "name": "Infrastructure Construction Term Loan",
+              "specificEligibilityCriteria": [
+                "Credit application letter",
+                "Credit application form",
+                "Valid contracts with the Federal or Regional Governments offices and/or Public Enterprises to undertake infrastructure constructions such as universities, airports, sugar factories, and hospitals and shall present the same.",
+                "Sub-contract agreement with principal contractor, if applicable",
+                "Letter of intent from the Federal or Regional Governments offices and/or Public Enterprises which should state principal contractor has valid contract and sub-contractor is recoginized by them",
+                "Sub-contractors also shall have a valid contract at least for one year, if applicable",
+                "The Bank shall finance a maximum of 10% of the contract value.",
+                "Bank financing, or any other type of borrowing, is not acceptable as a source of fund for the borrower's equity contribution.",
+                "Project feasibility study and/or business plan,",
+                "A tri-partite agreement shall be signed between the Bank, the borrower and the employer",
+                "sign an undertaking to sign a tri-partite agreement with future employer and the Bank, if the current contract is terminated before full settlement of the loan",
+                "Open a Current Account, Special Proceed Account and Retention Account in the branch where the loan is to be disbursed.",
+                "Additional collateral may be  requested, ",
+                "Present all the documents/information demanded by the Bank,"
+              ]
+            },
+            {
+              "id": 4,
+              "name": "Investment Financing for Enterprises Operating in Industrial Parks",
+              "specificEligibilityCriteria": [
+                "Credit application letter",
+                "Credit application form",
+                "It is a term loans extended for the purpose of acquiring fixed assets such as machinery, equipment, furniture and fixtures, vehicles etc. as well as financing permanent (initial) working capital requirements.",
+                "The applicant must operate in an industrial park",
+                "The applicant shall secure the necessary permit from concerned organs to operate in an industrial park",
+                "Lease agreement for factory shade use right signed between IPDC must be presented. However, if the industry park is developed by the enterprise itself; the applicant shall present documentary evidences witnessing ownership of the park. Moreover, consent from the relevant government body allowing the enterprise to offer the developed park for bank loan mortgage must be obtained",
+                "The machinery/equipment/ vehicle to be bought shall be brand new",
+                "Equity contribution is 25% or above (for local investor), for foreing investor 40% and above.",
+                "If the Industrial Park Enterprise is also a developer of the park, the buildings /construction /civil works executed shall be considered as equity contribution",
+                "Duty-free evidence, if applicable",
+                "The  proforma invoice for brand new  machinery/equipment/vehicle to be purchased, ",
+                "Commercial invoice, custom declaration, packing list, evidence of custom duty payment, etc for brand new machinery/equipment/vehicle to be purchase.",
+                "ownership certificate ",
+                "plant & machinery insurance for machinery and equipment, motor vehicle insurance for vehicles (after loan approval before disbursement)",
+                "Bank financing, or any other type of borrowing, is not acceptable as a source of fund for the borrower's equity contribution.",
+                "Project feasibility study and/or business plan,",
+                "Additional collateral may be  requested, ",
+                "Present all the documents/information demanded by the Bank,"
+              ]
+            },
+            {
+              "id": 5,
+              "name": "Syndicate Loan",
+              "specificEligibilityCriteria": [
+                "Credit application letter",
+                "Credit application form",
+                "Provided by and shared between the CBE and other financers due to the volume of the fund.",
+                "The purpose is to finance medium or long-term investment ventures that demand a large amount of funding together with other financers",
+                "Used to acquire fixed assets and may also incorporate a working capital for the project under consideration",
+                "Co-financing agreement by the banks that promised to engage in the joint financing of a venture",
+                "Detailed project feasibility study and business plan",
+                "Equity contribution which will be requested if the loan request is accepted by the bank",
+                "Bank financing, or any other type of borrowing, is not acceptable as a source of fund for the borrower's equity contribution.",
+                "Additional collateral may be requested",
+                "Present all the documents/information demanded by the Bank,"
+              ]
+            },
+            {
+              "id": 6,
+              "name": "Commercial farming Term Loan",
+              "specificEligibilityCriteria": [
+                "Credit application letter",
+                "Credit application form",
+                "a minimum of 30 hectares of agricultural land; however, high value crops (e.g., vegetables, fruits, etc.) farm may be entertained regardless of the size of the land",
+                "Is given for entities engaged in modern commercial farms or agro-processing industries for working capital and/or acquiring/leasing/constructing fixed assets",
+                "Priority is given to modern commercial agriculture ventures that produce for export market",
+                "The land holding/lease right shall be binding until the tenure of the loan period plus two years",
+                "present a letter from Woreda or Zone or Ministry of Agriculture regarding suitability of the weather and soil for production of the specified products",
+                "both rain fed and irrigation system farming may be financed,",
+                "present a permission letter to use the nearby river/water fall/ for irrigation purpose from the concerned government organ in case of irrigation farming ",
+                "land holding certificate and/or site plan",
+                "land lease agreement",
+                "lease payment receipt of the current period",
+                "project feasibility study",
+                "Equity contribution of 35% or above for new or expansion agricultural farming projects",
+                "If additional collateral is offered, the equity contribution shall be lowered to 20% in proportionate to the value of the collateral",
+                "In case of project expansion, the investment already undertaken by the promoter's own finance can be considered as equity contribution after valued by the Bank's valuator",
+                "Water test report by the independt body if the irrigation is from borehole",
+                "If the loan request involves civil works, the applicant shall provide design, specification and bill of quantities for farm infrastructure (buildings, constructions (irrigatin system, water pond, etc)",
+                "Professional license for the BOQ document",
+                "Both softcopy and scanned hardcopy of BOQ and feasibility study is required",
+                "Proof of evidence if the crop is planted before customer lease agreement (for perennial crops)",
+                "Purchase invoices for fruit seed purchased for perenial crops",
+                "Present all the documents/information demanded by the Ba"
+              ]
+            },
+            {
+              "id": 7,
+              "name": "Idea Financing",
+              "specificEligibilityCriteria": [
+                "Credit application letter",
+                "Credit application form",
+                "Certificate of recognition in invention and innovation in scientific studies from the Intellectual Property Right Protection Office",
+                "granted for commercial/mass production and marketing of the creative idea",
+                "certificate from intellectual property right protection office may be waived if an applicant fulfills the following requirements",
+                "Ethiopian or Ethiopian origin Diasporas who are engaged in lawful business",
+                "more than 15 years of high level professional experience in the field related to investment area",
+                "a minimum of Bachelor's degree in the field related to the investment to be made",
+                "distinct technology know-how and/or accumulated experience and knowledge",
+                "product quality assurance certificate from concerned government organ",
+                "Feasibility study and/or business plan",
+                "Additional collateral or equity contribution may be required",
+                "Present all the documents/information demanded by the Bank,"
+              ]
+            },
+            {
+              "id": 8,
+              "name": "Housing Development Loan",
+              "specificEligibilityCriteria": [
+                "Credit application letter",
+                "Credit application form",
+                "granted for the purpose of developing residential houses initiated by Regional/Federal government organ",
+                "coupon/municipal bond accompanied by MOFEC guarantee",
+                "MoU shall be signed between the  Bank and the Regional State/City Administration Council",
+                "forecasted cash flow statement",
+                "Present all the documents/information demanded by the Bank,"
+              ]
+            },
+            {
+              "id": 9,
+              "name": "Loan against Corporate (Coupon or Term) Bond",
+              "specificEligibilityCriteria": [
+                "Credit application letter",
+                "Credit application form",
+                "Long term loan",
+                "Granted to public enterprises against their issued bond",
+                "The seller of bond shall sign bond indenture agreement with the bank",
+                "MOFEC guarantee",
+                "forecasted cash flow statement",
+                "Present all the documents/information demanded by the Bank,"
+              ]
+            },
+            {
+              "id": 10,
+              "name": "Lease Financing",
+              "specificEligibilityCriteria": [
+                "Credit application letter",
+                "Credit application form",
+                "extended for the purchase of capital goods, construction of buildings related with the factory and working capital",
+                "Regional State or City Administration is the only eligible entities to apply for this loan; however, these entities may designate and delegate the Lease Financing Company or MFIs or other appropriate Institution for loan application.",
+                "Credit application letter shall be signed by the President of the Regional State or Mayor of the City Administration or Head of the Designated Institution.",
+                "MOFEC guarantee",
+                "The designated Institution to administer the loan (if any) shall fulfill all legal requirements",
+                "forecasted cash flow statement",
+                "Present all the documents/information demanded by the Bank,"
+              ]
+            },
+            {
+              "id": 11,
+              "name": "Real Estate Development loan",
+              "specificEligibilityCriteria": [
+                "Credit application letter",
+                "Credit application form",
+                "Renewed professional license for the contractor/s employed ",
+                "Land holding certificate issued by appropriate gov., organ",
+                "Lease agreement",
+                "lease payment receipt for the current (due) period",
+                "Present proven track records like location/site, property construction status, no. of floors per building, type and size of the house including value/selling price and sales progress/status, intended purpose, current condition, etc.",
+                "Present sales receipt for one year per each site together with construction status and sales progress report",
+                "Financing structure at current status per each site/location such as amount from own source, realized/unearned revenue, bank borrowings, construction status, etc",
+                "Summarized table for the company's engagement in real estate project with current project status including %completion, project cost, amount executed, remaining project cost, site taking over date, date completed or project completion date, etc.",
+                "Letter from concerned gov., organ for installation of power, water and other required infrastructure with respective costs shall be disclosed, if applicable.",
+                "Project feasibility study and/or Business plan",
+                "Additional collateral may be requested",
+                "Authorization letter to deduct loan processing fee from the account opened in the name of the company by specifying the account number & list of accounts the company has at CBE.",
+                "Present all the documents/information demanded by the Bank,"
+              ]
+            },
+            {
+              "id": 12,
+              "name": "Construction loan, please specify",
+              "specificEligibilityCriteria": [
+                "Credit application letter",
+                "Credit application form",
+                "Renewed professional license for the contractor/s employed",
+                "Land holding certificate issued by appropriate gov., organ, if applicable",
+                "Lease agreement, if applicable",
+                "Lease payment receipt for the current (due) period, if applicable",
+                "Certificate of testimony for the completed projects from the employer",
+                "Summarized table for the company's engagement in similar project with project status including %completion, project cost, amount executed, remaining project cost, site taking over date, project completion date, etc.",
+                "Letter of intent from the project owner that will support the contractor to get finance for the intended propose with justified reason and express its consent to get into tri-partite agreement in the process of loan repayment when deemed necessary (for gov. owned projects).",
+                "Construction status or % completion of under construction projects from the employer for which the loan is requested.",
+                "Letter from concerned gov., organ for installation of power, water and other required infrastructure with respective costs shall be disclosed, if applicable.",
+                "Project feasibility study and/or Business plan",
+                "Additional collateral may be requested",
+                "Authorization letter to deduct loan processing fee from the account opened in the name of the company by specifying the account number & list of accounts the company has at CBE.",
+                "Present all the documents/information demanded by the Bank,"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Restructuring of loan",
+      "group": [
+        {
+          "id": 1,
+          "name": "Waiver",
+          "product": [
+            {
+              "id": 1,
+              "name": "Principal waiver",
+              "specificEligibilityCriteria": []
+            },
+            {
+              "id": 2,
+              "name": "Scheduled repayment waiver",
+              "specificEligibilityCriteria": []
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Extension",
+          "product": [
+            {
+              "id": 1,
+              "name": "Maturity date extension",
+              "specificEligibilityCriteria": []
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Waiver & extension",
+          "product": [
+            {
+              "id": 1,
+              "name": "Principal waiver & maturity date extension",
+              "specificEligibilityCriteria": []
+            },
+            {
+              "id": 2,
+              "name": "Scheduled repayment waiver & maturity date extention",
+              "specificEligibilityCriteria": []
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Injection",
+          "product": [
+            {
+              "id": 1,
+              "name": "New loan injection",
+              "specificEligibilityCriteria": []
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "name": "Waiver & injection",
+          "product": [
+            {
+              "id": 1,
+              "name": "Principal waiver & new loan injection",
+              "specificEligibilityCriteria": []
+            },
+            {
+              "id": 2,
+              "name": "Scheduled repayment waiver & new loan injection",
+              "specificEligibilityCriteria": []
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "name": "Waiver, extention, and injection",
+          "product": [
+            {
+              "id": 1,
+              "name": "Principal waiver, maturity date extention and new loan injection",
+              "specificEligibilityCriteria": []
+            },
+            {
+              "id": 2,
+              "name": "Scheduled repayment waiver, maturity date extention & new loan injection",
+              "specificEligibilityCriteria": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

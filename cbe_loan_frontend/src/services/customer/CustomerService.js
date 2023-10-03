@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// const API_URL = "http://localhost:8384/cbe/api/loan/";
-const API_URL = "http://10.3.6.135:8384/cbe/api/loan/";
+const API_URL = "http://localhost:8384/cbe/api/loan/";
+// const API_URL = "http://10.3.6.135:8384/cbe/api/loan/";
 
 // const API_URL = "http://10.3.6.135:9999/cbe/api/loan/";
 // const API_URL = "http://localhost:9999/cbe/api/loan/";
@@ -31,9 +31,6 @@ const getLoanInfoFromTemenos = (customerId) => {
 const getCollateralParamsFromTemenos = (customerId) => {
     return axios.get(API_URL + 'loan/collateral'.concat('/', customerId));
 }
-
-
-
 const addCustomer = (data) => {
     return axios.post(`${API_URL}customer/`, data);
   };
