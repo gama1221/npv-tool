@@ -6,7 +6,8 @@ const NPVToolPage = () => {
   const { npvId } = useParams();
   const navigate = useNavigate();
   const selectedNPVScenario = NPVScenarioLists.npv_scenarios.filter(
-    (npvScenario) => npvScenario.id == npvId);
+    (npvScenario) => npvScenario.id == npvId
+  );
   const goBackToScenarios = () => {
     navigate(`/`);
   };
@@ -37,32 +38,40 @@ const NPVToolPage = () => {
                   {pr.name} scenario description
                 </header>
                 <div className="px-8 items-center justify-center">
-                <p className="text-sm font-small m-4">{pr.description}</p>
-                <p className="text-sm font-bold m-4 text-green-600">{pr.formulas}</p>
-                <h2 className="text-sm font-bold m-4 text-green-600">Where</h2>
-                <ul className="ml-10">
-                  {
-                    pr.where.map((res)=>(
-                      <React.Fragment key={res.id}>                        
-                      <li className="text-sm">
-                           <span className="text-green-600 font-semibold">{res.title.substring(0,1)}</span>{res.title.substring(1)}
-                       </li>                       
+                  <p className="text-sm font-small m-4">{pr.description}</p>
+                  <p className="text-sm font-bold m-4 text-green-600">
+                    {pr.formulas}
+                  </p>
+                  <h2 className="text-sm font-bold m-4 text-green-600">
+                    Where
+                  </h2>
+                  <ul className="ml-10">
+                    {pr.where.map((res) => (
+                      <React.Fragment key={res.id}>
+                        <li className="text-sm">
+                          <span className="text-green-600 font-semibold">
+                            {res.title.substring(0, 1)}
+                          </span>
+                          {res.title.substring(1)}
+                        </li>
                       </React.Fragment>
-                    ))
-                  }
-                </ul>
-                <h2 className="text-sm font-bold m-4 text-green-600">About Parameters</h2>
-                <ul className="ml-10">
-                  {
-                    pr.sub.map((res)=>(
-                      <React.Fragment key={res.id}>                        
-                      <li className="text-sm">
-                           <span className="text-green-600 font-semibold p-2">{res.id})</span>{res.title}
-                       </li>                       
+                    ))}
+                  </ul>
+                  <h2 className="text-sm font-bold m-4 text-green-600">
+                    About Parameters
+                  </h2>
+                  <ul className="ml-10">
+                    {pr.sub.map((res) => (
+                      <React.Fragment key={res.id}>
+                        <li className="text-sm">
+                          <span className="text-green-600 font-semibold p-2">
+                            {res.id})
+                          </span>
+                          {res.title}
+                        </li>
                       </React.Fragment>
-                    ))
-                  }
-                </ul>
+                    ))}
+                  </ul>
                 </div>
               </div>
             ))}

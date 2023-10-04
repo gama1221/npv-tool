@@ -1,6 +1,3 @@
-
-
-
 import { useState } from "react";
 
 import { FaTimes } from "react-icons/fa";
@@ -42,7 +39,10 @@ const NPVModal = ({ isOpen, onClose, title, children }) => {
         >
           <div className="px-6 py-4">
             <div className="flex items-center justify-between mb-2">
-              <h3 className="text-lg font-medium" id="modal-title">
+              <h3
+                className="text-lg font-medium text-green-700"
+                id="modal-title"
+              >
                 {title}
               </h3>
               <button
@@ -50,13 +50,12 @@ const NPVModal = ({ isOpen, onClose, title, children }) => {
                 onClick={handleClose}
               >
                 <span className="sr-only">Close</span>
-                <FaTimes className="h-6 w-6" />
+                <FaTimes className="h-6 w-6 text-red-400" />
               </button>
             </div>
             {children}
           </div>
-          <div className="px-6 py-4 bg-gray-100 border-t border-gray-200 flex justify-end">           
-          </div>
+          <div className="px-6 py-4 bg-gray-100 border-t border-gray-200 flex justify-end"></div>
         </div>
       </div>
     </div>
