@@ -3155,7 +3155,6 @@ const ViewLoanComponent = () => {
               <th> Type </th>
               <th> Value </th>
               <th> Date </th>
-              {/* <th> Action </th> */}
             </thead>
             <tbody>
               {collaterals.map((collateral) => (
@@ -3163,12 +3162,6 @@ const ViewLoanComponent = () => {
                   <td> {collateral.type} </td>
                   <td> {collateral.value} </td>
                   <td> {collateral.registerDate} </td>
-                  {/* <td> */}
-                  {/* <button className="btn btn-outline-success btn-sm" style={{ margin: "1px" }} onClick={e => copyCollateral(e, collateral)}>
-                                                <FiCopy size={18} data-toggle="tooltip" title="Click it to copy the data to the calculator" />  Settings
-                                            </button> */}
-                  {/* <CollateralSettingComponent /> */}
-                  {/* </td> */}
                 </tr>
               ))}
             </tbody>
@@ -3193,27 +3186,24 @@ const ViewLoanComponent = () => {
           {" "}
           You are calculating NPV for loan
           <strong style={{ color: "green" }}>
-            {" "}
             {npvLoans.type.charAt(0).toUpperCase() + npvLoans.type.slice(1)}
-          </strong>{" "}
-          type with{" "}
+          </strong>
+          type with
           <strong style={{ color: "green" }}>
-            {" "}
-            {numberWithCommas(roundAmount(npvLoans.amount))} <em>ETB</em>{" "}
-          </strong>{" "}
+            {numberWithCommas(roundAmount(npvLoans.amount))} <em>ETB</em>
+          </strong>
           Amount
         </p>
       )}
       <div className="mx-w-[1240px] mx-auto grid gap-1 ease-in-out px-4 ">
-        <div className="w-full border-2 shadow-xl flex flex-col my-4 rounded-lg">
-          <form
-            onSubmit={handleSubmit}
-            id="normalForm"
-            value="test"
-            className="px-10 py-5 p-4"
-          >
-            <div className="flex-container">
-              <Grid container spacing={2}>
+          <div class="flex flex-col md:flex-row">
+            <div class="w-full md:w-1/2 border-1 flex flex-col my-4 rounded-sm border shadow-lg p-2">
+              <form
+                onSubmit={handleSubmit}
+                id="normalForm"
+                value="test"
+                className="px-10 py-5 p-4"
+              >
                 <div className="flex-item-left">
                   <Stack spacing={2}>
                     <Stack spacing={1} direction="row">
@@ -3264,50 +3254,6 @@ const ViewLoanComponent = () => {
                           <MenuItem value="injection">Injection</MenuItem>
                         </Select>
                       </FormControl>
-
-                      {/* {showNumberOfLoans && (
-                                    <FormControl  variant="filled" sx={{ mt: 5, minWidth: 100 }}>
-                                        <InputLabel id="lbl_number_of_loans" color="secondary">Loans</InputLabel>
-                                        {
-                                          
-                                            <Select 
-                                                className='loans_per_customer'
-                                                onChange={handleCustomerLoansChange}
-                                                // value={setNpvLoans["customer-loans"]}
-
-                                                // onChange={handleCustomerLoansChange}
-                                                // value={setNpvLoans["customer-loans"]}                                                
-                                                >
-                                                    <MenuItem value="" style={{ color: "purple" }}>Number, Amount, Type</MenuItem>
-                                                    {
-                                                        loans.map((customLoan, index) => (
-                                                            <MenuItem value={customLoan} key={customLoan.loan_id}>
-                                                                {index + 1},
-                                                                {customLoan.amount},
-                                                                {customLoan.type}
-                                                            </MenuItem>
-                                                        ))
-                                                    }
-                                            </Select>
-                                        }
-
-                                    </FormControl>
-                                   )} */}
-
-                      {/* <p>
-                                        {npvLoans && (
-                                            <i>
-                                                info
-                                                {
-                                                    console.log("Loan Information is placed below")
-                                                }
-                                                {
-                                                    console.log(npvLoans)
-                                                }
-                                            </i>
-                                        )
-                                        }
-                                    </p> */}
                     </Stack>
 
                     <Stack spacing={1} direction="row">
@@ -3684,2130 +3630,2073 @@ const ViewLoanComponent = () => {
                     <span> Compute NPV</span>
                   </Button>
                 </div>
-                {Boolean(
-                  showNPVWithPrincipalWaiver ||
-                    showNoramlNpv ||
-                    showNPVWithInterestWaiver ||
-                    showNPVWithExtension ||
-                    showNPVWithPrincipalAndInterestWaiver ||
-                    showNPVWithPrincipalWaiverPlusExtension ||
-                    showNPVWithInterestWaiverPlusExtension ||
-                    showNPVWithPrincipalAndInterestWaiverPlusExtension ||
-                    showNPVWithInjection ||
-                    showNPVWithForeclosure
-                ) && (
-                  <div className="flex-item-right border shadow-lg">
-                    {/* <Grid item xs={6}> */}
-                    <table
-                      className="table table-bordered"
-                      style={{ width: "100%" }}
-                    >
-                      <tbody>
-                        <tr>
-                          <th
-                            colSpan={2}
-                            style={{
-                              alignContent: "center",
-                              alignItems: "center",
-                              margin: "auto",
-                              textAlign: "center",
-                            }}
-                          >
-                            NPV
-                          </th>
-                          <th>NPV Loss</th>
-                        </tr>
-                        <tr>
-                          <th width="70%">Normal</th>
-                          <td
-                            name="normal-npv"
-                            className="cbe-text-color fontWeightBold"
-                          >
-                            <div>
-                              <CustomWidthTooltip
-                                title={
-                                  <div>
-                                    <h4 style={{ align: "center" }}>
-                                      NPV Details
-                                    </h4>
-                                    {normalMultipleNPV.length != 0 && (
-                                      /**
-                                       * Show NPV Results and the parameters will display on the detail section.
-                                       */
-                                      <div>
-                                        {/* table table-striped table-hover table-responsive */}
-                                        <strong>Show all NPV results</strong>
-                                        <table
-                                          style={{ color: "white" }}
-                                          className="table-auto w-full bg-green-100"
-                                        >
-                                          <thead>
-                                            <tr>
-                                              <th>NPV</th>
-                                              <th>Result </th>
-                                              <th>More Info</th>
-                                            </tr>
-                                          </thead>
-                                          <tbody>
-                                            {normalMultipleNPV.map(
-                                              (normalNPV, index) => (
-                                                <tr
-                                                  style={{ color: "white" }}
-                                                  key={index}
-                                                >
-                                                  <td>{index + 1} </td>
-                                                  <td>
-                                                    {numberWithCommas(
-                                                      roundAmount(normalNPV.npv)
-                                                    )}{" "}
-                                                    ETB
-                                                  </td>
-                                                  <td>
-                                                    <Accordion>
-                                                      <AccordionSummary
-                                                        expandIcon={
-                                                          <ExpandMoreIcon />
-                                                        }
-                                                        aria-controls="panel1a-content"
-                                                        id="panel1a-header"
-                                                      >
-                                                        <Typography>
-                                                          {normalNPV.type} Loan
-                                                        </Typography>
-                                                      </AccordionSummary>
-                                                      <AccordionDetails>
-                                                        <Typography>
-                                                          <table className="table table-bordered ">
-                                                            <thead>
-                                                              <tr>
-                                                                <th>
-                                                                  Parameters
-                                                                </th>
-                                                                <th>Values</th>
-                                                              </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                              <tr>
-                                                                <td>Amount</td>
-                                                                <td>
-                                                                  {numberWithCommas(
-                                                                    roundAmount(
-                                                                      normalNPV.amount
-                                                                    )
-                                                                  )}{" "}
-                                                                  ETB
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Annual
-                                                                  Interest Rate
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    normalNPV.annualInterestRate
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Number of
-                                                                  Payments
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    normalNPV.numberOfPayments
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Loan periods
-                                                                  in Years
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    normalNPV.loanPeriodsInYears
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Risk Premium
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    normalNPV.riskPremium
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Scenario
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    normalNPV.scenario
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>Type</td>
-                                                                <td>
-                                                                  {
-                                                                    normalNPV.type
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Registered
-                                                                  Date
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    normalNPV.registeredDate
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>NPV</td>
-                                                                <td>
-                                                                  {numberWithCommas(
-                                                                    normalNPV.npv
-                                                                  )}{" "}
-                                                                  ETB
-                                                                </td>
-                                                              </tr>
-                                                            </tbody>
-                                                          </table>
-                                                        </Typography>
-                                                      </AccordionDetails>
-                                                    </Accordion>
-                                                  </td>
-                                                </tr>
-                                              )
-                                            )}
-                                          </tbody>
-                                        </table>
-                                      </div>
-                                    )}
-                                  </div>
-                                }
-                              >
-                                <Button color="secondary">
-                                  {normalMultipleNPV.map((amort) =>
-                                    sumUpNPVs(amort.npv)
-                                  )}
-                                  {numberWithCommas(totalNPV) + " ETB"}
-                                </Button>
-                              </CustomWidthTooltip>
-                            </div>
-                          </td>
-                          <td> Baseline </td>
-                        </tr>
-                        <tr>
-                          <th width="70%">With Principal Waiver</th>
-                          <td
-                            name="normal-npv"
-                            className="cbe-text-color fontWeightBold"
-                          >
-                            <div>
-                              <CustomWidthTooltip
-                                title={
-                                  <div>
-                                    <h4 style={{ align: "center" }}>
-                                      Principal Waiver NPV Details
-                                    </h4>
-                                    {withPrincipalWaiverMultipleNPV.length !=
-                                      0 && (
-                                      /**
-                                       * Show NPV Results and the parameters will display on the detail section.
-                                       */
-                                      <div>
-                                        {/* table table-striped table-hover table-responsive */}
-                                        <strong>Show all NPV results</strong>
-                                        <table
-                                          style={{ color: "white" }}
-                                          className="table table-responsive"
-                                        >
-                                          <thead>
-                                            <tr>
-                                              <th>NPV</th>
-                                              <th>Result </th>
-                                              <th>More Info</th>
-                                            </tr>
-                                          </thead>
-                                          <tbody>
-                                            {withPrincipalWaiverMultipleNPV.map(
-                                              (principalWaiverNPV, index) => (
-                                                <tr
-                                                  style={{ color: "white" }}
-                                                  key={index}
-                                                >
-                                                  <td>{index + 1} </td>
-                                                  <td>
-                                                    {numberWithCommas(
-                                                      roundAmount(
-                                                        principalWaiverNPV.npv
-                                                      )
-                                                    )}{" "}
-                                                    ETB
-                                                  </td>
-                                                  <td>
-                                                    <Accordion>
-                                                      <AccordionSummary
-                                                        expandIcon={
-                                                          <ExpandMoreIcon />
-                                                        }
-                                                        aria-controls="panel1a-content"
-                                                        id="panel1a-header"
-                                                      >
-                                                        <Typography>
-                                                          {
-                                                            principalWaiverNPV.type
-                                                          }{" "}
-                                                          Loan
-                                                        </Typography>
-                                                      </AccordionSummary>
-                                                      <AccordionDetails>
-                                                        <Typography>
-                                                          <table className="table table-bordered ">
-                                                            <thead>
-                                                              <tr>
-                                                                <th>
-                                                                  Parameters
-                                                                </th>
-                                                                <th>Values</th>
-                                                              </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                              <tr>
-                                                                <td>Amount</td>
-                                                                <td>
-                                                                  {numberWithCommas(
-                                                                    roundAmount(
-                                                                      principalWaiverNPV.amount
-                                                                    )
-                                                                  )}{" "}
-                                                                  ETB
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Annual
-                                                                  Interest Rate
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    principalWaiverNPV.annualInterestRate
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Number of
-                                                                  Payments
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    principalWaiverNPV.numberOfPayments
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Loan periods
-                                                                  in Years
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    principalWaiverNPV.loanPeriodsInYears
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Risk Premium
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    principalWaiverNPV.riskPremium
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Scenario
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    principalWaiverNPV.scenario
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>Type</td>
-                                                                <td>
-                                                                  {
-                                                                    principalWaiverNPV.type
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Registered
-                                                                  Date
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    principalWaiverNPV.registeredDate
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>NPV</td>
-                                                                <td>
-                                                                  {numberWithCommas(
-                                                                    principalWaiverNPV.npv
-                                                                  )}{" "}
-                                                                  ETB
-                                                                </td>
-                                                              </tr>
-                                                              {principalWaiverNumber[
-                                                                "principal-waiver-number"
-                                                              ] ? (
-                                                                <tr>
-                                                                  <td>
-                                                                    Principal
-                                                                    Waived
-                                                                  </td>
-                                                                  <td>
-                                                                    {
-                                                                      principalWaiverNPV.waivedPrincipal
-                                                                    }
-                                                                  </td>
-                                                                </tr>
-                                                              ) : (
-                                                                ""
-                                                              )}
-                                                            </tbody>
-                                                          </table>
-                                                        </Typography>
-                                                      </AccordionDetails>
-                                                    </Accordion>
-                                                  </td>
-                                                </tr>
-                                              )
-                                            )}
-                                          </tbody>
-                                        </table>
-                                      </div>
-                                    )}
-                                  </div>
-                                }
-                              >
-                                <Button color="secondary">
-                                  {withPrincipalWaiverMultipleNPV.map((amort) =>
-                                    sumUpPrincipalWaiverNPVs(amort.npv)
-                                  )}
-                                  {numberWithCommas(totalPrincipalWaiverNPV) +
-                                    " ETB"}
-                                </Button>
-                              </CustomWidthTooltip>
-                            </div>
-                          </td>
-                          <td>
-                            {numberWithCommas(
-                              roundAmount(npv - npvPrincipalWaiver)
-                            )}
-                            {/* {normalMultipleNPV.map(amort => sumUpNormalNPVLoss(amort.npv))}
-                                                    {
-                                                        (numberWithCommas(totalNormalNPVLoss - npvPrincipalWaiver)) + " ETB"
-                                                    } */}
-                          </td>
-                        </tr>
-                        <tr>
-                          <th width="70%">With Interest Waiver</th>
-                          <td
-                            name="normal-npv"
-                            className="cbe-text-color fontWeightBold"
-                          >
-                            <div>
-                              <CustomWidthTooltip
-                                title={
-                                  <div>
-                                    <h4 style={{ align: "center" }}>
-                                      Interest Waiver NPV Details
-                                    </h4>
-                                    {withInterestWaiverMultipleNPV.length !=
-                                      0 && (
-                                      /**
-                                       * Show NPV Results and the parameters will display on the detail section.
-                                       */
-                                      <div>
-                                        {/* table table-striped table-hover table-responsive */}
-                                        <strong>Show all NPV results</strong>
-                                        <table
-                                          style={{ color: "white" }}
-                                          className="table table-responsive"
-                                        >
-                                          <thead>
-                                            <tr>
-                                              <th>NPV</th>
-                                              <th>Result </th>
-                                              <th>More Info</th>
-                                            </tr>
-                                          </thead>
-                                          <tbody>
-                                            {withInterestWaiverMultipleNPV.map(
-                                              (interestWaiverNPV, index) => (
-                                                <tr
-                                                  style={{ color: "white" }}
-                                                  key={index}
-                                                >
-                                                  <td>{index + 1} </td>
-                                                  <td>
-                                                    {numberWithCommas(
-                                                      roundAmount(
-                                                        interestWaiverNPV.npv
-                                                      )
-                                                    )}{" "}
-                                                    ETB
-                                                  </td>
-                                                  <td>
-                                                    <Accordion>
-                                                      <AccordionSummary
-                                                        expandIcon={
-                                                          <ExpandMoreIcon />
-                                                        }
-                                                        aria-controls="panel1a-content"
-                                                        id="panel1a-header"
-                                                      >
-                                                        <Typography>
-                                                          {
-                                                            interestWaiverNPV.type
-                                                          }{" "}
-                                                          Loan
-                                                        </Typography>
-                                                      </AccordionSummary>
-                                                      <AccordionDetails>
-                                                        <Typography>
-                                                          <table className="table table-bordered ">
-                                                            <thead>
-                                                              <tr>
-                                                                <th>
-                                                                  Parameters
-                                                                </th>
-                                                                <th>Values</th>
-                                                              </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                              <tr>
-                                                                <td>Amount</td>
-                                                                <td>
-                                                                  {numberWithCommas(
-                                                                    roundAmount(
-                                                                      interestWaiverNPV.amount
-                                                                    )
-                                                                  )}{" "}
-                                                                  ETB
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Annual
-                                                                  Interest Rate
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    interestWaiverNPV.annualInterestRate
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Number of
-                                                                  Payments
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    interestWaiverNPV.numberOfPayments
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Loan periods
-                                                                  in Years
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    interestWaiverNPV.loanPeriodsInYears
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Risk Premium
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    interestWaiverNPV.riskPremium
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Scenario
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    interestWaiverNPV.scenario
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>Type</td>
-                                                                <td>
-                                                                  {
-                                                                    interestWaiverNPV.type
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Registered
-                                                                  Date
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    interestWaiverNPV.registeredDate
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>NPV</td>
-                                                                <td>
-                                                                  {numberWithCommas(
-                                                                    interestWaiverNPV.npv
-                                                                  )}{" "}
-                                                                  ETB
-                                                                </td>
-                                                              </tr>
-                                                              {interestWaiverNumber[
-                                                                "interest-waiver-number"
-                                                              ] ? (
-                                                                <tr>
-                                                                  <td>
-                                                                    Interest
-                                                                    Waived
-                                                                  </td>
-                                                                  <td>
-                                                                    {
-                                                                      interestWaiverNumber[
-                                                                        "interest-waiver-number"
-                                                                      ]
-                                                                    }
-                                                                  </td>
-                                                                </tr>
-                                                              ) : (
-                                                                ""
-                                                              )}
-                                                            </tbody>
-                                                          </table>
-                                                        </Typography>
-                                                      </AccordionDetails>
-                                                    </Accordion>
-                                                  </td>
-                                                </tr>
-                                              )
-                                            )}
-                                          </tbody>
-                                        </table>
-                                      </div>
-                                    )}
-                                  </div>
-                                }
-                              >
-                                <Button color="secondary">
-                                  {withInterestWaiverMultipleNPV.map((amort) =>
-                                    sumUpInterestWaiverNPVs(amort.npv)
-                                  )}
-                                  {numberWithCommas(totalInterestWaiverNPV) +
-                                    " ETB"}
-                                </Button>
-                              </CustomWidthTooltip>
-                            </div>
-                            {/* {numberWithCommas(roundAmount(npvInterestWaiver))} which is old   */}
-                          </td>
-                          <td>
-                            {numberWithCommas(
-                              roundAmount(npv - npvInterestWaiver)
-                            )}
-                          </td>
-                        </tr>
-                        <tr>
-                          <th width="70%">With Extension </th>
-                          <td
-                            name="normal-npv"
-                            className="cbe-text-color fontWeightBold"
-                          >
-                            <div>
-                              <CustomWidthTooltip
-                                title={
-                                  <div>
-                                    <h4 style={{ align: "center" }}>
-                                      Extension NPV Details
-                                    </h4>
-                                    {withExtensionMultipleNPV.length != 0 && (
-                                      /**
-                                       * Show NPV Results and the parameters will display on the detail section.
-                                       */
-                                      <div>
-                                        {/* table table-striped table-hover table-responsive */}
-                                        <strong>Show all NPV results</strong>
-                                        <table
-                                          style={{ color: "white" }}
-                                          className="table table-responsive"
-                                        >
-                                          <thead>
-                                            <tr>
-                                              <th>NPV</th>
-                                              <th>Result </th>
-                                              <th>More Info</th>
-                                            </tr>
-                                          </thead>
-                                          <tbody>
-                                            {withExtensionMultipleNPV.map(
-                                              (extensionNPV, index) => (
-                                                <tr
-                                                  style={{ color: "white" }}
-                                                  key={index}
-                                                >
-                                                  <td>{index + 1} </td>
-                                                  <td>
-                                                    {numberWithCommas(
-                                                      roundAmount(
-                                                        extensionNPV.npv
-                                                      )
-                                                    )}{" "}
-                                                    ETB
-                                                  </td>
-                                                  <td>
-                                                    <Accordion>
-                                                      <AccordionSummary
-                                                        expandIcon={
-                                                          <ExpandMoreIcon />
-                                                        }
-                                                        aria-controls="panel1a-content"
-                                                        id="panel1a-header"
-                                                      >
-                                                        <Typography>
-                                                          {extensionNPV.type}{" "}
-                                                          Loan
-                                                        </Typography>
-                                                      </AccordionSummary>
-                                                      <AccordionDetails>
-                                                        <Typography>
-                                                          <table className="table table-bordered ">
-                                                            <thead>
-                                                              <tr>
-                                                                <th>
-                                                                  Parameters
-                                                                </th>
-                                                                <th>Values</th>
-                                                              </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                              <tr>
-                                                                <td>Amount</td>
-                                                                <td>
-                                                                  {numberWithCommas(
-                                                                    roundAmount(
-                                                                      extensionNPV.amount
-                                                                    )
-                                                                  )}{" "}
-                                                                  ETB
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Annual
-                                                                  Interest Rate
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    extensionNPV.annualInterestRate
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Number of
-                                                                  Payments
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    extensionNPV.numberOfPayments
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Loan periods
-                                                                  in Years
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    extensionNPV.loanPeriodsInYears
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Risk Premium
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    extensionNPV.riskPremium
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Scenario
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    extensionNPV.scenario
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>Type</td>
-                                                                <td>
-                                                                  {
-                                                                    extensionNPV.type
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Registered
-                                                                  Date
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    extensionNPV.registeredDate
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>NPV</td>
-                                                                <td>
-                                                                  {numberWithCommas(
-                                                                    extensionNPV.npv
-                                                                  )}{" "}
-                                                                  ETB
-                                                                </td>
-                                                              </tr>
-                                                              {extension[
-                                                                "extension"
-                                                              ] ? (
-                                                                <tr>
-                                                                  <td>
-                                                                    Extended for
-                                                                  </td>
-                                                                  <td>
-                                                                    {
-                                                                      extension[
-                                                                        "extension"
-                                                                      ]
-                                                                    }
-                                                                  </td>
-                                                                </tr>
-                                                              ) : (
-                                                                ""
-                                                              )}
-                                                            </tbody>
-                                                          </table>
-                                                        </Typography>
-                                                      </AccordionDetails>
-                                                    </Accordion>
-                                                  </td>
-                                                </tr>
-                                              )
-                                            )}
-                                          </tbody>
-                                        </table>
-                                      </div>
-                                    )}
-                                  </div>
-                                }
-                              >
-                                <Button color="secondary">
-                                  {withExtensionMultipleNPV.map((amort) =>
-                                    sumUpExtensionNPVs(amort.npv)
-                                  )}
-                                  {numberWithCommas(totalExtensionNPV) + " ETB"}
-                                </Button>
-                              </CustomWidthTooltip>
-                            </div>
-                          </td>
-                          <td>
-                            {numberWithCommas(roundAmount(npv - npvExtension))}
-                          </td>
-                        </tr>
-                        <tr>
-                          <th width="70%">
-                            With Principal and Interest Waiver{" "}
-                          </th>
-                          <td
-                            name="normal-npv"
-                            className="cbe-text-color fontWeightBold"
-                          >
-                            <div>
-                              <CustomWidthTooltip
-                                title={
-                                  <div>
-                                    <h4 style={{ align: "center" }}>
-                                      Interest and Principal Waived NPV Details
-                                    </h4>
-                                    {withInterestAndPrincipalWaiverMultipleNPV.length !=
-                                      0 && (
-                                      /**
-                                       * Show NPV Results and the parameters will display on the detail section.
-                                       */
-                                      <div>
-                                        {/* table table-striped table-hover table-responsive */}
-                                        <strong>Show all NPV results</strong>
-                                        <table
-                                          style={{ color: "white" }}
-                                          className="table table-responsive"
-                                        >
-                                          <thead>
-                                            <tr>
-                                              <th>NPV</th>
-                                              <th>Result </th>
-                                              <th>More Info</th>
-                                            </tr>
-                                          </thead>
-                                          <tbody>
-                                            {withInterestAndPrincipalWaiverMultipleNPV.map(
-                                              (
-                                                interestAndPrincipalWaivedNPV,
-                                                index
-                                              ) => (
-                                                <tr
-                                                  style={{ color: "white" }}
-                                                  key={index}
-                                                >
-                                                  <td>{index + 1} </td>
-                                                  <td>
-                                                    {numberWithCommas(
-                                                      roundAmount(
-                                                        interestAndPrincipalWaivedNPV.npv
-                                                      )
-                                                    )}{" "}
-                                                    ETB
-                                                  </td>
-                                                  <td>
-                                                    <Accordion>
-                                                      <AccordionSummary
-                                                        expandIcon={
-                                                          <ExpandMoreIcon />
-                                                        }
-                                                        aria-controls="panel1a-content"
-                                                        id="panel1a-header"
-                                                      >
-                                                        <Typography>
-                                                          {
-                                                            interestAndPrincipalWaivedNPV.type
-                                                          }{" "}
-                                                          Loan
-                                                        </Typography>
-                                                      </AccordionSummary>
-                                                      <AccordionDetails>
-                                                        <Typography>
-                                                          <table className="table table-bordered ">
-                                                            <thead>
-                                                              <tr>
-                                                                <th>
-                                                                  Parameters
-                                                                </th>
-                                                                <th>Values</th>
-                                                              </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                              <tr>
-                                                                <td>Amount</td>
-                                                                <td>
-                                                                  {numberWithCommas(
-                                                                    roundAmount(
-                                                                      interestAndPrincipalWaivedNPV.amount
-                                                                    )
-                                                                  )}{" "}
-                                                                  ETB
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Annual
-                                                                  Interest Rate
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    interestAndPrincipalWaivedNPV.annualInterestRate
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Number of
-                                                                  Payments
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    interestAndPrincipalWaivedNPV.numberOfPayments
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Loan periods
-                                                                  in Years
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    interestAndPrincipalWaivedNPV.loanPeriodsInYears
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Risk Premium
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    interestAndPrincipalWaivedNPV.riskPremium
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Scenario
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    interestAndPrincipalWaivedNPV.scenario
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>Type</td>
-                                                                <td>
-                                                                  {
-                                                                    interestAndPrincipalWaivedNPV.type
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Registered
-                                                                  Date
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    interestAndPrincipalWaivedNPV.registeredDate
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>NPV</td>
-                                                                <td>
-                                                                  {numberWithCommas(
-                                                                    interestAndPrincipalWaivedNPV.npv
-                                                                  )}{" "}
-                                                                  ETB
-                                                                </td>
-                                                              </tr>
-                                                              {interestAndPrincipalWaiver[
-                                                                "principalwaiversecond"
-                                                              ] ? (
-                                                                <tr>
-                                                                  <td>
-                                                                    Waived
-                                                                    Principal
-                                                                  </td>
-                                                                  <td>
-                                                                    {
-                                                                      interestAndPrincipalWaiver[
-                                                                        "principalwaiversecond"
-                                                                      ]
-                                                                    }
-                                                                  </td>
-                                                                </tr>
-                                                              ) : (
-                                                                ""
-                                                              )}
-                                                              {interestAndPrincipalWaiver[
-                                                                "interestwaiversecond"
-                                                              ] ? (
-                                                                <tr>
-                                                                  <td>
-                                                                    Waived
-                                                                    Interest
-                                                                  </td>
-                                                                  <td>
-                                                                    {
-                                                                      interestAndPrincipalWaiver[
-                                                                        "interestwaiversecond"
-                                                                      ]
-                                                                    }
-                                                                  </td>
-                                                                </tr>
-                                                              ) : (
-                                                                ""
-                                                              )}
-                                                            </tbody>
-                                                          </table>
-                                                        </Typography>
-                                                      </AccordionDetails>
-                                                    </Accordion>
-                                                  </td>
-                                                </tr>
-                                              )
-                                            )}
-                                          </tbody>
-                                        </table>
-                                      </div>
-                                    )}
-                                  </div>
-                                }
-                              >
-                                <Button color="secondary">
-                                  {withInterestAndPrincipalWaiverMultipleNPV.map(
-                                    (amort) =>
-                                      sumUpInterestAndPrincipalNPVs(amort.npv)
-                                  )}
-                                  {numberWithCommas(
-                                    totalInterestAndPrincipalNPV
-                                  ) + " ETB"}
-                                </Button>
-                              </CustomWidthTooltip>
-                            </div>
-                            {/* {numberWithCommas(roundAmount(npvPrincipalAndInterestWaiver))}  */}
-                          </td>
-                          <td>
-                            {numberWithCommas(
-                              roundAmount(npv - npvPrincipalAndInterestWaiver)
-                            )}
-                          </td>
-                        </tr>
-                        <tr>
-                          <th width="70%">
-                            With Principal Waiver plus Extention{" "}
-                          </th>
-                          <td
-                            name="normal-npv"
-                            className="cbe-text-color fontWeightBold"
-                          >
-                            <div>
-                              <CustomWidthTooltip
-                                title={
-                                  <div>
-                                    <h4 style={{ align: "center" }}>
-                                      With Principal Waiver plus Extention NPV
-                                      Details
-                                    </h4>
-                                    {withPrincipalWaiverAndExtensionMultipleNPV.length !=
-                                      0 && (
-                                      /**
-                                       * Show NPV Results and the parameters will display on the detail section.
-                                       */
-                                      <div>
-                                        {/* table table-striped table-hover table-responsive */}
-                                        <strong>Show all NPV results</strong>
-                                        <table
-                                          style={{ color: "white" }}
-                                          className="table table-responsive"
-                                        >
-                                          <thead>
-                                            <tr>
-                                              <th>NPV</th>
-                                              <th>Result </th>
-                                              <th>More Info</th>
-                                            </tr>
-                                          </thead>
-                                          <tbody>
-                                            {withPrincipalWaiverAndExtensionMultipleNPV.map(
-                                              (injectionNPV, index) => (
-                                                <tr
-                                                  style={{ color: "white" }}
-                                                  key={index}
-                                                >
-                                                  <td>{index + 1} </td>
-                                                  <td>
-                                                    {numberWithCommas(
-                                                      roundAmount(
-                                                        injectionNPV.npv
-                                                      )
-                                                    )}{" "}
-                                                    ETB
-                                                  </td>
-                                                  <td>
-                                                    <Accordion>
-                                                      <AccordionSummary
-                                                        expandIcon={
-                                                          <ExpandMoreIcon />
-                                                        }
-                                                        aria-controls="panel1a-content"
-                                                        id="panel1a-header"
-                                                      >
-                                                        <Typography>
-                                                          {injectionNPV.type}{" "}
-                                                          Loan
-                                                        </Typography>
-                                                      </AccordionSummary>
-                                                      <AccordionDetails>
-                                                        <Typography>
-                                                          <table className="table table-bordered ">
-                                                            <thead>
-                                                              <tr>
-                                                                <th>
-                                                                  Parameters
-                                                                </th>
-                                                                <th>Values</th>
-                                                              </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                              <tr>
-                                                                <td>Amount</td>
-                                                                <td>
-                                                                  {numberWithCommas(
-                                                                    roundAmount(
-                                                                      injectionNPV.amount
-                                                                    )
-                                                                  )}{" "}
-                                                                  ETB
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Annual
-                                                                  Interest Rate
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    injectionNPV.annualInterestRate
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Number of
-                                                                  Payments
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    injectionNPV.numberOfPayments
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Loan periods
-                                                                  in Years
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    injectionNPV.loanPeriodsInYears
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Risk Premium
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    injectionNPV.riskPremium
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Scenario
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    injectionNPV.scenario
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>Type</td>
-                                                                <td>
-                                                                  {
-                                                                    injectionNPV.type
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Registered
-                                                                  Date
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    injectionNPV.registeredDate
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>NPV</td>
-                                                                <td>
-                                                                  {numberWithCommas(
-                                                                    injectionNPV.npv
-                                                                  )}{" "}
-                                                                  ETB
-                                                                </td>
-                                                              </tr>
-                                                              {extension[
-                                                                "injection"
-                                                              ] ? (
-                                                                <tr>
-                                                                  <td>
-                                                                    Injection
-                                                                    ETB
-                                                                  </td>
-                                                                  <td>
-                                                                    {
-                                                                      extension[
-                                                                        "injection"
-                                                                      ]
-                                                                    }
-                                                                  </td>
-                                                                </tr>
-                                                              ) : (
-                                                                ""
-                                                              )}
-                                                            </tbody>
-                                                          </table>
-                                                        </Typography>
-                                                      </AccordionDetails>
-                                                    </Accordion>
-                                                  </td>
-                                                </tr>
-                                              )
-                                            )}
-                                          </tbody>
-                                        </table>
-                                      </div>
-                                    )}
-                                  </div>
-                                }
-                              >
-                                <Button color="secondary">
-                                  {withPrincipalWaiverAndExtensionMultipleNPV.map(
-                                    (amort) =>
-                                      sumUpPrincipalWaiverAndExtensionNPVs(
-                                        amort.npv
-                                      )
-                                  )}
-                                  {numberWithCommas(
-                                    totalPrincipalWaiverAndExtensionNPV
-                                  ) + " ETB"}
-                                </Button>
-                              </CustomWidthTooltip>
-                            </div>
-                          </td>
-                          <td>
-                            {numberWithCommas(
-                              roundAmount(npv - npvPrincipalWaiverPlusExtension)
-                            )}
-                          </td>
-                        </tr>
-                        <tr>
-                          <th width="70%">
-                            With Interest Waiver plus Extention{" "}
-                          </th>
-                          <td
-                            name="normal-npv"
-                            className="cbe-text-color fontWeightBold"
-                          >
-                            <div>
-                              <CustomWidthTooltip
-                                title={
-                                  <div>
-                                    <h4 style={{ align: "center" }}>
-                                      With Interest Waiver plus Extention NPV
-                                      Details
-                                    </h4>
-                                    {withInterestWaiverAndExtensionMultipleNPV.length !=
-                                      0 && (
-                                      /**
-                                       * Show NPV Results and the parameters will display on the detail section.
-                                       */
-                                      <div>
-                                        {/* table table-striped table-hover table-responsive */}
-                                        <strong>Show all NPV results</strong>
-                                        <table
-                                          style={{ color: "white" }}
-                                          className="table table-responsive"
-                                        >
-                                          <thead>
-                                            <tr>
-                                              <th>NPV</th>
-                                              <th>Result </th>
-                                              <th>More Info</th>
-                                            </tr>
-                                          </thead>
-                                          <tbody>
-                                            {withInterestWaiverAndExtensionMultipleNPV.map(
-                                              (injectionNPV, index) => (
-                                                <tr
-                                                  style={{ color: "white" }}
-                                                  key={index}
-                                                >
-                                                  <td>{index + 1} </td>
-                                                  <td>
-                                                    {numberWithCommas(
-                                                      roundAmount(
-                                                        injectionNPV.npv
-                                                      )
-                                                    )}{" "}
-                                                    ETB
-                                                  </td>
-                                                  <td>
-                                                    <Accordion>
-                                                      <AccordionSummary
-                                                        expandIcon={
-                                                          <ExpandMoreIcon />
-                                                        }
-                                                        aria-controls="panel1a-content"
-                                                        id="panel1a-header"
-                                                      >
-                                                        <Typography>
-                                                          {injectionNPV.type}{" "}
-                                                          Loan
-                                                        </Typography>
-                                                      </AccordionSummary>
-                                                      <AccordionDetails>
-                                                        <Typography>
-                                                          <table className="table table-bordered ">
-                                                            <thead>
-                                                              <tr>
-                                                                <th>
-                                                                  Parameters
-                                                                </th>
-                                                                <th>Values</th>
-                                                              </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                              <tr>
-                                                                <td>Amount</td>
-                                                                <td>
-                                                                  {numberWithCommas(
-                                                                    roundAmount(
-                                                                      injectionNPV.amount
-                                                                    )
-                                                                  )}{" "}
-                                                                  ETB
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Annual
-                                                                  Interest Rate
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    injectionNPV.annualInterestRate
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Number of
-                                                                  Payments
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    injectionNPV.numberOfPayments
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Loan periods
-                                                                  in Years
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    injectionNPV.loanPeriodsInYears
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Risk Premium
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    injectionNPV.riskPremium
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Scenario
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    injectionNPV.scenario
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>Type</td>
-                                                                <td>
-                                                                  {
-                                                                    injectionNPV.type
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Registered
-                                                                  Date
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    injectionNPV.registeredDate
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>NPV</td>
-                                                                <td>
-                                                                  {numberWithCommas(
-                                                                    injectionNPV.npv
-                                                                  )}{" "}
-                                                                  ETB
-                                                                </td>
-                                                              </tr>
-                                                              {extension[
-                                                                "injection"
-                                                              ] ? (
-                                                                <tr>
-                                                                  <td>
-                                                                    Injection
-                                                                    ETB
-                                                                  </td>
-                                                                  <td>
-                                                                    {
-                                                                      extension[
-                                                                        "injection"
-                                                                      ]
-                                                                    }
-                                                                  </td>
-                                                                </tr>
-                                                              ) : (
-                                                                ""
-                                                              )}
-                                                            </tbody>
-                                                          </table>
-                                                        </Typography>
-                                                      </AccordionDetails>
-                                                    </Accordion>
-                                                  </td>
-                                                </tr>
-                                              )
-                                            )}
-                                          </tbody>
-                                        </table>
-                                      </div>
-                                    )}
-                                  </div>
-                                }
-                              >
-                                <Button color="secondary">
-                                  {withInterestWaiverAndExtensionMultipleNPV.map(
-                                    (amort) =>
-                                      sumUpInterestWaiverAndExtensionNPVs(
-                                        amort.npv
-                                      )
-                                  )}
-                                  {numberWithCommas(
-                                    totalInterestWaiverAndExtensionNPV
-                                  ) + " ETB"}
-                                </Button>
-                              </CustomWidthTooltip>
-                            </div>
-                          </td>
-                          <td>
-                            {numberWithCommas(
-                              roundAmount(npv - npvInterestWaiverExtension)
-                            )}
-                          </td>
-                        </tr>
-                        <tr>
-                          <th width="70%">
-                            With Principal & Interest Waiver plus Extention{" "}
-                          </th>
-                          <td
-                            name="normal-npv"
-                            className="cbe-text-color fontWeightBold"
-                          >
-                            <div>
-                              <CustomWidthTooltip
-                                title={
-                                  <div>
-                                    <h4 style={{ align: "center" }}>
-                                      With Principal & Interest Waiver plus
-                                      Extention NPV Details
-                                    </h4>
-                                    {withPrincipalAndInterestWaiverAndExtensionMultipleNPV.length !=
-                                      0 && (
-                                      /**
-                                       * Show NPV Results and the parameters will display on the detail section.
-                                       */
-                                      <div>
-                                        {/* table table-striped table-hover table-responsive */}
-                                        <strong>Show all NPV results</strong>
-                                        <table
-                                          style={{ color: "white" }}
-                                          className="table table-responsive"
-                                        >
-                                          <thead>
-                                            <tr>
-                                              <th>NPV</th>
-                                              <th>Result </th>
-                                              <th>More Info</th>
-                                            </tr>
-                                          </thead>
-                                          <tbody>
-                                            {withPrincipalAndInterestWaiverAndExtensionMultipleNPV.map(
-                                              (injectionNPV, index) => (
-                                                <tr
-                                                  style={{ color: "white" }}
-                                                  key={index}
-                                                >
-                                                  <td>{index + 1} </td>
-                                                  <td>
-                                                    {numberWithCommas(
-                                                      roundAmount(
-                                                        injectionNPV.npv
-                                                      )
-                                                    )}{" "}
-                                                    ETB
-                                                  </td>
-                                                  <td>
-                                                    <Accordion>
-                                                      <AccordionSummary
-                                                        expandIcon={
-                                                          <ExpandMoreIcon />
-                                                        }
-                                                        aria-controls="panel1a-content"
-                                                        id="panel1a-header"
-                                                      >
-                                                        <Typography>
-                                                          {injectionNPV.type}{" "}
-                                                          Loan
-                                                        </Typography>
-                                                      </AccordionSummary>
-                                                      <AccordionDetails>
-                                                        <Typography>
-                                                          <table className="table table-bordered ">
-                                                            <thead>
-                                                              <tr>
-                                                                <th>
-                                                                  Parameters
-                                                                </th>
-                                                                <th>Values</th>
-                                                              </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                              <tr>
-                                                                <td>Amount</td>
-                                                                <td>
-                                                                  {numberWithCommas(
-                                                                    roundAmount(
-                                                                      injectionNPV.amount
-                                                                    )
-                                                                  )}{" "}
-                                                                  ETB
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Annual
-                                                                  Interest Rate
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    injectionNPV.annualInterestRate
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Number of
-                                                                  Payments
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    injectionNPV.numberOfPayments
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Loan periods
-                                                                  in Years
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    injectionNPV.loanPeriodsInYears
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Risk Premium
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    injectionNPV.riskPremium
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Scenario
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    injectionNPV.scenario
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>Type</td>
-                                                                <td>
-                                                                  {
-                                                                    injectionNPV.type
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Registered
-                                                                  Date
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    injectionNPV.registeredDate
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>NPV</td>
-                                                                <td>
-                                                                  {numberWithCommas(
-                                                                    injectionNPV.npv
-                                                                  )}{" "}
-                                                                  ETB
-                                                                </td>
-                                                              </tr>
-                                                              {extension[
-                                                                "injection"
-                                                              ] ? (
-                                                                <tr>
-                                                                  <td>
-                                                                    Injection
-                                                                    ETB
-                                                                  </td>
-                                                                  <td>
-                                                                    {
-                                                                      extension[
-                                                                        "injection"
-                                                                      ]
-                                                                    }
-                                                                  </td>
-                                                                </tr>
-                                                              ) : (
-                                                                ""
-                                                              )}
-                                                            </tbody>
-                                                          </table>
-                                                        </Typography>
-                                                      </AccordionDetails>
-                                                    </Accordion>
-                                                  </td>
-                                                </tr>
-                                              )
-                                            )}
-                                          </tbody>
-                                        </table>
-                                      </div>
-                                    )}
-                                  </div>
-                                }
-                              >
-                                <Button color="secondary">
-                                  {withPrincipalAndInterestWaiverAndExtensionMultipleNPV.map(
-                                    (amort) =>
-                                      sumUpPrincipalAndInterestWaiverAndExtensionNPVs(
-                                        amort.npv
-                                      )
-                                  )}
-                                  {numberWithCommas(
-                                    totalPrincipalAndInterestWaiverAndExtensionNPV
-                                  ) + " ETB"}
-                                </Button>
-                              </CustomWidthTooltip>
-                            </div>
-                          </td>
-                          <td>
-                            {numberWithCommas(
-                              roundAmount(
-                                npv - npvPrincipalAndInterestWaiverExtension
-                              )
-                            )}
-                          </td>
-                        </tr>
-
-                        {/* withInjectionMultipleNPV */}
-                        <tr>
-                          <th width="70%">With Injection </th>
-                          <td
-                            name="normal-npv"
-                            className="cbe-text-color fontWeightBold"
-                          >
-                            <div>
-                              <CustomWidthTooltip
-                                title={
-                                  <div>
-                                    <h4 style={{ align: "center" }}>
-                                      Injection NPV Details
-                                    </h4>
-                                    {withInjectionMultipleNPV.length != 0 && (
-                                      /**
-                                       * Show NPV Results and the parameters will display on the detail section.
-                                       */
-                                      <div>
-                                        {/* table table-striped table-hover table-responsive */}
-                                        <strong>Show all NPV results</strong>
-                                        <table
-                                          style={{ color: "white" }}
-                                          className="table table-responsive"
-                                        >
-                                          <thead>
-                                            <tr>
-                                              <th>NPV</th>
-                                              <th>Result </th>
-                                              <th>More Info</th>
-                                            </tr>
-                                          </thead>
-                                          <tbody>
-                                            {withInjectionMultipleNPV.map(
-                                              (injectionNPV, index) => (
-                                                <tr
-                                                  style={{ color: "white" }}
-                                                  key={index}
-                                                >
-                                                  <td>{index + 1} </td>
-                                                  <td>
-                                                    {numberWithCommas(
-                                                      roundAmount(
-                                                        injectionNPV.npv
-                                                      )
-                                                    )}{" "}
-                                                    ETB
-                                                  </td>
-                                                  <td>
-                                                    <Accordion>
-                                                      <AccordionSummary
-                                                        expandIcon={
-                                                          <ExpandMoreIcon />
-                                                        }
-                                                        aria-controls="panel1a-content"
-                                                        id="panel1a-header"
-                                                      >
-                                                        <Typography>
-                                                          {injectionNPV.type}{" "}
-                                                          Loan
-                                                        </Typography>
-                                                      </AccordionSummary>
-                                                      <AccordionDetails>
-                                                        <Typography>
-                                                          <table className="table table-bordered ">
-                                                            <thead>
-                                                              <tr>
-                                                                <th>
-                                                                  Parameters
-                                                                </th>
-                                                                <th>Values</th>
-                                                              </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                              <tr>
-                                                                <td>Amount</td>
-                                                                <td>
-                                                                  {numberWithCommas(
-                                                                    roundAmount(
-                                                                      injectionNPV.amount
-                                                                    )
-                                                                  )}{" "}
-                                                                  ETB
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Annual
-                                                                  Interest Rate
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    injectionNPV.annualInterestRate
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Number of
-                                                                  Payments
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    injectionNPV.numberOfPayments
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Loan periods
-                                                                  in Years
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    injectionNPV.loanPeriodsInYears
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Risk Premium
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    injectionNPV.riskPremium
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Scenario
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    injectionNPV.scenario
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>Type</td>
-                                                                <td>
-                                                                  {
-                                                                    injectionNPV.type
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>
-                                                                  Registered
-                                                                  Date
-                                                                </td>
-                                                                <td>
-                                                                  {
-                                                                    injectionNPV.registeredDate
-                                                                  }
-                                                                </td>
-                                                              </tr>
-                                                              <tr>
-                                                                <td>NPV</td>
-                                                                <td>
-                                                                  {numberWithCommas(
-                                                                    injectionNPV.npv
-                                                                  )}{" "}
-                                                                  ETB
-                                                                </td>
-                                                              </tr>
-                                                              {extension[
-                                                                "injection"
-                                                              ] ? (
-                                                                <tr>
-                                                                  <td>
-                                                                    Injection
-                                                                    ETB
-                                                                  </td>
-                                                                  <td>
-                                                                    {
-                                                                      extension[
-                                                                        "injection"
-                                                                      ]
-                                                                    }
-                                                                  </td>
-                                                                </tr>
-                                                              ) : (
-                                                                ""
-                                                              )}
-                                                            </tbody>
-                                                          </table>
-                                                        </Typography>
-                                                      </AccordionDetails>
-                                                    </Accordion>
-                                                  </td>
-                                                </tr>
-                                              )
-                                            )}
-                                          </tbody>
-                                        </table>
-                                      </div>
-                                    )}
-                                  </div>
-                                }
-                              >
-                                <Button color="secondary">
-                                  {withInjectionMultipleNPV.map((amort) =>
-                                    sumUpInjectionNPVs(amort.npv)
-                                  )}
-                                  {numberWithCommas(totalInjectionNPV) + " ETB"}
-                                </Button>
-                              </CustomWidthTooltip>
-                            </div>
-                          </td>
-                          <td>
-                            {numberWithCommas(roundAmount(npv - npvInjection))}
-                          </td>
-                        </tr>
-
-                        <tr>
-                          <th>With foreclosure</th>
-                          <td>
-                            <strong>
-                              {" "}
-                              {numberWithCommas(
-                                roundAmount(npvForClosure)
-                              )}{" "}
-                            </strong>{" "}
-                            <table className="table table-striped table-bordered ">
-                              <thead>
-                                <tr>
-                                  <th>Cashflow</th>
-                                  <th>Selling Cost</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <td>{cashFlow}</td>
-                                  <td>
-                                    {numberWithCommas(roundAmount(sellingCost))}
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </td>
-                          <td>
-                            {numberWithCommas(roundAmount(npv - npvForClosure))}
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    {showNPVComparision && (
-                      <div className="npv-comparision-all">
-                        <p className="npv-comparision"> NPV, Comparision </p>
-                        <table
-                          className="table table-bordered"
-                          style={{ width: "100%" }}
-                        >
-                          <tbody>
-                            <tr>
-                              <th width="70%">Large</th>
-                              <td
-                                name="normal-npv"
-                                className="cbe-text-color fontWeightBold"
-                              >
-                                <span className="npv-type">
-                                  {" "}
-                                  {largestNPV.type},{" "}
-                                </span>
-                                {largestNPV.result}
-                              </td>
-                            </tr>
-
-                            <tr>
-                              <th width="70%">Small</th>
-                              <td
-                                name="normal-npv"
-                                className="cbe-text-color fontWeightBold"
-                              >
-                                <span className="npv-type">
-                                  {" "}
-                                  {lowestNPV.type},{" "}
-                                </span>
-                                {roundAmount(lowestNPV.result)}
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    )}
-                    <div className="buttons">
-                      <Button
-                        type="submit"
-                        variant="outlined"
-                        color="secondary"
-                        size="medium"
-                        id="btnShowInGraph"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Click it to show in graph"
-                        data-original-title="Tooltip on bottom"
-                        style={{ marginTop: "5px" }}
-                        className="red-tooltip"
-                        onClick={(e) => showInGraph(e)}
-                      >
-                        Show In Graph
-                      </Button>
-
-                      <Button
-                        type="submit"
-                        variant="outlined"
-                        color="secondary"
-                        size="medium"
-                        id="btnShowInGraph"
-                        data-toggle="tooltip"
-                        data-placement="top"
-                        title="Click it to Compare NPVs"
-                        data-original-title="Tooltip on bottom"
-                        style={{ marginTop: "5px" }}
-                        className="red-tooltip"
-                        onClick={(e) => compareNPV(e)}
-                      >
-                        Compare NPV
-                      </Button>
-                    </div>
-                    {/* </Grid> */}
-                  </div>
-                )}
-              </Grid>
+              </form>
             </div>
-          </form>
-        </div>
+            <div class="w-full md:w-1/2 border-1 flex flex-col my-4 rounded-sm border shadow-lg p-2">
+              {/* bosena */}
+              {Boolean(
+                showNPVWithPrincipalWaiver ||
+                  showNoramlNpv ||
+                  showNPVWithInterestWaiver ||
+                  showNPVWithExtension ||
+                  showNPVWithPrincipalAndInterestWaiver ||
+                  showNPVWithPrincipalWaiverPlusExtension ||
+                  showNPVWithInterestWaiverPlusExtension ||
+                  showNPVWithPrincipalAndInterestWaiverPlusExtension ||
+                  showNPVWithInjection ||
+                  showNPVWithForeclosure
+              ) && (<>
+                  <table
+                  >
+                    <tbody>
+                      <tr className="bg-green-700 text-white">
+                        <th className="p-1 text-left border-b border-green-300">Scenario</th>
+                        <th
+                        className="p-1 text-left border-b border-green-300"
+                        >
+                          NPV Result
+                        </th>
+                        <th className="text-left border-b border-green-300">NPV Loss</th>
+                      </tr>
+                      <tr>
+                        <th className="p-1 text-left border-b border-green-300">Normal</th>
+                        <td
+                          name="normal-npv"
+                          className="text-left border-b border-green-300"
+                          // className="cbe-text-color fontWeightBold"
+                        >
+                          <div>
+                            <CustomWidthTooltip
+                              title={
+                                <div>
+                                  <h4 style={{ align: "center" }}>
+                                    NPV Details
+                                  </h4>
+                                  {normalMultipleNPV.length != 0 && (
+                                    /**
+                                     * Show NPV Results and the parameters will display on the detail section.
+                                     */
+                                    <div>
+                                      {/* table table-striped table-hover table-responsive */}
+                                      <strong>Show all NPV results</strong>
+                                      <table
+                                        style={{ color: "white" }}
+                                        className="table-auto w-full bg-green-100"
+                                      >
+                                        <thead>
+                                          <tr>
+                                            <th>NPV</th>
+                                            <th>Result </th>
+                                            <th>More Info</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          {normalMultipleNPV.map(
+                                            (normalNPV, index) => (
+                                              <tr
+                                                style={{ color: "white" }}
+                                                key={index}
+                                              >
+                                                <td>{index + 1} </td>
+                                                <td>
+                                                  {numberWithCommas(
+                                                    roundAmount(normalNPV.npv)
+                                                  )}{" "}
+                                                  ETB
+                                                </td>
+                                                <td>
+                                                  <Accordion>
+                                                    <AccordionSummary
+                                                      expandIcon={
+                                                        <ExpandMoreIcon />
+                                                      }
+                                                      aria-controls="panel1a-content"
+                                                      id="panel1a-header"
+                                                    >
+                                                      <Typography>
+                                                        {normalNPV.type} Loan
+                                                      </Typography>
+                                                    </AccordionSummary>
+                                                    <AccordionDetails>
+                                                      <Typography>
+                                                        <table className="table table-bordered ">
+                                                          <thead>
+                                                            <tr>
+                                                              <th>
+                                                                Parameters
+                                                              </th>
+                                                              <th>Values</th>
+                                                            </tr>
+                                                          </thead>
+                                                          <tbody>
+                                                            <tr>
+                                                              <td>Amount</td>
+                                                              <td>
+                                                                {numberWithCommas(
+                                                                  roundAmount(
+                                                                    normalNPV.amount
+                                                                  )
+                                                                )}{" "}
+                                                                ETB
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Annual Interest
+                                                                Rate
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  normalNPV.annualInterestRate
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Number of
+                                                                Payments
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  normalNPV.numberOfPayments
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Loan periods in
+                                                                Years
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  normalNPV.loanPeriodsInYears
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Risk Premium
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  normalNPV.riskPremium
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>Scenario</td>
+                                                              <td>
+                                                                {
+                                                                  normalNPV.scenario
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>Type</td>
+                                                              <td>
+                                                                {normalNPV.type}
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Registered Date
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  normalNPV.registeredDate
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>NPV</td>
+                                                              <td>
+                                                                {numberWithCommas(
+                                                                  normalNPV.npv
+                                                                )}{" "}
+                                                                ETB
+                                                              </td>
+                                                            </tr>
+                                                          </tbody>
+                                                        </table>
+                                                      </Typography>
+                                                    </AccordionDetails>
+                                                  </Accordion>
+                                                </td>
+                                              </tr>
+                                            )
+                                          )}
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  )}
+                                </div>
+                              }
+                            >
+                              <Button color="secondary">
+                                {normalMultipleNPV.map((amort) =>
+                                  sumUpNPVs(amort.npv)
+                                )}
+                                {numberWithCommas(totalNPV) + " ETB"}
+                              </Button>
+                            </CustomWidthTooltip>
+                          </div>
+                        </td>
+                        <td className="text-left border-b border-green-300">  Baseline </td>
+                      </tr>
+                      <tr>
+                        <th className="p-1 text-left border-b border-green-300"> With Principal Waiver</th>
+                        <td
+                          name="normal-npv"
+                          className="text-left border-b border-green-300"
+                        >
+                          <div>
+                            <CustomWidthTooltip
+                              title={
+                                <div>
+                                  <h4 style={{ align: "center" }}>
+                                    Principal Waiver NPV Details
+                                  </h4>
+                                  {withPrincipalWaiverMultipleNPV.length !=
+                                    0 && (
+                                    /**
+                                     * Show NPV Results and the parameters will display on the detail section.
+                                     */
+                                    <div>
+                                      {/* table table-striped table-hover table-responsive */}
+                                      <strong>Show all NPV results</strong>
+                                      <table
+                                        style={{ color: "white" }}
+                                        className="table table-responsive"
+                                      >
+                                        <thead>
+                                          <tr>
+                                            <th>NPV</th>
+                                            <th>Result </th>
+                                            <th>More Info</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          {withPrincipalWaiverMultipleNPV.map(
+                                            (principalWaiverNPV, index) => (
+                                              <tr
+                                                style={{ color: "white" }}
+                                                key={index}
+                                              >
+                                                <td>{index + 1} </td>
+                                                <td>
+                                                  {numberWithCommas(
+                                                    roundAmount(
+                                                      principalWaiverNPV.npv
+                                                    )
+                                                  )}{" "}
+                                                  ETB
+                                                </td>
+                                                <td>
+                                                  <Accordion>
+                                                    <AccordionSummary
+                                                      expandIcon={
+                                                        <ExpandMoreIcon />
+                                                      }
+                                                      aria-controls="panel1a-content"
+                                                      id="panel1a-header"
+                                                    >
+                                                      <Typography>
+                                                        {
+                                                          principalWaiverNPV.type
+                                                        }{" "}
+                                                        Loan
+                                                      </Typography>
+                                                    </AccordionSummary>
+                                                    <AccordionDetails>
+                                                      <Typography>
+                                                        <table className="table table-bordered ">
+                                                          <thead>
+                                                            <tr>
+                                                              <th>
+                                                                Parameters
+                                                              </th>
+                                                              <th>Values</th>
+                                                            </tr>
+                                                          </thead>
+                                                          <tbody>
+                                                            <tr>
+                                                              <td>Amount</td>
+                                                              <td>
+                                                                {numberWithCommas(
+                                                                  roundAmount(
+                                                                    principalWaiverNPV.amount
+                                                                  )
+                                                                )}{" "}
+                                                                ETB
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Annual Interest
+                                                                Rate
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  principalWaiverNPV.annualInterestRate
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Number of
+                                                                Payments
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  principalWaiverNPV.numberOfPayments
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Loan periods in
+                                                                Years
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  principalWaiverNPV.loanPeriodsInYears
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Risk Premium
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  principalWaiverNPV.riskPremium
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>Scenario</td>
+                                                              <td>
+                                                                {
+                                                                  principalWaiverNPV.scenario
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>Type</td>
+                                                              <td>
+                                                                {
+                                                                  principalWaiverNPV.type
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Registered Date
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  principalWaiverNPV.registeredDate
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>NPV</td>
+                                                              <td>
+                                                                {numberWithCommas(
+                                                                  principalWaiverNPV.npv
+                                                                )}{" "}
+                                                                ETB
+                                                              </td>
+                                                            </tr>
+                                                            {principalWaiverNumber[
+                                                              "principal-waiver-number"
+                                                            ] ? (
+                                                              <tr>
+                                                                <td>
+                                                                  Principal
+                                                                  Waived
+                                                                </td>
+                                                                <td>
+                                                                  {
+                                                                    principalWaiverNPV.waivedPrincipal
+                                                                  }
+                                                                </td>
+                                                              </tr>
+                                                            ) : (
+                                                              ""
+                                                            )}
+                                                          </tbody>
+                                                        </table>
+                                                      </Typography>
+                                                    </AccordionDetails>
+                                                  </Accordion>
+                                                </td>
+                                              </tr>
+                                            )
+                                          )}
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  )}
+                                </div>
+                              }
+                            >
+                              <Button color="secondary">
+                                {withPrincipalWaiverMultipleNPV.map((amort) =>
+                                  sumUpPrincipalWaiverNPVs(amort.npv)
+                                )}
+                                {numberWithCommas(totalPrincipalWaiverNPV) +
+                                  " ETB"}
+                              </Button>
+                            </CustomWidthTooltip>
+                          </div>
+                        </td>
+                        <td className="text-left border-b border-green-300"> 
+                          {numberWithCommas(
+                            roundAmount(npv - npvPrincipalWaiver)
+                          )}
+                        </td>
+                      </tr>
+                      <tr>
+                        <th className="p-1 text-left border-b border-green-300">With Interest Waiver</th>
+                        <td
+                          name="normal-npv"
+                          className="text-left border-b border-green-300"
+                        >
+                          <div>
+                            <CustomWidthTooltip
+                              title={
+                                <div>
+                                  <h4 style={{ align: "center" }}>
+                                    Interest Waiver NPV Details
+                                  </h4>
+                                  {withInterestWaiverMultipleNPV.length !=
+                                    0 && (
+                                    /**
+                                     * Show NPV Results and the parameters will display on the detail section.
+                                     */
+                                    <div>
+                                      {/* table table-striped table-hover table-responsive */}
+                                      <strong>Show all NPV results</strong>
+                                      <table
+                                        style={{ color: "white" }}
+                                        className="table table-responsive"
+                                      >
+                                        <thead>
+                                          <tr>
+                                            <th>NPV</th>
+                                            <th>Result </th>
+                                            <th>More Info</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          {withInterestWaiverMultipleNPV.map(
+                                            (interestWaiverNPV, index) => (
+                                              <tr
+                                                style={{ color: "white" }}
+                                                key={index}
+                                              >
+                                                <td>{index + 1} </td>
+                                                <td>
+                                                  {numberWithCommas(
+                                                    roundAmount(
+                                                      interestWaiverNPV.npv
+                                                    )
+                                                  )}{" "}
+                                                  ETB
+                                                </td>
+                                                <td>
+                                                  <Accordion>
+                                                    <AccordionSummary
+                                                      expandIcon={
+                                                        <ExpandMoreIcon />
+                                                      }
+                                                      aria-controls="panel1a-content"
+                                                      id="panel1a-header"
+                                                    >
+                                                      <Typography>
+                                                        {interestWaiverNPV.type}{" "}
+                                                        Loan
+                                                      </Typography>
+                                                    </AccordionSummary>
+                                                    <AccordionDetails>
+                                                      <Typography>
+                                                        <table className="table table-bordered ">
+                                                          <thead>
+                                                            <tr>
+                                                              <th>
+                                                                Parameters
+                                                              </th>
+                                                              <th>Values</th>
+                                                            </tr>
+                                                          </thead>
+                                                          <tbody>
+                                                            <tr>
+                                                              <td>Amount</td>
+                                                              <td>
+                                                                {numberWithCommas(
+                                                                  roundAmount(
+                                                                    interestWaiverNPV.amount
+                                                                  )
+                                                                )}{" "}
+                                                                ETB
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Annual Interest
+                                                                Rate
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  interestWaiverNPV.annualInterestRate
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Number of
+                                                                Payments
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  interestWaiverNPV.numberOfPayments
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Loan periods in
+                                                                Years
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  interestWaiverNPV.loanPeriodsInYears
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Risk Premium
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  interestWaiverNPV.riskPremium
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>Scenario</td>
+                                                              <td>
+                                                                {
+                                                                  interestWaiverNPV.scenario
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>Type</td>
+                                                              <td>
+                                                                {
+                                                                  interestWaiverNPV.type
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Registered Date
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  interestWaiverNPV.registeredDate
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>NPV</td>
+                                                              <td>
+                                                                {numberWithCommas(
+                                                                  interestWaiverNPV.npv
+                                                                )}{" "}
+                                                                ETB
+                                                              </td>
+                                                            </tr>
+                                                            {interestWaiverNumber[
+                                                              "interest-waiver-number"
+                                                            ] ? (
+                                                              <tr>
+                                                                <td>
+                                                                  Interest
+                                                                  Waived
+                                                                </td>
+                                                                <td>
+                                                                  {
+                                                                    interestWaiverNumber[
+                                                                      "interest-waiver-number"
+                                                                    ]
+                                                                  }
+                                                                </td>
+                                                              </tr>
+                                                            ) : (
+                                                              ""
+                                                            )}
+                                                          </tbody>
+                                                        </table>
+                                                      </Typography>
+                                                    </AccordionDetails>
+                                                  </Accordion>
+                                                </td>
+                                              </tr>
+                                            )
+                                          )}
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  )}
+                                </div>
+                              }
+                            >
+                              <Button color="secondary">
+                                {withInterestWaiverMultipleNPV.map((amort) =>
+                                  sumUpInterestWaiverNPVs(amort.npv)
+                                )}
+                                {numberWithCommas(totalInterestWaiverNPV) +
+                                  " ETB"}
+                              </Button>
+                            </CustomWidthTooltip>
+                          </div>
+                        </td>
+                        <td className="text-left border-b border-green-300">
+                          {numberWithCommas(
+                            roundAmount(npv - npvInterestWaiver)
+                          )}
+                        </td>
+                      </tr>
+                      <tr>
+                        <th className="p-1 text-left border-b border-green-300">With Extension </th>
+                        <td
+                          name="normal-npv"
+                          className="text-left border-b border-green-300"
+                        >
+                          <div>
+                            <CustomWidthTooltip
+                              title={
+                                <div>
+                                  <h4 style={{ align: "center" }}>
+                                    Extension NPV Details
+                                  </h4>
+                                  {withExtensionMultipleNPV.length != 0 && (
+                                    /**
+                                     * Show NPV Results and the parameters will display on the detail section.
+                                     */
+                                    <div>
+                                      {/* table table-striped table-hover table-responsive */}
+                                      <strong>Show all NPV results</strong>
+                                      <table
+                                        style={{ color: "white" }}
+                                        className="table table-responsive"
+                                      >
+                                        <thead>
+                                          <tr>
+                                            <th>NPV</th>
+                                            <th>Result </th>
+                                            <th>More Info</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          {withExtensionMultipleNPV.map(
+                                            (extensionNPV, index) => (
+                                              <tr
+                                                style={{ color: "white" }}
+                                                key={index}
+                                              >
+                                                <td>{index + 1} </td>
+                                                <td>
+                                                  {numberWithCommas(
+                                                    roundAmount(
+                                                      extensionNPV.npv
+                                                    )
+                                                  )}{" "}
+                                                  ETB
+                                                </td>
+                                                <td>
+                                                  <Accordion>
+                                                    <AccordionSummary
+                                                      expandIcon={
+                                                        <ExpandMoreIcon />
+                                                      }
+                                                      aria-controls="panel1a-content"
+                                                      id="panel1a-header"
+                                                    >
+                                                      <Typography>
+                                                        {extensionNPV.type} Loan
+                                                      </Typography>
+                                                    </AccordionSummary>
+                                                    <AccordionDetails>
+                                                      <Typography>
+                                                        <table className="table table-bordered ">
+                                                          <thead>
+                                                            <tr>
+                                                              <th>
+                                                                Parameters
+                                                              </th>
+                                                              <th>Values</th>
+                                                            </tr>
+                                                          </thead>
+                                                          <tbody>
+                                                            <tr>
+                                                              <td>Amount</td>
+                                                              <td>
+                                                                {numberWithCommas(
+                                                                  roundAmount(
+                                                                    extensionNPV.amount
+                                                                  )
+                                                                )}{" "}
+                                                                ETB
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Annual Interest
+                                                                Rate
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  extensionNPV.annualInterestRate
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Number of
+                                                                Payments
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  extensionNPV.numberOfPayments
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Loan periods in
+                                                                Years
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  extensionNPV.loanPeriodsInYears
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Risk Premium
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  extensionNPV.riskPremium
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>Scenario</td>
+                                                              <td>
+                                                                {
+                                                                  extensionNPV.scenario
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>Type</td>
+                                                              <td>
+                                                                {
+                                                                  extensionNPV.type
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Registered Date
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  extensionNPV.registeredDate
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>NPV</td>
+                                                              <td>
+                                                                {numberWithCommas(
+                                                                  extensionNPV.npv
+                                                                )}{" "}
+                                                                ETB
+                                                              </td>
+                                                            </tr>
+                                                            {extension[
+                                                              "extension"
+                                                            ] ? (
+                                                              <tr>
+                                                                <td>
+                                                                  Extended for
+                                                                </td>
+                                                                <td>
+                                                                  {
+                                                                    extension[
+                                                                      "extension"
+                                                                    ]
+                                                                  }
+                                                                </td>
+                                                              </tr>
+                                                            ) : (
+                                                              ""
+                                                            )}
+                                                          </tbody>
+                                                        </table>
+                                                      </Typography>
+                                                    </AccordionDetails>
+                                                  </Accordion>
+                                                </td>
+                                              </tr>
+                                            )
+                                          )}
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  )}
+                                </div>
+                              }
+                            >
+                              <Button color="secondary">
+                                {withExtensionMultipleNPV.map((amort) =>
+                                  sumUpExtensionNPVs(amort.npv)
+                                )}
+                                {numberWithCommas(totalExtensionNPV) + " ETB"}
+                              </Button>
+                            </CustomWidthTooltip>
+                          </div>
+                        </td>
+                        <td className="text-left border-b border-green-300">
+                          {numberWithCommas(roundAmount(npv - npvExtension))}
+                        </td>
+                      </tr>
+                      <tr>
+                        <th className="p-1 text-left border-b border-green-300">With Principal and Interest Waiver </th>
+                        <td
+                          name="normal-npv"
+                          className="text-left border-b border-green-300"
+                        >
+                          <div>
+                            <CustomWidthTooltip
+                              title={
+                                <div>
+                                  <h4 style={{ align: "center" }}>
+                                    Interest and Principal Waived NPV Details
+                                  </h4>
+                                  {withInterestAndPrincipalWaiverMultipleNPV.length !=
+                                    0 && (
+                                    /**
+                                     * Show NPV Results and the parameters will display on the detail section.
+                                     */
+                                    <div>
+                                      {/* table table-striped table-hover table-responsive */}
+                                      <strong>Show all NPV results</strong>
+                                      <table
+                                        style={{ color: "white" }}
+                                        className="table table-responsive"
+                                      >
+                                        <thead>
+                                          <tr>
+                                            <th>NPV</th>
+                                            <th>Result </th>
+                                            <th>More Info</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          {withInterestAndPrincipalWaiverMultipleNPV.map(
+                                            (
+                                              interestAndPrincipalWaivedNPV,
+                                              index
+                                            ) => (
+                                              <tr
+                                                style={{ color: "white" }}
+                                                key={index}
+                                              >
+                                                <td>{index + 1} </td>
+                                                <td>
+                                                  {numberWithCommas(
+                                                    roundAmount(
+                                                      interestAndPrincipalWaivedNPV.npv
+                                                    )
+                                                  )}{" "}
+                                                  ETB
+                                                </td>
+                                                <td>
+                                                  <Accordion>
+                                                    <AccordionSummary
+                                                      expandIcon={
+                                                        <ExpandMoreIcon />
+                                                      }
+                                                      aria-controls="panel1a-content"
+                                                      id="panel1a-header"
+                                                    >
+                                                      <Typography>
+                                                        {
+                                                          interestAndPrincipalWaivedNPV.type
+                                                        }{" "}
+                                                        Loan
+                                                      </Typography>
+                                                    </AccordionSummary>
+                                                    <AccordionDetails>
+                                                      <Typography>
+                                                        <table className="table table-bordered ">
+                                                          <thead>
+                                                            <tr>
+                                                              <th>
+                                                                Parameters
+                                                              </th>
+                                                              <th>Values</th>
+                                                            </tr>
+                                                          </thead>
+                                                          <tbody>
+                                                            <tr>
+                                                              <td>Amount</td>
+                                                              <td>
+                                                                {numberWithCommas(
+                                                                  roundAmount(
+                                                                    interestAndPrincipalWaivedNPV.amount
+                                                                  )
+                                                                )}{" "}
+                                                                ETB
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Annual Interest
+                                                                Rate
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  interestAndPrincipalWaivedNPV.annualInterestRate
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Number of
+                                                                Payments
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  interestAndPrincipalWaivedNPV.numberOfPayments
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Loan periods in
+                                                                Years
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  interestAndPrincipalWaivedNPV.loanPeriodsInYears
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Risk Premium
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  interestAndPrincipalWaivedNPV.riskPremium
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>Scenario</td>
+                                                              <td>
+                                                                {
+                                                                  interestAndPrincipalWaivedNPV.scenario
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>Type</td>
+                                                              <td>
+                                                                {
+                                                                  interestAndPrincipalWaivedNPV.type
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Registered Date
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  interestAndPrincipalWaivedNPV.registeredDate
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>NPV</td>
+                                                              <td>
+                                                                {numberWithCommas(
+                                                                  interestAndPrincipalWaivedNPV.npv
+                                                                )}{" "}
+                                                                ETB
+                                                              </td>
+                                                            </tr>
+                                                            {interestAndPrincipalWaiver[
+                                                              "principalwaiversecond"
+                                                            ] ? (
+                                                              <tr>
+                                                                <td>
+                                                                  Waived
+                                                                  Principal
+                                                                </td>
+                                                                <td>
+                                                                  {
+                                                                    interestAndPrincipalWaiver[
+                                                                      "principalwaiversecond"
+                                                                    ]
+                                                                  }
+                                                                </td>
+                                                              </tr>
+                                                            ) : (
+                                                              ""
+                                                            )}
+                                                            {interestAndPrincipalWaiver[
+                                                              "interestwaiversecond"
+                                                            ] ? (
+                                                              <tr>
+                                                                <td>
+                                                                  Waived
+                                                                  Interest
+                                                                </td>
+                                                                <td>
+                                                                  {
+                                                                    interestAndPrincipalWaiver[
+                                                                      "interestwaiversecond"
+                                                                    ]
+                                                                  }
+                                                                </td>
+                                                              </tr>
+                                                            ) : (
+                                                              ""
+                                                            )}
+                                                          </tbody>
+                                                        </table>
+                                                      </Typography>
+                                                    </AccordionDetails>
+                                                  </Accordion>
+                                                </td>
+                                              </tr>
+                                            )
+                                          )}
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  )}
+                                </div>
+                              }
+                            >
+                              <Button color="secondary">
+                                {withInterestAndPrincipalWaiverMultipleNPV.map(
+                                  (amort) =>
+                                    sumUpInterestAndPrincipalNPVs(amort.npv)
+                                )}
+                                {numberWithCommas(
+                                  totalInterestAndPrincipalNPV
+                                ) + " ETB"}
+                              </Button>
+                            </CustomWidthTooltip>
+                          </div>
+                        </td>
+                        <td className="text-left border-b border-green-300">
+                          {numberWithCommas(
+                            roundAmount(npv - npvPrincipalAndInterestWaiver)
+                          )}
+                        </td>
+                      </tr>
+                      <tr>
+                        <th className="p-1 text-left border-b border-green-300">
+                          With Principal Waiver plus Extention{" "}
+                        </th>
+                        <td
+                          name="normal-npv"
+                          className="text-left border-b border-green-300"
+                        >
+                          <div>
+                            <CustomWidthTooltip
+                              title={
+                                <div>
+                                  <h4 style={{ align: "center" }}>
+                                    With Principal Waiver plus Extention NPV
+                                    Details
+                                  </h4>
+                                  {withPrincipalWaiverAndExtensionMultipleNPV.length !=
+                                    0 && (
+                                    /**
+                                     * Show NPV Results and the parameters will display on the detail section.
+                                     */
+                                    <div>
+                                      {/* table table-striped table-hover table-responsive */}
+                                      <strong>Show all NPV results</strong>
+                                      <table
+                                        style={{ color: "white" }}
+                                        className="table table-responsive"
+                                      >
+                                        <thead>
+                                          <tr>
+                                            <th>NPV</th>
+                                            <th>Result </th>
+                                            <th>More Info</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          {withPrincipalWaiverAndExtensionMultipleNPV.map(
+                                            (injectionNPV, index) => (
+                                              <tr
+                                                style={{ color: "white" }}
+                                                key={index}
+                                              >
+                                                <td>{index + 1} </td>
+                                                <td>
+                                                  {numberWithCommas(
+                                                    roundAmount(
+                                                      injectionNPV.npv
+                                                    )
+                                                  )}{" "}
+                                                  ETB
+                                                </td>
+                                                <td>
+                                                  <Accordion>
+                                                    <AccordionSummary
+                                                      expandIcon={
+                                                        <ExpandMoreIcon />
+                                                      }
+                                                      aria-controls="panel1a-content"
+                                                      id="panel1a-header"
+                                                    >
+                                                      <Typography>
+                                                        {injectionNPV.type} Loan
+                                                      </Typography>
+                                                    </AccordionSummary>
+                                                    <AccordionDetails>
+                                                      <Typography>
+                                                        <table className="table table-bordered ">
+                                                          <thead>
+                                                            <tr>
+                                                              <th>
+                                                                Parameters
+                                                              </th>
+                                                              <th>Values</th>
+                                                            </tr>
+                                                          </thead>
+                                                          <tbody>
+                                                            <tr>
+                                                              <td>Amount</td>
+                                                              <td>
+                                                                {numberWithCommas(
+                                                                  roundAmount(
+                                                                    injectionNPV.amount
+                                                                  )
+                                                                )}{" "}
+                                                                ETB
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Annual Interest
+                                                                Rate
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  injectionNPV.annualInterestRate
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Number of
+                                                                Payments
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  injectionNPV.numberOfPayments
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Loan periods in
+                                                                Years
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  injectionNPV.loanPeriodsInYears
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Risk Premium
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  injectionNPV.riskPremium
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>Scenario</td>
+                                                              <td>
+                                                                {
+                                                                  injectionNPV.scenario
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>Type</td>
+                                                              <td>
+                                                                {
+                                                                  injectionNPV.type
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Registered Date
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  injectionNPV.registeredDate
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>NPV</td>
+                                                              <td>
+                                                                {numberWithCommas(
+                                                                  injectionNPV.npv
+                                                                )}{" "}
+                                                                ETB
+                                                              </td>
+                                                            </tr>
+                                                            {extension[
+                                                              "injection"
+                                                            ] ? (
+                                                              <tr>
+                                                                <td>
+                                                                  Injection ETB
+                                                                </td>
+                                                                <td>
+                                                                  {
+                                                                    extension[
+                                                                      "injection"
+                                                                    ]
+                                                                  }
+                                                                </td>
+                                                              </tr>
+                                                            ) : (
+                                                              ""
+                                                            )}
+                                                          </tbody>
+                                                        </table>
+                                                      </Typography>
+                                                    </AccordionDetails>
+                                                  </Accordion>
+                                                </td>
+                                              </tr>
+                                            )
+                                          )}
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  )}
+                                </div>
+                              }
+                            >
+                              <Button color="secondary">
+                                {withPrincipalWaiverAndExtensionMultipleNPV.map(
+                                  (amort) =>
+                                    sumUpPrincipalWaiverAndExtensionNPVs(
+                                      amort.npv
+                                    )
+                                )}
+                                {numberWithCommas(
+                                  totalPrincipalWaiverAndExtensionNPV
+                                ) + " ETB"}
+                              </Button>
+                            </CustomWidthTooltip>
+                          </div>
+                        </td>
+                        <td className="text-left border-b border-green-300">
+                          {numberWithCommas(
+                            roundAmount(npv - npvPrincipalWaiverPlusExtension)
+                          )}
+                        </td>
+                      </tr>
+                      <tr>
+                        <th className="p-1 text-left border-b border-green-300">
+                          With Interest Waiver plus Extention{" "}
+                        </th>
+                        <td
+                          name="normal-npv"
+                          className="text-left border-b border-green-300"
+                        >
+                          <div>
+                            <CustomWidthTooltip
+                              title={
+                                <div>
+                                  <h4 style={{ align: "center" }}>
+                                    With Interest Waiver plus Extention NPV
+                                    Details
+                                  </h4>
+                                  {withInterestWaiverAndExtensionMultipleNPV.length !=
+                                    0 && (
+                                    /**
+                                     * Show NPV Results and the parameters will display on the detail section.
+                                     */
+                                    <div>
+                                      {/* table table-striped table-hover table-responsive */}
+                                      <strong>Show all NPV results</strong>
+                                      <table
+                                        style={{ color: "white" }}
+                                        className="table table-responsive"
+                                      >
+                                        <thead>
+                                          <tr>
+                                            <th>NPV</th>
+                                            <th>Result </th>
+                                            <th>More Info</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          {withInterestWaiverAndExtensionMultipleNPV.map(
+                                            (injectionNPV, index) => (
+                                              <tr
+                                                style={{ color: "white" }}
+                                                key={index}
+                                              >
+                                                <td>{index + 1} </td>
+                                                <td>
+                                                  {numberWithCommas(
+                                                    roundAmount(
+                                                      injectionNPV.npv
+                                                    )
+                                                  )}{" "}
+                                                  ETB
+                                                </td>
+                                                <td>
+                                                  <Accordion>
+                                                    <AccordionSummary
+                                                      expandIcon={
+                                                        <ExpandMoreIcon />
+                                                      }
+                                                      aria-controls="panel1a-content"
+                                                      id="panel1a-header"
+                                                    >
+                                                      <Typography>
+                                                        {injectionNPV.type} Loan
+                                                      </Typography>
+                                                    </AccordionSummary>
+                                                    <AccordionDetails>
+                                                      <Typography>
+                                                        <table className="table table-bordered ">
+                                                          <thead>
+                                                            <tr>
+                                                              <th>
+                                                                Parameters
+                                                              </th>
+                                                              <th>Values</th>
+                                                            </tr>
+                                                          </thead>
+                                                          <tbody>
+                                                            <tr>
+                                                              <td>Amount</td>
+                                                              <td>
+                                                                {numberWithCommas(
+                                                                  roundAmount(
+                                                                    injectionNPV.amount
+                                                                  )
+                                                                )}{" "}
+                                                                ETB
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Annual Interest
+                                                                Rate
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  injectionNPV.annualInterestRate
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Number of
+                                                                Payments
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  injectionNPV.numberOfPayments
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Loan periods in
+                                                                Years
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  injectionNPV.loanPeriodsInYears
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Risk Premium
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  injectionNPV.riskPremium
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>Scenario</td>
+                                                              <td>
+                                                                {
+                                                                  injectionNPV.scenario
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>Type</td>
+                                                              <td>
+                                                                {
+                                                                  injectionNPV.type
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Registered Date
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  injectionNPV.registeredDate
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>NPV</td>
+                                                              <td>
+                                                                {numberWithCommas(
+                                                                  injectionNPV.npv
+                                                                )}{" "}
+                                                                ETB
+                                                              </td>
+                                                            </tr>
+                                                            {extension[
+                                                              "injection"
+                                                            ] ? (
+                                                              <tr>
+                                                                <td>
+                                                                  Injection ETB
+                                                                </td>
+                                                                <td>
+                                                                  {
+                                                                    extension[
+                                                                      "injection"
+                                                                    ]
+                                                                  }
+                                                                </td>
+                                                              </tr>
+                                                            ) : (
+                                                              ""
+                                                            )}
+                                                          </tbody>
+                                                        </table>
+                                                      </Typography>
+                                                    </AccordionDetails>
+                                                  </Accordion>
+                                                </td>
+                                              </tr>
+                                            )
+                                          )}
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  )}
+                                </div>
+                              }
+                            >
+                              <Button color="secondary">
+                                {withInterestWaiverAndExtensionMultipleNPV.map(
+                                  (amort) =>
+                                    sumUpInterestWaiverAndExtensionNPVs(
+                                      amort.npv
+                                    )
+                                )}
+                                {numberWithCommas(
+                                  totalInterestWaiverAndExtensionNPV
+                                ) + " ETB"}
+                              </Button>
+                            </CustomWidthTooltip>
+                          </div>
+                        </td>
+                        <td className="text-left border-b border-green-300">
+                          {numberWithCommas(
+                            roundAmount(npv - npvInterestWaiverExtension)
+                          )}
+                        </td>
+                      </tr>
+                      <tr>
+                        <th className="p-1 text-left border-b border-green-300">
+                          With Principal & Interest Waiver plus Extention{" "}
+                        </th>
+                        <td
+                          name="normal-npv"
+                          className="text-left border-b border-green-300"
+                        >
+                          <div>
+                            <CustomWidthTooltip
+                              title={
+                                <div>
+                                  <h4 style={{ align: "center" }}>
+                                    With Principal & Interest Waiver plus
+                                    Extention NPV Details
+                                  </h4>
+                                  {withPrincipalAndInterestWaiverAndExtensionMultipleNPV.length !=
+                                    0 && (
+                                    /**
+                                     * Show NPV Results and the parameters will display on the detail section.
+                                     */
+                                    <div>
+                                      {/* table table-striped table-hover table-responsive */}
+                                      <strong>Show all NPV results</strong>
+                                      <table
+                                        style={{ color: "white" }}
+                                        className="table table-responsive"
+                                      >
+                                        <thead>
+                                          <tr>
+                                            <th>NPV</th>
+                                            <th>Result </th>
+                                            <th>More Info</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          {withPrincipalAndInterestWaiverAndExtensionMultipleNPV.map(
+                                            (injectionNPV, index) => (
+                                              <tr
+                                                style={{ color: "white" }}
+                                                key={index}
+                                              >
+                                                <td>{index + 1} </td>
+                                                <td>
+                                                  {numberWithCommas(
+                                                    roundAmount(
+                                                      injectionNPV.npv
+                                                    )
+                                                  )}{" "}
+                                                  ETB
+                                                </td>
+                                                <td>
+                                                  <Accordion>
+                                                    <AccordionSummary
+                                                      expandIcon={
+                                                        <ExpandMoreIcon />
+                                                      }
+                                                      aria-controls="panel1a-content"
+                                                      id="panel1a-header"
+                                                    >
+                                                      <Typography>
+                                                        {injectionNPV.type} Loan
+                                                      </Typography>
+                                                    </AccordionSummary>
+                                                    <AccordionDetails>
+                                                      <Typography>
+                                                        <table className="table table-bordered ">
+                                                          <thead>
+                                                            <tr>
+                                                              <th>
+                                                                Parameters
+                                                              </th>
+                                                              <th>Values</th>
+                                                            </tr>
+                                                          </thead>
+                                                          <tbody>
+                                                            <tr>
+                                                              <td>Amount</td>
+                                                              <td>
+                                                                {numberWithCommas(
+                                                                  roundAmount(
+                                                                    injectionNPV.amount
+                                                                  )
+                                                                )}{" "}
+                                                                ETB
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Annual Interest
+                                                                Rate
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  injectionNPV.annualInterestRate
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Number of
+                                                                Payments
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  injectionNPV.numberOfPayments
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Loan periods in
+                                                                Years
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  injectionNPV.loanPeriodsInYears
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Risk Premium
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  injectionNPV.riskPremium
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>Scenario</td>
+                                                              <td>
+                                                                {
+                                                                  injectionNPV.scenario
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>Type</td>
+                                                              <td>
+                                                                {
+                                                                  injectionNPV.type
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Registered Date
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  injectionNPV.registeredDate
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>NPV</td>
+                                                              <td>
+                                                                {numberWithCommas(
+                                                                  injectionNPV.npv
+                                                                )}{" "}
+                                                                ETB
+                                                              </td>
+                                                            </tr>
+                                                            {extension[
+                                                              "injection"
+                                                            ] ? (
+                                                              <tr>
+                                                                <td>
+                                                                  Injection ETB
+                                                                </td>
+                                                                <td>
+                                                                  {
+                                                                    extension[
+                                                                      "injection"
+                                                                    ]
+                                                                  }
+                                                                </td>
+                                                              </tr>
+                                                            ) : (
+                                                              ""
+                                                            )}
+                                                          </tbody>
+                                                        </table>
+                                                      </Typography>
+                                                    </AccordionDetails>
+                                                  </Accordion>
+                                                </td>
+                                              </tr>
+                                            )
+                                          )}
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  )}
+                                </div>
+                              }
+                            >
+                              <Button color="secondary">
+                                {withPrincipalAndInterestWaiverAndExtensionMultipleNPV.map(
+                                  (amort) =>
+                                    sumUpPrincipalAndInterestWaiverAndExtensionNPVs(
+                                      amort.npv
+                                    )
+                                )}
+                                {numberWithCommas(
+                                  totalPrincipalAndInterestWaiverAndExtensionNPV
+                                ) + " ETB"}
+                              </Button>
+                            </CustomWidthTooltip>
+                          </div>
+                        </td>
+                        <td className="text-left border-b border-green-300">
+                          {numberWithCommas(
+                            roundAmount(
+                              npv - npvPrincipalAndInterestWaiverExtension
+                            )
+                          )}
+                        </td>
+                      </tr>
+
+                      {/* withInjectionMultipleNPV */}
+                      <tr>
+                        <th className="p-1 text-left border-b border-green-300"> With Injection </th>
+                        <td
+                          name="normal-npv"
+                          className="text-left border-b border-green-300"
+                        >
+                          <div>
+                            <CustomWidthTooltip
+                              title={
+                                <div>
+                                  <h4 style={{ align: "center" }}>
+                                    Injection NPV Details
+                                  </h4>
+                                  {withInjectionMultipleNPV.length != 0 && (
+                                    /**
+                                     * Show NPV Results and the parameters will display on the detail section.
+                                     */
+                                    <div>
+                                      {/* table table-striped table-hover table-responsive */}
+                                      <strong>Show all NPV results</strong>
+                                      <table
+                                        style={{ color: "white" }}
+                                        className="table table-responsive"
+                                      >
+                                        <thead>
+                                          <tr>
+                                            <th>NPV</th>
+                                            <th>Result </th>
+                                            <th>More Info</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          {withInjectionMultipleNPV.map(
+                                            (injectionNPV, index) => (
+                                              <tr
+                                                style={{ color: "white" }}
+                                                key={index}
+                                              >
+                                                <td>{index + 1} </td>
+                                                <td>
+                                                  {numberWithCommas(
+                                                    roundAmount(
+                                                      injectionNPV.npv
+                                                    )
+                                                  )}{" "}
+                                                  ETB
+                                                </td>
+                                                <td>
+                                                  <Accordion>
+                                                    <AccordionSummary
+                                                      expandIcon={
+                                                        <ExpandMoreIcon />
+                                                      }
+                                                      aria-controls="panel1a-content"
+                                                      id="panel1a-header"
+                                                    >
+                                                      <Typography>
+                                                        {injectionNPV.type} Loan
+                                                      </Typography>
+                                                    </AccordionSummary>
+                                                    <AccordionDetails>
+                                                      <Typography>
+                                                        <table className="table table-bordered ">
+                                                          <thead>
+                                                            <tr>
+                                                              <th>
+                                                                Parameters
+                                                              </th>
+                                                              <th>Values</th>
+                                                            </tr>
+                                                          </thead>
+                                                          <tbody>
+                                                            <tr>
+                                                              <td>Amount</td>
+                                                              <td>
+                                                                {numberWithCommas(
+                                                                  roundAmount(
+                                                                    injectionNPV.amount
+                                                                  )
+                                                                )}{" "}
+                                                                ETB
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Annual Interest
+                                                                Rate
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  injectionNPV.annualInterestRate
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Number of
+                                                                Payments
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  injectionNPV.numberOfPayments
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Loan periods in
+                                                                Years
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  injectionNPV.loanPeriodsInYears
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Risk Premium
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  injectionNPV.riskPremium
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>Scenario</td>
+                                                              <td>
+                                                                {
+                                                                  injectionNPV.scenario
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>Type</td>
+                                                              <td>
+                                                                {
+                                                                  injectionNPV.type
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>
+                                                                Registered Date
+                                                              </td>
+                                                              <td>
+                                                                {
+                                                                  injectionNPV.registeredDate
+                                                                }
+                                                              </td>
+                                                            </tr>
+                                                            <tr>
+                                                              <td>NPV</td>
+                                                              <td>
+                                                                {numberWithCommas(
+                                                                  injectionNPV.npv
+                                                                )}{" "}
+                                                                ETB
+                                                              </td>
+                                                            </tr>
+                                                            {extension[
+                                                              "injection"
+                                                            ] ? (
+                                                              <tr>
+                                                                <td>
+                                                                  Injection ETB
+                                                                </td>
+                                                                <td>
+                                                                  {
+                                                                    extension[
+                                                                      "injection"
+                                                                    ]
+                                                                  }
+                                                                </td>
+                                                              </tr>
+                                                            ) : (
+                                                              ""
+                                                            )}
+                                                          </tbody>
+                                                        </table>
+                                                      </Typography>
+                                                    </AccordionDetails>
+                                                  </Accordion>
+                                                </td>
+                                              </tr>
+                                            )
+                                          )}
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  )}
+                                </div>
+                              }
+                            >
+                              <Button color="secondary">
+                                {withInjectionMultipleNPV.map((amort) =>
+                                  sumUpInjectionNPVs(amort.npv)
+                                )}
+                                {numberWithCommas(totalInjectionNPV) + " ETB"}
+                              </Button>
+                            </CustomWidthTooltip>
+                          </div>
+                        </td>
+                        <td className="text-left border-b border-green-300">
+                          {numberWithCommas(roundAmount(npv - npvInjection))}
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <th className="p-1 text-left border-b border-green-300"> With foreclosure</th>
+                        <td className="text-left border-b border-green-300">
+                          <strong>
+                            {" "}
+                            {numberWithCommas(roundAmount(npvForClosure))}{" "}
+                          </strong>{" "}
+                          <table className="table table-striped table-bordered ">
+                            <thead>
+                              <tr>
+                                <th>Cashflow</th>
+                                <th>Selling Cost</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>{cashFlow}</td>
+                                <td>
+                                  {numberWithCommas(roundAmount(sellingCost))}
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                        <td>
+                          {numberWithCommas(roundAmount(npv - npvForClosure))}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  {showNPVComparision && (
+                    <div className="npv-comparision-all">
+                      <p className="npv-comparision"> NPV, Comparision </p>
+                      <table
+                        className="table table-bordered"
+                        style={{ width: "100%" }}
+                      >
+                        <tbody>
+                          <tr>
+                            <th width="70%">Large</th>
+                            <td
+                              name="normal-npv"
+                              className="cbe-text-color fontWeightBold"
+                            >
+                              <span className="npv-type">
+                                {" "}
+                                {largestNPV.type},{" "}
+                              </span>
+                              {largestNPV.result}
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <th width="70%">Small</th>
+                            <td
+                              name="normal-npv"
+                              className="cbe-text-color fontWeightBold"
+                            >
+                              <span className="npv-type">
+                                {" "}
+                                {lowestNPV.type},{" "}
+                              </span>
+                              {roundAmount(lowestNPV.result)}
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  )}
+                  <div className="buttons">
+                    <Button
+                      type="submit"
+                      variant="outlined"
+                      color="secondary"
+                      size="medium"
+                      id="btnShowInGraph"
+                      data-toggle="tooltip"
+                      data-placement="top"
+                      title="Click it to show in graph"
+                      data-original-title="Tooltip on bottom"
+                      style={{ marginTop: "5px" }}
+                      className="red-tooltip"
+                      onClick={(e) => showInGraph(e)}
+                    >
+                      Show In Graph
+                    </Button>
+
+                    <Button
+                      type="submit"
+                      variant="outlined"
+                      color="secondary"
+                      size="medium"
+                      id="btnShowInGraph"
+                      data-toggle="tooltip"
+                      data-placement="top"
+                      title="Click it to Compare NPVs"
+                      data-original-title="Tooltip on bottom"
+                      style={{ marginTop: "5px" }}
+                      className="red-tooltip"
+                      onClick={(e) => compareNPV(e)}
+                    >
+                      Compare NPV
+                    </Button>
+                  </div>
+                  </>
+              )}
+            </div>
+          </div>
       </div>
       {/* NPV Calculator form end */}
 
