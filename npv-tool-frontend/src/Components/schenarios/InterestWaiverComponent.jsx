@@ -112,7 +112,7 @@ const PrincipalWaiverComponent = ({ data }) => {
           sx={{ display: 'flex', gap: '1rem', p: '0.5rem', flexWrap: 'wrap' }}
         >
           <Button
-            color="secondary"
+            color="success"
             //export all data that is currently in the table (ignore pagination, sorting, filtering, etc.)
             onClick={handleExportData}
             startIcon={<FileDownloadIcon />}
@@ -123,7 +123,7 @@ const PrincipalWaiverComponent = ({ data }) => {
             Export2Excel
           </Button>
           <Button
-            color='secondary'
+            color='success'
             disabled={
               !table.getIsSomeRowsSelected() && !table.getIsAllRowsSelected()
             }
@@ -138,7 +138,7 @@ const PrincipalWaiverComponent = ({ data }) => {
           </Button>
 
           <Button
-            color='secondary'
+            color='success'
             disabled={table.getRowModel().rows.length === 0}
             //export all rows as seen on the screen (respects pagination, sorting, filtering, etc.)
             // onClick={() => handleExportRows(table.getRowModel().rows)}
@@ -149,7 +149,7 @@ const PrincipalWaiverComponent = ({ data }) => {
           >
             Export2PDF
           </Button>
-          <FormControl variant="standard" color='secondary' sx={{ minWidth: 140 }}>
+          <FormControl variant="standard" color='success' sx={{ minWidth: 140 }}>
             <InputLabel id="theme-type">--Select Theme--</InputLabel>
             <Select
               labelId="theme-type"

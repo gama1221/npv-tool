@@ -25,6 +25,7 @@ const AddCustomerInformation = ({
                   value={customer.customerId}
                   onChange={handleCustomerInputChange}
                   name="customerId"
+                  variant="standard"
                 />
                 <NpvTextField
                   id="firstName"
@@ -32,6 +33,7 @@ const AddCustomerInformation = ({
                   value={customer.firstName}
                   onChange={handleCustomerInputChange}
                   name="firstName"
+                  variant="standard"
                 />
                 <NpvTextField
                   id="middleName"
@@ -39,6 +41,7 @@ const AddCustomerInformation = ({
                   value={customer.middleName}
                   onChange={handleCustomerInputChange}
                   name="middleName"
+                  variant="standard"
                 />
                 <NpvTextField
                   id="lastName"
@@ -46,6 +49,7 @@ const AddCustomerInformation = ({
                   value={customer.lastName}
                   onChange={handleCustomerInputChange}
                   name="lastName"
+                  variant="standard"
                 />
                 <NpvTextField
                   id="phoneNumber"
@@ -53,6 +57,7 @@ const AddCustomerInformation = ({
                   value={customer.phoneNumber}
                   onChange={handleCustomerInputChange}
                   name="phoneNumber"
+                  variant="standard"
                 />
 
                 <FormControl variant="standard" sx={{ minWidth: 120 }}>

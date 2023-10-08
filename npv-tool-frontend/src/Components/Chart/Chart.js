@@ -20,7 +20,7 @@ const Chart = ({ data }) => {
                     <Legend />
                     <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
                     <Bar dataKey="type" fill="#756300" barSize={30} className='npv-type' />
-                    <Bar dataKey="result" fill="#800080" className='npv-result' barSize={30} />
+                    <Bar dataKey="result" fill="#00FF00" className='npv-result' barSize={30} />
                 </BarChart>
             </ResponsiveContainer>
         </div>

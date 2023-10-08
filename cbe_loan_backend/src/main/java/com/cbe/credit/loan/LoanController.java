@@ -41,6 +41,7 @@ public class LoanController {
         _loan.setAnnualInterestRate(loan.getAnnualInterestRate());
         _loan.setLoanPeriodsInYears(loan.getLoanPeriodsInYears());
         _loan.setNumberOfPayments(loan.getNumberOfPayments());
+        _loan.setRiskPremium(loan.getRiskPremium());
         _loan.setCustomerLoan(customerId);
         _loan.setRegisteredDate(registered_date);
         loanRepository.save(_loan);

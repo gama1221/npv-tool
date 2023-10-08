@@ -1,12 +1,13 @@
 import { TextField } from "@mui/material";
-const NpvTextField = ({ id, label, value, onChange, name }) => {
+const NpvTextField = ({ id, label, value, onChange, name, type,variant }) => {
   return (
     <TextField
       id={id}
       label={label}
-      variant="standard"
       color="success"
-      size=""
+      size="small"
+      variant={variant}
+      type={type}
       required
       sx={{ width: "45ch" }}
       value={value}

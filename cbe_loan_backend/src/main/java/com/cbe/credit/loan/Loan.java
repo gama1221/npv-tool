@@ -43,7 +43,7 @@ public class Loan {
     @JoinColumn(name = "customerLoan", referencedColumnName = "id")
     @JsonIgnoreProperties("loans")
     private Customer customerLoan;
-
+    
     @OneToMany(mappedBy = "loanCollateral")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnoreProperties("loanCollateral")

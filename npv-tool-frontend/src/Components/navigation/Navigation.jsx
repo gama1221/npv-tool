@@ -41,7 +41,7 @@ const Navbar = () => {
         <NavLink
           to="/npv"
           className={({ isActive }) =>
-            isActive ? "underline text-green-200 font-bold" : ""
+            isActive ? "underline text-white font-bold bg-green-950" : ""
           }
         >
           {" "}
@@ -61,7 +61,7 @@ const Navbar = () => {
                   handleSubMenu();
                 }}
                 className={({ isActive }) =>
-                  isActive ? "underline text-green-200 font-bold" : ""
+                  isActive ? "underline text-white font-bold bg-green-950" : ""
                 }
               >
                 {menu.title}
@@ -115,7 +115,7 @@ const Navbar = () => {
                         handleSubMenu();
                       }}
                       className={({ isActive }) =>
-                        isActive ? "underline text-green-200 font-bold" : ""
+                        isActive ? "underline text-white font-bold bg-green-950" : ""
                       }
                     >
                       {menu.title}

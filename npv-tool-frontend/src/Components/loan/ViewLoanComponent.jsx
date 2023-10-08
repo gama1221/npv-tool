@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams,Link } from "react-router-dom";
 import CustomerService from "../customer/CustomerService";
 import { BsListUl } from "react-icons/bs";
 import { GrAdd } from "react-icons/gr";
 import { FiCopy } from "react-icons/fi";
+import { FaUndo } from "react-icons/fa";
 import { MdCalculate } from "react-icons/md";
 import { BsCheck2All } from "react-icons/bs";
 import PersonAddAltOutlinedIcon from "@mui/icons-material/PersonAddAltOutlined";
@@ -23,7 +24,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import AddBusinessOutlinedIcon from "@mui/icons-material/AddBusinessOutlined";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// import "./Loan.css";
+import NpvTextField from "../common/NpvTextField";
 import {
   TextField,
   Button,
@@ -132,6 +133,7 @@ const ViewLoanComponent = () => {
     numberOfPayments: "",
   };
   const [submitted, setSubmitted] = useState(false);
+  const [loanSubmitted, setLoanSubmitted] = useState();
   const [isLoanModalOpen, setIsLoanModalOpen] = useState(false);
   const [credit, setCredit] = useState(initialCreditState);
   const handleLoanModal = () => {
@@ -140,16 +142,18 @@ const ViewLoanComponent = () => {
   const handleLoanCloseModal = () => {
     setIsLoanModalOpen(false);
   };
-  const refreshTheModal = () => {
-    setTimeout(() => {
-      window.location.reload();
-    }, 1000);
-  };
   const handleLoanInputChange = (event) => {
     const { name, value } = event.target;
     setCredit({ ...credit, [name]: value });
   };
-  const saveLoan = () => {
+  const [selectedNumberOfPayments, setSelectedNumberOfPayments] = useState("");
+
+  const handleChangeSelectedNumberOfPayments = (event) => {
+    setSelectedNumberOfPayments(event.target.value);
+  };
+  const saveLoan = (e) => {
+    debugger;
+    e.preventDefault();
     var data = {
       amount: credit.amount,
       registeredDate: credit.registeredDate,
@@ -157,10 +161,12 @@ const ViewLoanComponent = () => {
       annualInterestRate: credit.annualInterestRate,
       loanPeriodsInYears: credit.loanPeriodsInYears,
       riskPremium: credit.riskPremium,
-      numberOfPayments: credit.numberOfPayments,
+      numberOfPayments: selectedNumberOfPayments,
     };
+    debugger;
     CustomerService.addLoans(data, id)
       .then((response) => {
+        debugger;
         setCredit({
           loan_id: response.data.loan_id,
           amount: response.data.amount,
@@ -171,9 +177,11 @@ const ViewLoanComponent = () => {
           riskPremium: response.data.riskPremium,
           numberOfPayments: response.data.numberOfPayments,
         });
-        setSubmitted(true);
-        debugger;
-        console.log(response.data);
+        toast.success("Added successfully", {
+          position: toast.POSITION.TOP_RIGHT,
+          toastId: "loanAdded",
+        });
+        getLoans();
       })
       .catch((e) => {
         console.log(e);
@@ -206,7 +214,8 @@ const ViewLoanComponent = () => {
     const { name, value } = event.target;
     setCollateralAdd({ ...collateralAdd, [name]: value });
   };
-  const saveCollateral = () => {
+  const saveCollateral = (e) => {
+    e.preventDefault();
     var data = {
       value: collateralAdd.value,
       type: collateralAdd.type,
@@ -220,9 +229,12 @@ const ViewLoanComponent = () => {
           registerDate: response.data.registerDate,
           type: response.data.type,
         });
-        setSubmittedCollateral(true);
-        debugger;
-        console.log(response.data);
+        toast.success("Added Successfully", {
+          position: toast.POSITION.TOP_RIGHT,
+          toastId: "collateralAdded",
+        });   
+        alert(localStorage.getItem("selectedLoan"))
+        showCollateral(localStorage.getItem("selectedLoan"));
       })
       .catch((e) => {
         console.log(e);
@@ -687,7 +699,10 @@ const ViewLoanComponent = () => {
   };
 
   const [npvLoans, setNpvLoans] = useState();
-
+  const handleGraphType = (e) => {
+    setCharType(e.target.value);
+  };
+  const [charType, setCharType] = useState("BarChart");
   // const handleCustomerLoansChange = (e) => {
   //     const value = e.target.value;
   //     setNpvLoans(value)
@@ -729,6 +744,7 @@ const ViewLoanComponent = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    computeNPVMessage();
     setLoading(true);
     var numberOfPaymentsPerMonth = isNaN(values["number-of-payments-per-month"])
       ? 0
@@ -2139,7 +2155,6 @@ const ViewLoanComponent = () => {
   const [collateralLength, setCollateralLength] = useState(0);
   const [loanAdd, setLoanAdd] = useState(0);
 
-  const [] = useState();
   useEffect(() => {
     getLoans();
   }, []);
@@ -2763,28 +2778,10 @@ const ViewLoanComponent = () => {
         p1.result < p2.result ? 1 : p1.result > p2.result ? -1 : 0
       )
     );
-
     // localStorage.setItem("descendingOrderNPVs", descendingOrderNPVs);
-
-    let sortedDates = ascendingOrderNPVs.sort((p1, p2) =>
-      p1.result > p2.result ? 1 : p1.result < p2.result ? -1 : 0
-    );
-    console.log(
-      "Products sorted based on ascending order of their manufacture dates are:"
-    );
-    console.log(sortedDates);
-    // localStorage.setItem("ascendingOrderNPVs", ascendingOrderNPVs);
-
-    // ascendingOrderNPVs.push(ascendingOrderNPV);
-    // descendingOrderNPVs.push(descendingOrderNPV);
-    console.log(
-      "Products sorted based on ascending order of their manufacture dates are:"
-    );
-    console.log(ascendingOrderNPVs);
-    console.log(
-      "Products sorted based on Descending order of their manufacture dates are:"
-    );
-    console.log(descendingOrderNPVs);
+    // let sortedDates = ascendingOrderNPVs.sort((p1, p2) =>
+    //   p1.result > p2.result ? 1 : p1.result < p2.result ? -1 : 0
+    // );
   };
   /**
    * toast message for populating values
@@ -2804,17 +2801,6 @@ const ViewLoanComponent = () => {
   };
   return (
     <div>
-      {/* <h4 className="text-center"> Loans </h4>
-      <button
-        className="btn btn-outline-success mb-2"
-        data-toggle="tooltip"
-        title="Click it to add loan"
-        onClick={() => {
-          handleLoanModal();
-        }}
-      >
-      </button> */}
-      {/* Add modal  */}
       <NPVModal
         isOpen={isLoanModalOpen}
         onClose={handleLoanCloseModal}
@@ -2822,32 +2808,27 @@ const ViewLoanComponent = () => {
       >
         <div className="grid grid-cols-1 gap-4 submit-form">
           <div className="submit-form ">
-            {submitted ? (
-              <h4 className="text-success">You submitted successfully!</h4>
-            ) : (
-              <>
+            <>
+              <form onSubmit={saveLoan}>
                 <div className="relative center justify-center flex-1 w-full max-w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                  <TextField
+                  <NpvTextField
                     id="amount"
                     label="Amount"
                     variant="standard"
-                    color="secondary"
-                    size=""
-                    required
-                    sx={{ width: "45ch" }}
+                    type="number"
                     value={credit.amount}
                     onChange={handleLoanInputChange}
                     name="amount"
-                    className="w-full max-w-full"
                   />
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DesktopDatePicker
                       id="registeredDate"
-                      color="secondary"
                       label="Registered Date"
                       inputFormat="MM/DD/YYYY"
                       className="w-full max-w-full"
-                      slotProps={{ textField: { variant: "standard" } }}
+                      slotProps={{
+                        textField: { variant: "standard", color: "success" },
+                      }}
                       renderInput={() => (
                         <TextField
                           value={credit.registeredDate}
@@ -2856,75 +2837,48 @@ const ViewLoanComponent = () => {
                       )}
                     />
                   </LocalizationProvider>
-                  {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                        <DatePicker />
-                                    </LocalizationProvider> */}
-                  <TextField
+                  <NpvTextField
                     id="type"
                     label="type"
-                    variant="standard"
-                    color="secondary"
-                    size=""
-                    required
-                    sx={{ width: "45ch" }}
                     value={credit.type}
                     onChange={handleLoanInputChange}
-                    name="type"
-                    className="w-full max-w-full"
-                  />
-
-                  <TextField
-                    id="annualInterestRate"
-                    label="Annual Interest Rate"
+                    name="type" 
                     variant="standard"
-                    color="secondary"
-                    size=""
-                    required
-                    sx={{ width: "45ch" }}
+                  />
+                  <NpvTextField
+                    id="annualInterestRate"
+                    type="number"
+                    label="Annual Interest Rate"
                     value={credit.annualInterestRate}
                     onChange={handleLoanInputChange}
                     name="annualInterestRate"
-                    className="w-full max-w-full"
-                  />
-                  <TextField
-                    id="loanPeriodsInYears"
-                    label="Loan Periods In Years"
                     variant="standard"
-                    color="secondary"
-                    size=""
-                    required
-                    sx={{ width: "45ch" }}
+                  />
+                  <NpvTextField
+                    id="loanPeriodsInYears"
+                    type="number" variant="standard"
+                    label="Loan Periods In Years"
                     value={credit.loanPeriodsInYears}
                     onChange={handleLoanInputChange}
                     name="loanPeriodsInYears"
-                    className="w-full max-w-full"
                   />
 
-                  <TextField
+                  <NpvTextField
                     id="riskPremium"
-                    label="Risk Premium"
-                    variant="standard"
-                    color="secondary"
-                    size=""
-                    required
-                    sx={{ width: "45ch" }}
+                    label="Risk Premium" variant="standard"
+                    type="number"
                     value={credit.riskPremium}
                     onChange={handleLoanInputChange}
                     name="riskPremium"
-                    className="w-full max-w-full"
                   />
                   <FormControl variant="standard" sx={{ minWidth: 120 }}>
-                    <InputLabel id="numberOfPayments" color="secondary">
-                      {" "}
+                    <InputLabel id="numberOfPayments" color="success">
                       Number Of Payments
                     </InputLabel>
                     <Select
-                      color="secondary"
-                      // onChange={handleCustomerInputChange}
-                      onChange={(event) =>
-                        (credit.numberOfPayments =
-                          event.target.numberOfPayments)
-                      }
+                      color="success"
+                      value={selectedNumberOfPayments}
+                      onChange={handleChangeSelectedNumberOfPayments}
                       labelId="numberOfPayments"
                       id="numberOfPayments"
                       label="Number Of Payments"
@@ -2939,24 +2893,22 @@ const ViewLoanComponent = () => {
                     </Select>
                   </FormControl>
                 </div>
-                <div className="flex justify-between pt-3">
-                  <button
-                    className="bg-[purple] hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                    onClick={() => {
-                      saveLoan();
-                      refreshTheModal();
-                    }}
-                  >
+                <div className="flex justify-center pt-3">
+                  <button className="bg-green-700 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                     Save
                   </button>
+                  {/* <ToastContainer /> */}
                 </div>
-              </>
-            )}
+              </form>
+            </>
           </div>
         </div>
       </NPVModal>
       <header className="px-4 bg-gray-50 border border-gray-200 p-2 ">
-        Go Back
+        <Link to="/npv" className="text-green-600 font-semibold">
+        <FaUndo
+            className="text-[#00563F] hover:font-semibold cursor-pointer inline"
+          />Go Back </Link>
       </header>
       <div className="mx-w-[1240px] mx-auto grid gap-1 ease-in-out px-4">
         <div className="w-full border-2 shadow-xl flex flex-col my-4 rounded-lg">
@@ -2977,22 +2929,15 @@ const ViewLoanComponent = () => {
               <table className="table-auto w-full border-collapse border border-gray-300">
                 <thead>
                   <tr className="bg-green-200">
-                    <th className="px-2 py-4 border border-gray-300">
-                      {" "}
-                      Number{" "}
-                    </th>
+                    <th className="px-2 py-4 border border-gray-300">Number</th>
                     <th className="px-2 py-4 border border-gray-300"> Type </th>
-                    <th className="px-2 py-4 border border-gray-300">
-                      {" "}
-                      Amount{" "}
-                    </th>
+                    <th className="px-2 py-4 border border-gray-300">Amount</th>
                     <th className="px-2 py-4 border border-gray-300"> Date </th>
                     <th
                       className="px-2 py-4 border border-gray-300"
                       rowSpan={loans.length}
                     >
-                      {" "}
-                      Action{" "}
+                      Action
                     </th>
                   </tr>
                 </thead>
@@ -3065,7 +3010,7 @@ const ViewLoanComponent = () => {
       <div className="shadow-lg pl-3">
         {collaterals && isCollateralShown && (
           <button
-            className="btn btn-outline-success mb-2"
+            className="px-4 mb-2"
             onClick={() => {
               handleCollateralModal();
             }}
@@ -3073,8 +3018,9 @@ const ViewLoanComponent = () => {
             <LibraryAddOutlinedIcon
               data-toggle="tooltip"
               title="Click it to add collateral"
+              className="text-green-600"
             />
-            Add Collateral
+            <span className="text-green-600"> Add Collateral</span>
           </button>
         )}
         <NPVModal
@@ -3083,100 +3029,101 @@ const ViewLoanComponent = () => {
           title="Add Collateral information"
         >
           <div className="grid grid-cols-1 gap-4 submit-form">
-            <div className="submit-form ">
-              {submittedCollateral ? (
-                <h4 className="text-success">You submitted successfully!</h4>
-              ) : (
-                <>
-                  <div className="relative center justify-center flex-1 w-full max-w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    <TextField
-                      id="value"
-                      label="value"
-                      variant="standard"
-                      color="secondary"
-                      size=""
-                      required
-                      sx={{ width: "45ch" }}
-                      value={collateralAdd.value}
-                      onChange={handleCollateralInputChange}
-                      name="value"
+            <form onSubmit={saveCollateral}>
+              <>
+                <div className="relative center justify-center flex-1 w-full max-w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                  <NpvTextField
+                    id="value"
+                    label="value"
+                    type="number"
+                    variant="standard"
+                    value={collateralAdd.value}
+                    onChange={handleCollateralInputChange}
+                    name="value"
+                  />
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DesktopDatePicker
+                      id="evaluatedOn"
+                      color="success"
+                      label="Evaluatition Date"
+                      inputFormat="MM/DD/YYYY"
                       className="w-full max-w-full"
+                      slotProps={{ textField: { variant: "standard", color:"success" } }}
+                      renderInput={() => (
+                        <TextField
+                          value={collateralAdd.registerDate}
+                          onChange={handleCollateralInputChange}
+                        />
+                      )}
                     />
-                    <LocalizationProvider dateAdapter={AdapterDayjs}>
-                      <DesktopDatePicker
-                        id="evaluatedOn"
-                        color="secondary"
-                        label="Evaluatition Date"
-                        inputFormat="MM/DD/YYYY"
-                        className="w-full max-w-full"
-                        slotProps={{ textField: { variant: "standard" } }}
-                        renderInput={() => (
-                          <TextField
-                            value={collateralAdd.registerDate}
-                            onChange={handleCollateralInputChange}
-                          />
-                        )}
-                      />
-                    </LocalizationProvider>
-                    <TextField
-                      id="type"
-                      label="type"
-                      variant="standard"
-                      color="secondary"
-                      size=""
-                      required
-                      sx={{ width: "45ch" }}
-                      value={collateralAdd.type}
-                      onChange={handleCollateralInputChange}
-                      name="type"
-                      className="w-full max-w-full"
-                    />
-                  </div>
-                  <div className="flex justify-between pt-3">
-                    <button
-                      className="bg-[purple] hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                      onClick={() => {
-                        saveCollateral();
-                        refreshTheCollateralModal();
-                      }}
-                    >
-                      Save
-                    </button>
-                  </div>
-                </>
-              )}
-            </div>
+                  </LocalizationProvider>
+                  <NpvTextField
+                    id="type"
+                    variant="standard"
+                    label="type"
+                    sx={{ width: "45ch" }}
+                    value={collateralAdd.type}
+                    onChange={handleCollateralInputChange}
+                    name="type"
+                  />
+                </div>
+                <div className="flex justify-center pt-3">
+                  <button className="bg-[green] hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    Save
+                  </button>
+                </div>
+              </>
+            </form>
           </div>
         </NPVModal>
 
         {collaterals && isCollateralShown && collateralLength && (
-          <table className="table table-bordered table-striped" border="1">
+          <table className="table-auto w-full border-collapse px-1 py-2 border border-green-300">
             <thead>
-              <th> Type </th>
-              <th> Value </th>
-              <th> Date </th>
+              {" "}
+              <tr className="bg-green-950 text-white">
+                <th className="py-2 border border-green-300">Type</th>
+                <th className="py-2 border border-green-300"> Value </th>
+                <th className="py-2 border border-green-300"> Date </th>
+              </tr>
             </thead>
             <tbody>
               {collaterals.map((collateral) => (
-                <tr key={collateral.id} rowSpan="3">
-                  <td> {collateral.type} </td>
-                  <td> {collateral.value} </td>
-                  <td> {collateral.registerDate} </td>
+                <tr
+                  key={collateral.id}
+                  rowSpan="3"
+                  className="p-4  text-left border-b border-green-300 hover:bg-green-200"
+                >
+                  <td className="p-1 text-left border-r border-green-300">
+                    {" "}
+                    {collateral.type}{" "}
+                  </td>
+                  <td className="p-1 text-left border-r border-green-300">
+                    {" "}
+                    {collateral.value}{" "}
+                  </td>
+                  <td className="p-1 text-left border-r border-green-300">
+                    {" "}
+                    {collateral.registerDate}{" "}
+                  </td>
                 </tr>
               ))}
             </tbody>
-            <button
-              className="btn btn-outline-success btn-sm m-3"
-              style={{ margin: "1px" }}
-              onClick={(e) => computeCollateralNPV(e)}
-            >
-              <CalculateTwoToneIcon
-                fontSize="small"
-                data-toggle="tooltip"
-                title="Click it to copy the data to the calculator"
-              />{" "}
-              Compute Foreclosure NPV
-            </button>
+            <div className="flex justify-center">
+              <button
+                className="m-3 text-white bg-green-600 rounded-md p-1 hover:bg-green-900"
+                style={{ margin: "1px" }}
+                onClick={(e) => computeCollateralNPV(e)}
+              >
+                <CalculateTwoToneIcon
+                  fontSize="small"
+                  data-toggle="tooltip"
+                  className="text-white"
+                  title="Click it to copy the data to the calculator"
+                />
+                Compute Foreclosure NPV
+              </button>
+            </div>
           </table>
         )}
       </div>
@@ -3210,7 +3157,7 @@ const ViewLoanComponent = () => {
                     <FormControl variant="filled" sx={{ m: 1, minWidth: 350 }}>
                       <InputLabel
                         id="demo-simple-select-filled-label"
-                        color="secondary"
+                        color="success"
                       >
                         Scenarios
                       </InputLabel>
@@ -3220,7 +3167,8 @@ const ViewLoanComponent = () => {
                         name="npv-scenarios"
                         value={npvScenarios["npv-scenarios"]}
                         onChange={handleNpvScenariosChange}
-                        color="secondary"
+                        color="success"
+                        required
                       >
                         <MenuItem value="">
                           <em>None</em>
@@ -3254,22 +3202,17 @@ const ViewLoanComponent = () => {
                   </Stack>
 
                   <Stack spacing={1} direction="row">
-                    <TextField
+                    <NpvTextField
                       label="Loan Amount"
-                      color="secondary"
-                      size="small"
-                      placeholder="Enter Loan Amount"
-                      variant="filled"
                       name="original-loan"
+                      type="number"
+                      variant="filled"
                       value={values["original-loan"]}
                       onChange={handleInputChange}
                     />
 
-                    <TextField
+                    <NpvTextField
                       label="Annual Interest Rate in %"
-                      color="secondary"
-                      size="small"
-                      placeholder="Enter Annual Interest Rate in %"
                       variant="filled"
                       name="annaul-interest-rate"
                       value={values["annaul-interest-rate"]}
@@ -3280,7 +3223,7 @@ const ViewLoanComponent = () => {
                     <FormControl>
                       <InputLabel
                         id="demo-simple-select-helper-label"
-                        color="secondary"
+                        color="success"
                         size="small"
                       >
                         Number of Payment
@@ -3291,7 +3234,7 @@ const ViewLoanComponent = () => {
                         name="number-of-payments-per-year"
                         label="Number of Payments"
                         variant="filled"
-                        color="secondary"
+                        color="success"
                         size="small"
                         value={values["number-of-payments-per-year"]}
                         onChange={handleInputChange}
@@ -3310,7 +3253,7 @@ const ViewLoanComponent = () => {
                       "principalwaiver".trim() && (
                       <TextField
                         label="Principal Waiver"
-                        color="secondary"
+                        color="success"
                         size="small"
                         placeholder="Enter Principal Waiver"
                         variant="filled"
@@ -3324,7 +3267,7 @@ const ViewLoanComponent = () => {
                       "interestwaiver".trim() && (
                       <TextField
                         label="Interest Waiver"
-                        color="secondary"
+                        color="success"
                         size="small"
                         placeholder="Enter Interest Waiver"
                         variant="filled"
@@ -3337,7 +3280,7 @@ const ViewLoanComponent = () => {
                     {npvScenarios["npv-scenarios"] === "extension".trim() && (
                       <TextField
                         label="Extension"
-                        color="secondary"
+                        color="success"
                         size="small"
                         placeholder="Enter Extension"
                         variant="filled"
@@ -3352,7 +3295,7 @@ const ViewLoanComponent = () => {
                       <>
                         <TextField
                           label="Principal"
-                          color="secondary"
+                          color="success"
                           size="small"
                           placeholder="Enter Principal Waiver"
                           variant="filled"
@@ -3363,7 +3306,7 @@ const ViewLoanComponent = () => {
 
                         <TextField
                           label="Interest Waiver"
-                          color="secondary"
+                          color="success"
                           size="small"
                           placeholder="Enter Interest Waiver"
                           variant="filled"
@@ -3378,7 +3321,7 @@ const ViewLoanComponent = () => {
                       <>
                         <TextField
                           label="Principal"
-                          color="secondary"
+                          color="success"
                           size="small"
                           placeholder="Enter Principal Waiver"
                           variant="filled"
@@ -3389,7 +3332,7 @@ const ViewLoanComponent = () => {
 
                         <TextField
                           label="Extension"
-                          color="secondary"
+                          color="success"
                           size="small"
                           placeholder="Enter Extension"
                           variant="filled"
@@ -3405,7 +3348,7 @@ const ViewLoanComponent = () => {
                       <>
                         <TextField
                           label="Interest Waiver"
-                          color="secondary"
+                          color="success"
                           size="small"
                           placeholder="Enter Interest Waiver"
                           variant="filled"
@@ -3416,7 +3359,7 @@ const ViewLoanComponent = () => {
 
                         <TextField
                           label="Extension"
-                          color="secondary"
+                          color="success"
                           size="small"
                           placeholder="Enter Extension"
                           variant="filled"
@@ -3432,7 +3375,7 @@ const ViewLoanComponent = () => {
                       <>
                         <TextField
                           label="Principal Waiver"
-                          color="secondary"
+                          color="success"
                           size="small"
                           placeholder="Enter Principal Waiver"
                           variant="filled"
@@ -3444,7 +3387,7 @@ const ViewLoanComponent = () => {
                         />
                         <TextField
                           label="Interest Waiver"
-                          color="secondary"
+                          color="success"
                           size="small"
                           placeholder="Enter Interest Waiver"
                           variant="filled"
@@ -3456,7 +3399,7 @@ const ViewLoanComponent = () => {
                         />
                         <TextField
                           label="Extension"
-                          color="secondary"
+                          color="success"
                           size="small"
                           placeholder="Enter Extension"
                           variant="filled"
@@ -3471,7 +3414,7 @@ const ViewLoanComponent = () => {
                     {npvScenarios["npv-scenarios"] === "injection".trim() && (
                       <TextField
                         label="Injection"
-                        color="secondary"
+                        color="success"
                         size="small"
                         placeholder="Enter Injection"
                         variant="filled"
@@ -3485,7 +3428,7 @@ const ViewLoanComponent = () => {
                   <Stack spacing={1} direction="row">
                     <TextField
                       label="Loan period in (Years)"
-                      color="secondary"
+                      color="success"
                       size="small"
                       placeholder="Enter Loan period in (Years)"
                       variant="filled"
@@ -3497,7 +3440,7 @@ const ViewLoanComponent = () => {
                       <FormControl>
                         <InputLabel
                           id="loan_period_in_months_quarterly_lbl"
-                          color="secondary"
+                          color="success"
                           size="small"
                         >
                           Loan period in months
@@ -3508,7 +3451,7 @@ const ViewLoanComponent = () => {
                           name="number-of-payments-per-month"
                           label="Number of Payments"
                           variant="filled"
-                          color="secondary"
+                          color="success"
                           size="small"
                           value={values["number-of-payments-per-month"]}
                           onChange={handleInputChange}
@@ -3525,7 +3468,7 @@ const ViewLoanComponent = () => {
                       <FormControl>
                         <InputLabel
                           id="loan_period_in_months_quarterly_lbl"
-                          color="secondary"
+                          color="success"
                           size="small"
                         >
                           Loan period in months
@@ -3536,7 +3479,7 @@ const ViewLoanComponent = () => {
                           name="number-of-payments-per-month"
                           label="Number of Payments"
                           variant="filled"
-                          color="secondary"
+                          color="success"
                           size="small"
                           value={values["number-of-payments-per-month"]}
                           onChange={handleInputChange}
@@ -3560,7 +3503,7 @@ const ViewLoanComponent = () => {
                       <FormControl>
                         <InputLabel
                           id="loan_period_in_months_quarterly_lbl"
-                          color="secondary"
+                          color="success"
                           size="small"
                         >
                           Loan period in months
@@ -3571,7 +3514,7 @@ const ViewLoanComponent = () => {
                           name="number-of-payments-per-month"
                           label="Number of Payments"
                           variant="filled"
-                          color="secondary"
+                          color="success"
                           size="small"
                           value={values["number-of-payments-per-month"]}
                           onChange={handleInputChange}
@@ -3583,7 +3526,7 @@ const ViewLoanComponent = () => {
                     )}
                     <TextField
                       label="Risk premium in %"
-                      color="secondary"
+                      color="success"
                       size="small"
                       placeholder="Enter Risk premium in %"
                       variant="filled"
@@ -3595,20 +3538,19 @@ const ViewLoanComponent = () => {
                 </Stack>
                 <Button
                   type="submit"
-                  variant="outlined"
-                  color="secondary"
+                  variant="contained"
+                  color="success"
                   size="medium"
                   id="btnCompute"
                   data-toggle="tooltip"
                   data-placement="top"
                   title="Click it to compute NPV"
                   data-original-title="Tooltip on bottom"
-                  style={{ marginTop: "5px" }}
+                  style={{ marginTop: "8px" }}
                   className="red-tooltip"
-                  onClick={computeNPVMessage}
                 >
                   {loading && (
-                    <span class="spinner-border spinner-border-sm"></span>
+                    <span class="inline-block animate-spin rounded-full h-4 w-4 border-t-2 border-b-2 border-green-500"></span>
                   )}
                   <span> Compute NPV</span>
                 </Button>
@@ -3650,7 +3592,6 @@ const ViewLoanComponent = () => {
                       <td
                         name="normal-npv"
                         className="text-left border-b border-green-300"
-                        // className="cbe-text-color fontWeightBold"
                       >
                         <div>
                           <CustomWidthTooltip
@@ -3686,7 +3627,7 @@ const ViewLoanComponent = () => {
                                               <td>
                                                 {numberWithCommas(
                                                   roundAmount(normalNPV.npv)
-                                                )}{" "}
+                                                )}
                                                 ETB
                                               </td>
                                               <td>
@@ -3704,16 +3645,22 @@ const ViewLoanComponent = () => {
                                                   </AccordionSummary>
                                                   <AccordionDetails>
                                                     <Typography>
-                                                      <table className="table-auto w-full border-collapse border border-green-300">
+                                                      <table className="table-auto w-full border-collapse px-1 py-2 border border-green-300">
                                                         <thead>
-                                                          <tr>
-                                                            <th className="px-4 py-2 border border-green-300">Parameters</th>
-                                                            <th className="px-4 py-2 border border-green-300">Values</th>
+                                                          <tr className="bg-green-950 text-white">
+                                                            <th className="py-2 border border-green-300">
+                                                              Parameters
+                                                            </th>
+                                                            <th className="py-2 border border-green-300">
+                                                              Values
+                                                            </th>
                                                           </tr>
                                                         </thead>
                                                         <tbody>
-                                                          <tr>
-                                                            <td>Amount</td>
+                                                          <tr className="p-1 text-left border-b border-green-300">
+                                                            <td className="p-1 text-left border-r border-green-300">
+                                                              Amount
+                                                            </td>
                                                             <td>
                                                               {numberWithCommas(
                                                                 roundAmount(
@@ -3723,8 +3670,8 @@ const ViewLoanComponent = () => {
                                                               ETB
                                                             </td>
                                                           </tr>
-                                                          <tr>
-                                                            <td>
+                                                          <tr className="p-1 text-left border-b border-green-300">
+                                                            <td className="p-1 text-left border-r border-green-300">
                                                               Annual Interest
                                                               Rate
                                                             </td>
@@ -3734,8 +3681,8 @@ const ViewLoanComponent = () => {
                                                               }
                                                             </td>
                                                           </tr>
-                                                          <tr>
-                                                            <td>
+                                                          <tr className="p-1 text-left border-b border-green-300">
+                                                            <td className="p-1 text-left border-r border-green-300">
                                                               Number of Payments
                                                             </td>
                                                             <td>
@@ -3744,8 +3691,8 @@ const ViewLoanComponent = () => {
                                                               }
                                                             </td>
                                                           </tr>
-                                                          <tr>
-                                                            <td>
+                                                          <tr className="p-1 text-left border-b border-green-300">
+                                                            <td className="p-1 text-left border-r border-green-300">
                                                               Loan periods in
                                                               Years
                                                             </td>
@@ -3755,8 +3702,8 @@ const ViewLoanComponent = () => {
                                                               }
                                                             </td>
                                                           </tr>
-                                                          <tr>
-                                                            <td>
+                                                          <tr className="p-1 text-left border-b border-green-300">
+                                                            <td className="p-1 text-left border-r border-green-300">
                                                               Risk Premium
                                                             </td>
                                                             <td>
@@ -3765,22 +3712,26 @@ const ViewLoanComponent = () => {
                                                               }
                                                             </td>
                                                           </tr>
-                                                          <tr>
-                                                            <td>Scenario</td>
+                                                          <tr className="p-1 text-left border-b border-green-300">
+                                                            <td className="p-1 text-left border-r border-green-300">
+                                                              Scenario
+                                                            </td>
                                                             <td>
                                                               {
                                                                 normalNPV.scenario
                                                               }
                                                             </td>
                                                           </tr>
-                                                          <tr>
-                                                            <td>Type</td>
+                                                          <tr className="p-1 text-left border-b border-green-300">
+                                                            <td className="p-1 text-left border-r border-green-300">
+                                                              Type
+                                                            </td>
                                                             <td>
                                                               {normalNPV.type}
                                                             </td>
                                                           </tr>
-                                                          <tr>
-                                                            <td>
+                                                          <tr className="p-1 text-left border-b border-green-300">
+                                                            <td className="p-1 text-left border-r border-green-300">
                                                               Registered Date
                                                             </td>
                                                             <td>
@@ -3789,12 +3740,14 @@ const ViewLoanComponent = () => {
                                                               }
                                                             </td>
                                                           </tr>
-                                                          <tr>
-                                                            <td>NPV</td>
+                                                          <tr className="p-1 text-left border-b border-green-300">
+                                                            <td className="p-1 text-left border-r border-green-300">
+                                                              NPV
+                                                            </td>
                                                             <td>
                                                               {numberWithCommas(
                                                                 normalNPV.npv
-                                                              )}{" "}
+                                                              )}
                                                               ETB
                                                             </td>
                                                           </tr>
@@ -3814,7 +3767,7 @@ const ViewLoanComponent = () => {
                               </div>
                             }
                           >
-                            <Button color="secondary">
+                            <Button color="success">
                               {normalMultipleNPV.map((amort) =>
                                 sumUpNPVs(amort.npv)
                               )}
@@ -3849,10 +3802,7 @@ const ViewLoanComponent = () => {
                                   <div>
                                     {/* table table-striped table-hover table-responsive */}
                                     <strong>Show all NPV results</strong>
-                                    <table
-                                      style={{ color: "white" }}
-                                      className="table table-responsive"
-                                    >
+                                    <table className="table-auto w-full border-collapse px-1 py-2 border border-green-300">
                                       <thead>
                                         <tr>
                                           <th>NPV</th>
@@ -3894,14 +3844,20 @@ const ViewLoanComponent = () => {
                                                     <Typography>
                                                       <table className="table table-bordered ">
                                                         <thead>
-                                                          <tr>
-                                                            <th>Parameters</th>
-                                                            <th>Values</th>
+                                                          <tr className="bg-green-950 text-white">
+                                                            <th className="py-2 border border-green-300">
+                                                              Parameters
+                                                            </th>
+                                                            <th className="py-2 border border-green-300">
+                                                              Values
+                                                            </th>
                                                           </tr>
                                                         </thead>
                                                         <tbody>
-                                                          <tr>
-                                                            <td>Amount</td>
+                                                          <tr className="p-1 text-left border-b border-green-300">
+                                                            <td className="p-1 text-left border-r border-green-300">
+                                                              Amount
+                                                            </td>
                                                             <td>
                                                               {numberWithCommas(
                                                                 roundAmount(
@@ -3911,8 +3867,8 @@ const ViewLoanComponent = () => {
                                                               ETB
                                                             </td>
                                                           </tr>
-                                                          <tr>
-                                                            <td>
+                                                          <tr className="p-1 text-left border-b border-green-300">
+                                                            <td className="p-1 text-left border-r border-green-300">
                                                               Annual Interest
                                                               Rate
                                                             </td>
@@ -3922,8 +3878,8 @@ const ViewLoanComponent = () => {
                                                               }
                                                             </td>
                                                           </tr>
-                                                          <tr>
-                                                            <td>
+                                                          <tr className="p-1 text-left border-b border-green-300">
+                                                            <td className="p-1 text-left border-r border-green-300">
                                                               Number of Payments
                                                             </td>
                                                             <td>
@@ -3932,8 +3888,8 @@ const ViewLoanComponent = () => {
                                                               }
                                                             </td>
                                                           </tr>
-                                                          <tr>
-                                                            <td>
+                                                          <tr className="p-1 text-left border-b border-green-300">
+                                                            <td className="p-1 text-left border-r border-green-300">
                                                               Loan periods in
                                                               Years
                                                             </td>
@@ -3943,8 +3899,8 @@ const ViewLoanComponent = () => {
                                                               }
                                                             </td>
                                                           </tr>
-                                                          <tr>
-                                                            <td>
+                                                          <tr className="p-1 text-left border-b border-green-300">
+                                                            <td className="p-1 text-left border-r border-green-300">
                                                               Risk Premium
                                                             </td>
                                                             <td>
@@ -3953,24 +3909,28 @@ const ViewLoanComponent = () => {
                                                               }
                                                             </td>
                                                           </tr>
-                                                          <tr>
-                                                            <td>Scenario</td>
+                                                          <tr className="p-1 text-left border-b border-green-300">
+                                                            <td className="p-1 text-left border-r border-green-300">
+                                                              Scenario
+                                                            </td>
                                                             <td>
                                                               {
                                                                 principalWaiverNPV.scenario
                                                               }
                                                             </td>
                                                           </tr>
-                                                          <tr>
-                                                            <td>Type</td>
+                                                          <tr className="p-1 text-left border-b border-green-300">
+                                                            <td className="p-1 text-left border-r border-green-300">
+                                                              Type
+                                                            </td>
                                                             <td>
                                                               {
                                                                 principalWaiverNPV.type
                                                               }
                                                             </td>
                                                           </tr>
-                                                          <tr>
-                                                            <td>
+                                                          <tr className="p-1 text-left border-b border-green-300">
+                                                            <td className="p-1 text-left border-r border-green-300">
                                                               Registered Date
                                                             </td>
                                                             <td>
@@ -3979,8 +3939,10 @@ const ViewLoanComponent = () => {
                                                               }
                                                             </td>
                                                           </tr>
-                                                          <tr>
-                                                            <td>NPV</td>
+                                                          <tr className="p-1 text-left border-b border-green-300">
+                                                            <td className="p-1 text-left border-r border-green-300">
+                                                              NPV
+                                                            </td>
                                                             <td>
                                                               {numberWithCommas(
                                                                 principalWaiverNPV.npv
@@ -3991,8 +3953,8 @@ const ViewLoanComponent = () => {
                                                           {principalWaiverNumber[
                                                             "principal-waiver-number"
                                                           ] ? (
-                                                            <tr>
-                                                              <td>
+                                                            <tr className="p-1 text-left border-b border-green-300">
+                                                              <td className="p-1 text-left border-r border-green-300">
                                                                 Principal Waived
                                                               </td>
                                                               <td>
@@ -4020,7 +3982,7 @@ const ViewLoanComponent = () => {
                               </div>
                             }
                           >
-                            <Button color="secondary">
+                            <Button color="success">
                               {withPrincipalWaiverMultipleNPV.map((amort) =>
                                 sumUpPrincipalWaiverNPVs(amort.npv)
                               )}
@@ -4231,7 +4193,7 @@ const ViewLoanComponent = () => {
                               </div>
                             }
                           >
-                            <Button color="secondary">
+                            <Button color="success">
                               {withInterestWaiverMultipleNPV.map((amort) =>
                                 sumUpInterestWaiverNPVs(amort.npv)
                               )}
@@ -4437,7 +4399,7 @@ const ViewLoanComponent = () => {
                               </div>
                             }
                           >
-                            <Button color="secondary">
+                            <Button color="success">
                               {withExtensionMultipleNPV.map((amort) =>
                                 sumUpExtensionNPVs(amort.npv)
                               )}
@@ -4669,7 +4631,7 @@ const ViewLoanComponent = () => {
                               </div>
                             }
                           >
-                            <Button color="secondary">
+                            <Button color="success">
                               {withInterestAndPrincipalWaiverMultipleNPV.map(
                                 (amort) =>
                                   sumUpInterestAndPrincipalNPVs(amort.npv)
@@ -4880,7 +4842,7 @@ const ViewLoanComponent = () => {
                               </div>
                             }
                           >
-                            <Button color="secondary">
+                            <Button color="success">
                               {withPrincipalWaiverAndExtensionMultipleNPV.map(
                                 (amort) =>
                                   sumUpPrincipalWaiverAndExtensionNPVs(
@@ -5094,7 +5056,7 @@ const ViewLoanComponent = () => {
                               </div>
                             }
                           >
-                            <Button color="secondary">
+                            <Button color="success">
                               {withInterestWaiverAndExtensionMultipleNPV.map(
                                 (amort) =>
                                   sumUpInterestWaiverAndExtensionNPVs(amort.npv)
@@ -5306,7 +5268,7 @@ const ViewLoanComponent = () => {
                               </div>
                             }
                           >
-                            <Button color="secondary">
+                            <Button color="success">
                               {withPrincipalAndInterestWaiverAndExtensionMultipleNPV.map(
                                 (amort) =>
                                   sumUpPrincipalAndInterestWaiverAndExtensionNPVs(
@@ -5523,7 +5485,7 @@ const ViewLoanComponent = () => {
                               </div>
                             }
                           >
-                            <Button color="secondary">
+                            <Button color="success">
                               {withInjectionMultipleNPV.map((amort) =>
                                 sumUpInjectionNPVs(amort.npv)
                               )}
@@ -5580,10 +5542,7 @@ const ViewLoanComponent = () => {
                       <tbody>
                         <tr>
                           <th width="70%">Large</th>
-                          <td
-                            name="normal-npv"
-                            className="cbe-text-color fontWeightBold"
-                          >
+                          <td name="normal-npv" className="text-green-600">
                             <span className="npv-type">
                               {" "}
                               {largestNPV.type},{" "}
@@ -5594,12 +5553,8 @@ const ViewLoanComponent = () => {
 
                         <tr>
                           <th width="70%">Small</th>
-                          <td
-                            name="normal-npv"
-                            className="cbe-text-color fontWeightBold"
-                          >
-                            <span className="npv-type">
-                              {" "}
+                          <td name="normal-npv" className="text-green-600">
+                            <span className="text-green-600">
                               {lowestNPV.type},{" "}
                             </span>
                             {roundAmount(lowestNPV.result)}
@@ -5613,7 +5568,7 @@ const ViewLoanComponent = () => {
                   <Button
                     type="submit"
                     variant="outlined"
-                    color="secondary"
+                    color="success"
                     size="medium"
                     id="btnShowInGraph"
                     data-toggle="tooltip"
@@ -5630,7 +5585,7 @@ const ViewLoanComponent = () => {
                   <Button
                     type="submit"
                     variant="outlined"
-                    color="secondary"
+                    color="success"
                     size="medium"
                     id="btnShowInGraph"
                     data-toggle="tooltip"
@@ -5661,227 +5616,345 @@ const ViewLoanComponent = () => {
           showNoramlNpv
       ) && (
         <div className="flex-container">
-          <div className="normal-npv-amortization">
-            <h4>Normal NPV Amortization Table</h4>
+          <div className="px-4">
+            <h4 className="flex justify-center items-center text-green-600 font-semibold">
+              Normal NPV Amortization Table
+            </h4>
             <MaterailTableComponent data={amortization} />
             <header>
-              <h4>Summary</h4>
+              <h4 className="bg-gray-100 flex justify-center font-semibold">
+                Summary
+              </h4>
             </header>
-            <div className="normal-interest-summary">
-              <h4> Interest </h4>
+            <div className="flex justify-between shadow-lg p-4">
+              <div className="normal-interest-summary">
+                <table className="table-auto w-full shadow-md p-4">
+                  <thead>
+                    <tr className="bg-green-900 text-white">
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Year
+                      </th>
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Interest{" "}
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {yearlyInterestSummation.map((amort, index) => (
+                      <tr
+                        key={index}
+                        className="p-4 bg-white
+                    border-b border-green-200 hover:bg-green-200"
+                      >
+                        <td className=" border-green-300 py-2 px-4 col-span-4">
+                          {" "}
+                          {index + 1}{" "}
+                        </td>
+                        <td className=" border-green-300 py-2 px-4 col-span-4">
+                          {roundAmount(amort)}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
 
-              <table
-                className="table table-striped table-hover table-responsive"
-                style={{ width: "100%" }}
-              >
-                <thead>
-                  <tr>
-                    <th>Year</th>
-                    <th>Interest </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {yearlyInterestSummation.map((amort, index) => (
-                    <tr key={index}>
-                      <td> {index + 1} </td>
-                      <td>{roundAmount(amort)}</td>
+              <div className="normal-principal-summary">
+                <table className="table-auto w-full shadow-md p-4">
+                  <thead>
+                    <tr className="bg-green-900 text-white">
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Year
+                      </th>
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Principal{" "}
+                      </th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            <div className="normal-principal-summary">
-              <h4> Principal </h4>
-              <table className="table table-striped table-hover table-responsive">
-                <thead>
-                  <tr>
-                    <th>Year</th>
-                    <th>Principal </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {yearlyPrincipalSummation.map((amort, index) => (
-                    <tr key={index}>
-                      <td> {index + 1} </td>
-                      <td>{roundAmount(amort)}</td>
+                  </thead>
+                  <tbody>
+                    {yearlyPrincipalSummation.map((amort, index) => (
+                      <tr
+                        key={index}
+                        className="p-4 bg-white
+                    border-b border-green-200 hover:bg-green-200"
+                      >
+                        <td className=" border-green-300 py-2 px-4 col-span-4">
+                          {" "}
+                          {index + 1}{" "}
+                        </td>
+                        <td className=" border-green-300 py-2 px-4 col-span-4">
+                          {roundAmount(amort)}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <div className="normal-cash-flow-summary">
+                <table className="table-auto w-full shadow-md p-4">
+                  <thead>
+                    <tr className="bg-green-900 text-white">
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Year
+                      </th>
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Cashflow{" "}
+                      </th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <div className=" normal-cash-flow-summary">
-              <h4> Cashflow </h4>
-              <table className="table table-striped table-hover">
-                <thead>
-                  <tr>
-                    <th>Year</th>
-                    <th>Cashflow </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {yearlyScheduledPayment.map((amort, index) => (
-                    <tr key={index}>
-                      <td> {index + 1} </td>
-                      <td>{roundAmount(amort)}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {yearlyScheduledPayment.map((amort, index) => (
+                      <tr
+                        key={index}
+                        className="p-4 bg-white
+                    border-b border-green-200 hover:bg-green-200"
+                      >
+                        <td className="border-green-300 py-2 px-4 col-span-4">
+                          {" "}
+                          {index + 1}{" "}
+                        </td>
+                        <td className="border-green-300 py-2 px-4 col-span-4">
+                          {roundAmount(amort)}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
       )}
       {showNPVWithPrincipalWaiver && (
-        // Boolean(npvScenarios["npv-scenarios"] === "principalwaiver".trim() && showNPVWithPrincipalWaiver) &&(
         <div className="flex-container">
-          <div className="normal-npv-amortization">
-            <h4>NPV With Principal Waiver Amortization Table</h4>
+          <div className="px-4 normal-npv-amortization">
+            <h4 className="flex justify-center items-center text-green-600 font-semibold">
+              NPV With Principal Waiver Amortization Table
+            </h4>
             <PrincipalWaiverComponent data={principalWaiverAmortization} />
             <header>
-              <h4>Summary</h4>
+              <h4 className="bg-gray-100 flex justify-center font-semibold">
+                Summary
+              </h4>
             </header>
-            <div className="normal-interest-summary">
-              <h4> Interest </h4>
-
-              <table
-                className="table table-striped table-hover table-responsive"
-                style={{ width: "100%" }}
-              >
-                <thead>
-                  <tr>
-                    <th>Year</th>
-                    <th>Interest </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {yearlyInterestSummationPrincipalWaiver.map(
-                    (amort, index) => (
-                      <tr key={index}>
-                        <td> {index + 1} </td>
-                        <td>{roundAmount(amort)}</td>
-                      </tr>
-                    )
-                  )}
-                </tbody>
-              </table>
-            </div>
-
-            <div className="normal-principal-summary">
-              <h4> Principal </h4>
-              <table className="table table-striped table-hover table-responsive">
-                <thead>
-                  <tr>
-                    <th>Year</th>
-                    <th>Principal </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {yearlyPrincipalSummationPrincipalWaiver.map(
-                    (amort, index) => (
-                      <tr key={index}>
-                        <td> {index + 1} </td>
-                        <td>{roundAmount(amort)}</td>
-                      </tr>
-                    )
-                  )}
-                </tbody>
-              </table>
-            </div>
-            <div className=" normal-cash-flow-summary">
-              <h4> Cashflow </h4>
-              <table className="table table-striped table-hover">
-                <thead>
-                  <tr>
-                    <th>Year</th>
-                    <th>Cashflow </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {yearlyScheduledPaymentPrincipalWaiver.map((amort, index) => (
-                    <tr key={index}>
-                      <td> {index + 1} </td>
-                      <td>{roundAmount(amort)}</td>
+            <div className="flex justify-between shadow-lg p-4">
+              <div>
+                <table className="table-auto w-full shadow-md p-4">
+                  <thead>
+                    <tr className="bg-green-900 text-white">
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Year
+                      </th>
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Interest{" "}
+                      </th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {yearlyInterestSummationPrincipalWaiver.map(
+                      (amort, index) => (
+                        <tr
+                          key={index}
+                          className="p-4 bg-white
+                      border-b border-green-200 hover:bg-green-200"
+                        >
+                          <td className=" border-green-300 py-2 px-4 col-span-4">
+                            {" "}
+                            {index + 1}{" "}
+                          </td>
+                          <td className=" border-green-300 py-2 px-4 col-span-4">
+                            {roundAmount(amort)}
+                          </td>
+                        </tr>
+                      )
+                    )}
+                  </tbody>
+                </table>
+              </div>
+              <div className="normal-principal-summary">
+                <table className="table-auto w-full shadow-md p-4">
+                  <thead>
+                    <tr className="bg-green-900 text-white">
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Year
+                      </th>
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Principal{" "}
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {yearlyPrincipalSummationPrincipalWaiver.map(
+                      (amort, index) => (
+                        <tr
+                          key={index}
+                          className="p-4 bg-white
+                  border-b border-green-200 hover:bg-green-200"
+                        >
+                          <td className=" border-green-300 py-2 px-4 col-span-4">
+                            {" "}
+                            {index + 1}{" "}
+                          </td>
+                          <td className=" border-green-300 py-2 px-4 col-span-4">
+                            {roundAmount(amort)}
+                          </td>
+                        </tr>
+                      )
+                    )}
+                  </tbody>
+                </table>
+              </div>
+              <div className=" normal-cash-flow-summary">
+                <table className="table-auto w-full shadow-md p-4">
+                  <thead>
+                    <tr className="bg-green-900 text-white">
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Year
+                      </th>
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Cashflow{" "}
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {yearlyScheduledPaymentPrincipalWaiver.map(
+                      (amort, index) => (
+                        <tr
+                          key={index}
+                          className="p-4 bg-white
+                border-b border-green-200 hover:bg-green-200"
+                        >
+                          <td className="border-green-300 py-2 px-4 col-span-4">
+                            {" "}
+                            {index + 1}{" "}
+                          </td>
+                          <td className="border-green-300 py-2 px-4 col-span-4">
+                            {roundAmount(amort)}
+                          </td>
+                        </tr>
+                      )
+                    )}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
       )}
       {showNPVWithInterestWaiver && (
         <div className="flex-container">
-          <div className="normal-npv-amortization">
-            <h4>NPV With Interest Waiver Amortization Table</h4>
+          <div className="px-4 normal-npv-amortization">
+            <h4 className="flex justify-center items-center text-green-600 font-semibold">
+              NPV With Interest Waiver Amortization Table
+            </h4>
             <InterestWaiverComponent data={interestWaiverAmortization} />
             <header>
-              <h4>Summary</h4>
+              <h4 className="bg-gray-100 flex justify-center font-semibold">
+                Summary
+              </h4>
             </header>
-            <div className="normal-interest-summary">
-              <h4> Interest </h4>
-
-              <table
-                className="table table-striped table-hover table-responsive"
-                style={{ width: "100%" }}
-              >
-                <thead>
-                  <tr>
-                    <th>Year</th>
-                    <th>Interest </th>
-                  </tr>
-                </thead>
-
-                <tbody>
-                  {yearlyInterestSummationInterestWaiver.map((amort, index) => (
-                    <tr key={index}>
-                      <td> {index + 1} </td>
-                      <td>{roundAmount(amort)}</td>
+            <div className="flex justify-between shadow-lg p-4">
+              <div className="normal-interest-summary">
+                <table className="table-auto w-full shadow-md p-4">
+                  <thead>
+                    <tr className="bg-green-900 text-white">
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Year
+                      </th>
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Interest{" "}
+                      </th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                  </thead>
 
-            <div className="normal-principal-summary">
-              <h4> Principal </h4>
-              <table className="table table-striped table-hover table-responsive">
-                <thead>
-                  <tr>
-                    <th>Year</th>
-                    <th>Principal </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {yearlyPrincipalSummationInterestWaiver.map(
-                    (amort, index) => (
-                      <tr key={index}>
-                        <td> {index + 1} </td>
-                        <td>{roundAmount(amort)}</td>
-                      </tr>
-                    )
-                  )}
-                </tbody>
-              </table>
-            </div>
-            <div className=" normal-cash-flow-summary">
-              <h4> Cashflow </h4>
-              <table className="table table-striped table-hover">
-                <thead>
-                  <tr>
-                    <th>Year</th>
-                    <th>Cashflow </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {yearlyScheduledPaymentInterestWaiver.map((amort, index) => (
-                    <tr key={index}>
-                      <td> {index + 1} </td>
-                      <td>{roundAmount(amort)}</td>
+                  <tbody>
+                    {yearlyInterestSummationInterestWaiver.map(
+                      (amort, index) => (
+                        <tr
+                          key={index}
+                          className="p-4 bg-white
+                border-b border-green-200 hover:bg-green-200"
+                        >
+                          <td className=" border-green-300 py-2 px-4 col-span-4">
+                            {" "}
+                            {index + 1}{" "}
+                          </td>
+                          <td className=" border-green-300 py-2 px-4 col-span-4">
+                            {roundAmount(amort)}
+                          </td>
+                        </tr>
+                      )
+                    )}
+                  </tbody>
+                </table>
+              </div>
+
+              <div className="normal-principal-summary">
+                <table className="table-auto w-full shadow-md p-4">
+                  <thead>
+                    <tr className="bg-green-900 text-white">
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Year
+                      </th>
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Principal{" "}
+                      </th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {yearlyPrincipalSummationInterestWaiver.map(
+                      (amort, index) => (
+                        <tr
+                          key={index}
+                          className="p-4 bg-white
+                  border-b border-green-200 hover:bg-green-200"
+                        >
+                          <td className=" border-green-300 py-2 px-4 col-span-4">
+                            {" "}
+                            {index + 1}{" "}
+                          </td>
+                          <td className=" border-green-300 py-2 px-4 col-span-4">
+                            {roundAmount(amort)}
+                          </td>
+                        </tr>
+                      )
+                    )}
+                  </tbody>
+                </table>
+              </div>
+              <div className=" normal-cash-flow-summary">
+                <table className="table-auto w-full shadow-md p-4">
+                  <thead>
+                    <tr className="bg-green-900 text-white">
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Year
+                      </th>
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Cashflow{" "}
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {yearlyScheduledPaymentInterestWaiver.map(
+                      (amort, index) => (
+                        <tr
+                          key={index}
+                          className="p-4 bg-white
+                border-b border-green-200 hover:bg-green-200"
+                        >
+                          <td className="border-green-300 py-2 px-4 col-span-4">
+                            {" "}
+                            {index + 1}{" "}
+                          </td>
+                          <td className="border-green-300 py-2 px-4 col-span-4">
+                            {roundAmount(amort)}
+                          </td>
+                        </tr>
+                      )
+                    )}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
@@ -5889,73 +5962,112 @@ const ViewLoanComponent = () => {
 
       {showNPVWithExtension && (
         <div className="flex-container">
-          <div className="normal-npv-amortization">
-            <h4>NPV With Extension Amortization Table</h4>
+          <div className="px-4 normal-npv-amortization">
+            <h4 className="flex justify-center items-center text-green-600 font-semibold">
+              NPV With Extension Amortization Table
+            </h4>
             <ExtensionComponent data={extensionAmortization} />
             <header>
-              <h4>Summary</h4>
+              <h4 className="bg-gray-100 flex justify-center font-semibold">
+                Summary
+              </h4>
             </header>
-            <div className="normal-interest-summary">
-              <h4> Interest </h4>
-              <table
-                className="table table-striped table-hover table-responsive"
-                style={{ width: "100%" }}
-              >
-                <thead>
-                  <tr>
-                    <th>Year</th>
-                    <th>Interest </th>
-                  </tr>
-                </thead>
+            <div className="flex justify-between shadow-lg p-4">
+              <div className="flex justify-between shadow-lg p-4">
+                <table className="table-auto w-full shadow-md p-4">
+                  <thead>
+                    <tr className="bg-green-900 text-white">
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Year
+                      </th>
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Interest{" "}
+                      </th>
+                    </tr>
+                  </thead>
 
-                <tbody>
-                  {yearlyInterestSummationExtension.map((amort, index) => (
-                    <tr key={index}>
-                      <td> {index + 1} </td>
-                      <td>{roundAmount(amort)}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                  <tbody>
+                    {yearlyInterestSummationExtension.map((amort, index) => (
+                      <tr
+                        key={index}
+                        className="p-4 bg-white
+               border-b border-green-200 hover:bg-green-200"
+                      >
+                        <td className=" border-green-300 py-2 px-4 col-span-4">
+                          {" "}
+                          {index + 1}{" "}
+                        </td>
+                        <td className=" border-green-300 py-2 px-4 col-span-4">
+                          {roundAmount(amort)}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
 
-            <div className="normal-principal-summary">
-              <h4> Principal </h4>
-              <table className="table table-striped table-hover table-responsive">
-                <thead>
-                  <tr>
-                    <th>Year</th>
-                    <th>Principal </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {yearlyPrincipalSummationExtension.map((amort, index) => (
-                    <tr key={index}>
-                      <td> {index + 1} </td>
-                      <td>{roundAmount(amort)}</td>
+              <div className="normal-principal-summary">
+                <table className="table-auto w-full shadow-md p-4">
+                  <thead>
+                    <tr className="bg-green-900 text-white">
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Year
+                      </th>
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Principal{" "}
+                      </th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <div className=" normal-cash-flow-summary">
-              <h4> Cashflow </h4>
-              <table className="table table-striped table-hover">
-                <thead>
-                  <tr>
-                    <th>Year</th>
-                    <th>Cashflow </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {yearlyScheduledPaymentExtension.map((amort, index) => (
-                    <tr key={index}>
-                      <td> {index + 1} </td>
-                      <td>{roundAmount(amort)}</td>
+                  </thead>
+                  <tbody>
+                    {yearlyPrincipalSummationExtension.map((amort, index) => (
+                      <tr
+                        key={index}
+                        className="p-4 bg-white
+                border-b border-green-200 hover:bg-green-200"
+                      >
+                        <td className=" border-green-300 py-2 px-4 col-span-4">
+                          {" "}
+                          {index + 1}{" "}
+                        </td>
+                        <td className=" border-green-300 py-2 px-4 col-span-4">
+                          {roundAmount(amort)}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <div className=" normal-cash-flow-summary">
+                <table className="table-auto w-full shadow-md p-4">
+                  <thead>
+                    <tr className="bg-green-900 text-white">
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Year
+                      </th>
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Cashflow{" "}
+                      </th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {yearlyScheduledPaymentExtension.map((amort, index) => (
+                      <tr
+                        key={index}
+                        className="p-4 bg-white
+                border-b border-green-200 hover:bg-green-200"
+                      >
+                        <td className="border-green-300 py-2 px-4 col-span-4">
+                          {" "}
+                          {index + 1}{" "}
+                        </td>
+                        <td className="border-green-300 py-2 px-4 col-span-4">
+                          {roundAmount(amort)}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
@@ -5964,81 +6076,120 @@ const ViewLoanComponent = () => {
       {showNPVWithPrincipalAndInterestWaiver && (
         // Boolean(npvScenarios["npv-scenarios"] === "extension".trim() && showNPVWithExtension) && (
         <div className="flex-container">
-          <div className="normal-npv-amortization">
-            <h4>NPV With Principal and Interest Waiver Amortization Table</h4>
+          <div className="px-4 normal-npv-amortization">
+            <h4 className="flex justify-center items-center text-green-600 font-semibold">
+              NPV With Principal and Interest Waiver Amortization Table
+            </h4>
             <PrincipalAndInterestWaiverComponent
               data={interestAndPrincipalAmortization}
             />
             <header>
-              <h4>Summary</h4>
+              <h4 className="bg-gray-100 flex justify-center font-semibold">
+                Summary
+              </h4>
             </header>
-            <div className="normal-interest-summary">
-              <h4> Interest </h4>
-              <table
-                className="table table-striped table-hover table-responsive"
-                style={{ width: "100%" }}
-              >
-                <thead>
-                  <tr>
-                    <th>Year</th>
-                    <th>Interest </th>
-                  </tr>
-                </thead>
+            <div className="flex justify-between shadow-lg p-4">
+              <div className="flex justify-between shadow-lg p-4">
+                <table className="table-auto w-full shadow-md p-4">
+                  <thead>
+                    <tr className="bg-green-900 text-white">
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Year
+                      </th>
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Interest{" "}
+                      </th>
+                    </tr>
+                  </thead>
 
-                <tbody>
-                  {yearlyInterestSummationWithInterestAndPrincipalWaiver.map(
-                    (amort, index) => (
-                      <tr key={index}>
-                        <td> {index + 1} </td>
-                        <td>{roundAmount(amort)}</td>
-                      </tr>
-                    )
-                  )}
-                </tbody>
-              </table>
-            </div>
+                  <tbody>
+                    {yearlyInterestSummationWithInterestAndPrincipalWaiver.map(
+                      (amort, index) => (
+                        <tr
+                          key={index}
+                          className="p-4 bg-white
+                    border-b border-green-200 hover:bg-green-200"
+                        >
+                          <td className=" border-green-300 py-2 px-4 col-span-4">
+                            {" "}
+                            {index + 1}{" "}
+                          </td>
+                          <td className=" border-green-300 py-2 px-4 col-span-4">
+                            {roundAmount(amort)}
+                          </td>
+                        </tr>
+                      )
+                    )}
+                  </tbody>
+                </table>
+              </div>
 
-            <div className="normal-principal-summary">
-              <h4> Principal </h4>
-              <table className="table table-striped table-hover table-responsive">
-                <thead>
-                  <tr>
-                    <th>Year</th>
-                    <th>Principal </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {yearlyPrincipalSummationWithInterestAndPrincipalWaiver.map(
-                    (amort, index) => (
-                      <tr key={index}>
-                        <td> {index + 1} </td>
-                        <td>{roundAmount(amort)}</td>
-                      </tr>
-                    )
-                  )}
-                </tbody>
-              </table>
-            </div>
-            <div className=" normal-cash-flow-summary">
-              <h4> Cashflow </h4>
-              <table className="table table-striped table-hover">
-                <thead>
-                  <tr>
-                    <th>Year</th>
-                    <th>Cashflow </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {yearlyScheduledPaymentWithInterestAndPrincipalWaiver.map(
-                    (amort, index) => (
-                      <tr key={index}>
-                        <td> {index + 1} </td>
-                        <td>{roundAmount(amort)}</td>
-                      </tr>
-                    )
-                  )}
-                </tbody>
-              </table>
+              <div className="normal-principal-summary">
+                <table className="table-auto w-full shadow-md p-4">
+                  <thead>
+                    <tr className="bg-green-900 text-white">
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Year
+                      </th>
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Principal{" "}
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {yearlyPrincipalSummationWithInterestAndPrincipalWaiver.map(
+                      (amort, index) => (
+                        <tr
+                          key={index}
+                          className="p-4 bg-white
+                    border-b border-green-200 hover:bg-green-200"
+                        >
+                          <td className=" border-green-300 py-2 px-4 col-span-4">
+                            {" "}
+                            {index + 1}{" "}
+                          </td>
+                          <td className=" border-green-300 py-2 px-4 col-span-4">
+                            {roundAmount(amort)}
+                          </td>
+                        </tr>
+                      )
+                    )}
+                  </tbody>
+                </table>
+              </div>
+              <div className=" normal-cash-flow-summary">
+                <table className="table-auto w-full shadow-md p-4">
+                  <thead>
+                    <tr className="bg-green-900 text-white">
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Year
+                      </th>
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Cashflow{" "}
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {yearlyScheduledPaymentWithInterestAndPrincipalWaiver.map(
+                      (amort, index) => (
+                        <tr
+                          key={index}
+                          className="p-4 bg-white
+                    border-b border-green-200 hover:bg-green-200"
+                        >
+                          <td className="border-green-300 py-2 px-4 col-span-4">
+                            {" "}
+                            {index + 1}{" "}
+                          </td>
+                          <td className="border-green-300 py-2 px-4 col-span-4">
+                            {roundAmount(amort)}
+                          </td>
+                        </tr>
+                      )
+                    )}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
@@ -6046,81 +6197,120 @@ const ViewLoanComponent = () => {
 
       {showNPVWithPrincipalWaiverPlusExtension && (
         <div className="flex-container">
-          <div className="normal-npv-amortization">
-            <h4>NPV With Principal Waiver plus Extension Amortization Table</h4>
+          <div className="px-4 normal-npv-amortization">
+            <h4 className="flex justify-center items-center text-green-600 font-semibold">
+              NPV With Principal Waiver plus Extension Amortization Table
+            </h4>
             <PrincipalWaiverAndExtensionComponent
               data={principalWaiverPlusExtensionAmortization}
             />
             <header>
-              <h4>Summary</h4>
+              <h4 className="bg-gray-100 flex justify-center font-semibold">
+                Summary
+              </h4>
             </header>
-            <div className="normal-interest-summary">
-              <h4> Interest </h4>
-              <table
-                className="table table-striped table-hover table-responsive"
-                style={{ width: "100%" }}
-              >
-                <thead>
-                  <tr>
-                    <th>Year</th>
-                    <th>Interest </th>
-                  </tr>
-                </thead>
+            <div className="flex justify-between shadow-lg p-4">
+              <div>
+                <table className="table-auto w-full shadow-md p-4">
+                  <thead>
+                    <tr className="bg-green-900 text-white">
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Year
+                      </th>
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Interest{" "}
+                      </th>
+                    </tr>
+                  </thead>
 
-                <tbody>
-                  {yearlyInterestSummationWithWaiverPlusExtnesion.map(
-                    (amort, index) => (
-                      <tr key={index}>
-                        <td> {index + 1} </td>
-                        <td>{roundAmount(amort)}</td>
-                      </tr>
-                    )
-                  )}
-                </tbody>
-              </table>
-            </div>
+                  <tbody>
+                    {yearlyInterestSummationWithWaiverPlusExtnesion.map(
+                      (amort, index) => (
+                        <tr
+                          key={index}
+                          className="p-4 bg-white
+                    border-b border-green-200 hover:bg-green-200"
+                        >
+                          <td className=" border-green-300 py-2 px-4 col-span-4">
+                            {" "}
+                            {index + 1}{" "}
+                          </td>
+                          <td className=" border-green-300 py-2 px-4 col-span-4">
+                            {roundAmount(amort)}
+                          </td>
+                        </tr>
+                      )
+                    )}
+                  </tbody>
+                </table>
+              </div>
 
-            <div className="normal-principal-summary">
-              <h4> Principal </h4>
-              <table className="table table-striped table-hover table-responsive">
-                <thead>
-                  <tr>
-                    <th>Year</th>
-                    <th>Principal </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {yearlyPrincipalSummationWithWaiverPlusExtnesion.map(
-                    (amort, index) => (
-                      <tr key={index}>
-                        <td> {index + 1} </td>
-                        <td>{roundAmount(amort)}</td>
-                      </tr>
-                    )
-                  )}
-                </tbody>
-              </table>
-            </div>
-            <div className=" normal-cash-flow-summary">
-              <h4> Cashflow </h4>
-              <table className="table table-striped table-hover">
-                <thead>
-                  <tr>
-                    <th>Year</th>
-                    <th>Cashflow </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {yearlyScheduledPaymentWithPrincipalWaiverPlusExtnesion.map(
-                    (amort, index) => (
-                      <tr key={index}>
-                        <td> {index + 1} </td>
-                        <td>{roundAmount(amort)}</td>
-                      </tr>
-                    )
-                  )}
-                </tbody>
-              </table>
+              <div className="normal-principal-summary">
+                <table className="table-auto w-full shadow-md p-4">
+                  <thead>
+                    <tr className="bg-green-900 text-white">
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Year
+                      </th>
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Principal{" "}
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {yearlyPrincipalSummationWithWaiverPlusExtnesion.map(
+                      (amort, index) => (
+                        <tr
+                          key={index}
+                          className="p-4 bg-white
+                    border-b border-green-200 hover:bg-green-200"
+                        >
+                          <td className=" border-green-300 py-2 px-4 col-span-4">
+                            {" "}
+                            {index + 1}{" "}
+                          </td>
+                          <td className=" border-green-300 py-2 px-4 col-span-4">
+                            {roundAmount(amort)}
+                          </td>
+                        </tr>
+                      )
+                    )}
+                  </tbody>
+                </table>
+              </div>
+              <div className=" normal-cash-flow-summary">
+                <table className="table-auto w-full shadow-md p-4">
+                  <thead>
+                    <tr className="bg-green-900 text-white">
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Year
+                      </th>
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Cashflow{" "}
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {yearlyScheduledPaymentWithPrincipalWaiverPlusExtnesion.map(
+                      (amort, index) => (
+                        <tr
+                          key={index}
+                          className="p-4 bg-white
+                  border-b border-green-200 hover:bg-green-200"
+                        >
+                          <td className="border-green-300 py-2 px-4 col-span-4">
+                            {" "}
+                            {index + 1}{" "}
+                          </td>
+                          <td className="border-green-300 py-2 px-4 col-span-4">
+                            {roundAmount(amort)}
+                          </td>
+                        </tr>
+                      )
+                    )}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
@@ -6128,81 +6318,120 @@ const ViewLoanComponent = () => {
 
       {showNPVWithInterestWaiverPlusExtension && (
         <div className="flex-container">
-          <div className="normal-npv-amortization">
-            <h4>NPV With Interest Waiver plus Extension Amortization Table</h4>
+          <div className="px-4 normal-npv-amortization">
+            <h4 className="flex justify-center items-center text-green-600 font-semibold">
+              NPV With Interest Waiver plus Extension Amortization Table
+            </h4>
             <InterestWaiverAndExtensionComponent
               data={interestWaiverPlusExtensionAmortization}
             />
             <header>
-              <h4>Summary</h4>
+              <h4 className="bg-gray-100 flex justify-center font-semibold">
+                Summary
+              </h4>
             </header>
-            <div className="normal-interest-summary">
-              <h4> Interest </h4>
-              <table
-                className="table table-striped table-hover table-responsive"
-                style={{ width: "100%" }}
-              >
-                <thead>
-                  <tr>
-                    <th>Year</th>
-                    <th>Interest </th>
-                  </tr>
-                </thead>
+            <div className="flex justify-between shadow-lg p-4">
+              <div>
+                <table className="table-auto w-full shadow-md p-4">
+                  <thead>
+                    <tr className="bg-green-900 text-white">
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Year
+                      </th>
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Interest{" "}
+                      </th>
+                    </tr>
+                  </thead>
 
-                <tbody>
-                  {yearlyInterestSummationWithInterestWaiverPlusExtension.map(
-                    (amort, index) => (
-                      <tr key={index}>
-                        <td> {index + 1} </td>
-                        <td>{roundAmount(amort)}</td>
-                      </tr>
-                    )
-                  )}
-                </tbody>
-              </table>
-            </div>
+                  <tbody>
+                    {yearlyInterestSummationWithInterestWaiverPlusExtension.map(
+                      (amort, index) => (
+                        <tr
+                          key={index}
+                          className="p-4 bg-white
+                    border-b border-green-200 hover:bg-green-200"
+                        >
+                          <td className=" border-green-300 py-2 px-4 col-span-4">
+                            {" "}
+                            {index + 1}{" "}
+                          </td>
+                          <td className=" border-green-300 py-2 px-4 col-span-4">
+                            {roundAmount(amort)}
+                          </td>
+                        </tr>
+                      )
+                    )}
+                  </tbody>
+                </table>
+              </div>
 
-            <div className="normal-principal-summary">
-              <h4> Principal </h4>
-              <table className="table table-striped table-hover table-responsive">
-                <thead>
-                  <tr>
-                    <th>Year</th>
-                    <th>Principal </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {yearlyPrincipalSummationWithInterestWaiverPlusExtension.map(
-                    (amort, index) => (
-                      <tr key={index}>
-                        <td> {index + 1} </td>
-                        <td>{roundAmount(amort)}</td>
-                      </tr>
-                    )
-                  )}
-                </tbody>
-              </table>
-            </div>
-            <div className=" normal-cash-flow-summary">
-              <h4> Cashflow </h4>
-              <table className="table table-striped table-hover">
-                <thead>
-                  <tr>
-                    <th>Year</th>
-                    <th>Cashflow </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {yearlyScheduledPaymentWithInterestWaiverPlusExtension.map(
-                    (amort, index) => (
-                      <tr key={index}>
-                        <td> {index + 1} </td>
-                        <td>{roundAmount(amort)}</td>
-                      </tr>
-                    )
-                  )}
-                </tbody>
-              </table>
+              <div className="normal-principal-summary">
+                <table className="table-auto w-full shadow-md p-4">
+                  <thead>
+                    <tr className="bg-green-900 text-white">
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Year
+                      </th>
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Principal{" "}
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {yearlyPrincipalSummationWithInterestWaiverPlusExtension.map(
+                      (amort, index) => (
+                        <tr
+                          key={index}
+                          className="p-4 bg-white
+                    border-b border-green-200 hover:bg-green-200"
+                        >
+                          <td className=" border-green-300 py-2 px-4 col-span-4">
+                            {" "}
+                            {index + 1}{" "}
+                          </td>
+                          <td className=" border-green-300 py-2 px-4 col-span-4">
+                            {roundAmount(amort)}
+                          </td>
+                        </tr>
+                      )
+                    )}
+                  </tbody>
+                </table>
+              </div>
+              <div className=" normal-cash-flow-summary">
+                <table className="table-auto w-full shadow-md p-4">
+                  <thead>
+                    <tr className="bg-green-900 text-white">
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Year
+                      </th>
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Cashflow{" "}
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {yearlyScheduledPaymentWithInterestWaiverPlusExtension.map(
+                      (amort, index) => (
+                        <tr
+                          key={index}
+                          className="p-4 bg-white
+                  border-b border-green-200 hover:bg-green-200"
+                        >
+                          <td className="border-green-300 py-2 px-4 col-span-4">
+                            {" "}
+                            {index + 1}{" "}
+                          </td>
+                          <td className="border-green-300 py-2 px-4 col-span-4">
+                            {roundAmount(amort)}
+                          </td>
+                        </tr>
+                      )
+                    )}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
@@ -6210,8 +6439,8 @@ const ViewLoanComponent = () => {
 
       {showNPVWithPrincipalAndInterestWaiverPlusExtension && (
         <div className="flex-container">
-          <div className="normal-npv-amortization">
-            <h4>
+          <div className="px-4 normal-npv-amortization">
+            <h4 className="flex justify-center items-center text-green-600 font-semibold">
               NPV With Principal & Interest Waiver plus Extension Amortization
               Table
             </h4>
@@ -6219,148 +6448,224 @@ const ViewLoanComponent = () => {
               data={principalAndInterestWaiverPlusExtensionAmortization}
             />
             <header>
-              <h4>Summary</h4>
+              <h4 className="bg-gray-100 flex justify-center font-semibold">
+                Summary
+              </h4>
             </header>
-            <div className="normal-interest-summary">
-              <h4> Interest </h4>
-              <table
-                className="table table-striped table-hover table-responsive"
-                style={{ width: "100%" }}
-              >
-                <thead>
-                  <tr>
-                    <th>Year</th>
-                    <th>Interest </th>
-                  </tr>
-                </thead>
+            <div className="flex justify-between shadow-lg p-4">
+              <div className="normal-interest-summary">
+                <table className="table-auto w-full shadow-md p-4">
+                  <thead>
+                    <tr className="bg-green-900 text-white">
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Year
+                      </th>
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Interest{" "}
+                      </th>
+                    </tr>
+                  </thead>
 
-                <tbody>
-                  {yearlyInterestSummationWithPrincipalAndInterestWaiverPlusExtension.map(
-                    (amort, index) => (
-                      <tr key={index}>
-                        <td> {index + 1} </td>
-                        <td>{roundAmount(amort)}</td>
-                      </tr>
-                    )
-                  )}
-                </tbody>
-              </table>
-            </div>
+                  <tbody>
+                    {yearlyInterestSummationWithPrincipalAndInterestWaiverPlusExtension.map(
+                      (amort, index) => (
+                        <tr
+                          key={index}
+                          className="p-4 bg-white
+                    border-b border-green-200 hover:bg-green-200"
+                        >
+                          <td className=" border-green-300 py-2 px-4 col-span-4">
+                            {" "}
+                            {index + 1}{" "}
+                          </td>
+                          <td className=" border-green-300 py-2 px-4 col-span-4">
+                            {roundAmount(amort)}
+                          </td>
+                        </tr>
+                      )
+                    )}
+                  </tbody>
+                </table>
+              </div>
 
-            <div className="normal-principal-summary">
-              <h4> Principal </h4>
-              <table className="table table-striped table-hover table-responsive">
-                <thead>
-                  <tr>
-                    <th>Year</th>
-                    <th>Principal </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {yearlyPrincipalSummationWithPrincipalAndInterestWaiverPlusExtension.map(
-                    (amort, index) => (
-                      <tr key={index}>
-                        <td> {index + 1} </td>
-                        <td>{roundAmount(amort)}</td>
-                      </tr>
-                    )
-                  )}
-                </tbody>
-              </table>
-            </div>
-            <div className=" normal-cash-flow-summary">
-              <h4> Cashflow </h4>
-              <table className="table table-striped table-hover">
-                <thead>
-                  <tr>
-                    <th>Year</th>
-                    <th>Cashflow </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {yearlyScheduledPaymentWithPrincipalAndInterestWaiverPlusExtension.map(
-                    (amort, index) => (
-                      <tr key={index}>
-                        <td> {index + 1} </td>
-                        <td>{roundAmount(amort)}</td>
-                      </tr>
-                    )
-                  )}
-                </tbody>
-              </table>
+              <div className="normal-principal-summary">
+                <table className="table-auto w-full shadow-md p-4">
+                  <thead>
+                    <tr className="bg-green-900 text-white">
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Year
+                      </th>
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Principal{" "}
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {yearlyPrincipalSummationWithPrincipalAndInterestWaiverPlusExtension.map(
+                      (amort, index) => (
+                        <tr
+                          key={index}
+                          className="p-4 bg-white
+                    border-b border-green-200 hover:bg-green-200"
+                        >
+                          <td className=" border-green-300 py-2 px-4 col-span-4">
+                            {" "}
+                            {index + 1}{" "}
+                          </td>
+                          <td className=" border-green-300 py-2 px-4 col-span-4">
+                            {roundAmount(amort)}
+                          </td>
+                        </tr>
+                      )
+                    )}
+                  </tbody>
+                </table>
+              </div>
+              <div className=" normal-cash-flow-summary">
+                <table className="table-auto w-full shadow-md p-4">
+                  <thead>
+                    <tr className="bg-green-900 text-white">
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Year
+                      </th>
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Cashflow{" "}
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {yearlyScheduledPaymentWithPrincipalAndInterestWaiverPlusExtension.map(
+                      (amort, index) => (
+                        <tr
+                          key={index}
+                          className="p-4 bg-white
+                    border-b border-green-200 hover:bg-green-200"
+                        >
+                          <td className="border-green-300 py-2 px-4 col-span-4">
+                            {" "}
+                            {index + 1}{" "}
+                          </td>
+                          <td className="border-green-300 py-2 px-4 col-span-4">
+                            {roundAmount(amort)}
+                          </td>
+                        </tr>
+                      )
+                    )}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
       )}
       {showNPVWithInjection && (
         <div class="flex-container">
-          <div className="normal-npv-amortization">
-            <h4>NPV With Injection Amortization Table</h4>
+          <div className="px-4 normal-npv-amortization">
+            <h4 className="flex justify-center items-center text-green-600 font-semibold">
+              NPV With Injection Amortization Table
+            </h4>
             <InjectionComponent data={injectionAmortization} />
             <header>
-              <h4>Summary</h4>
+              <h4 className="bg-gray-100 flex justify-center font-semibold">
+                Summary
+              </h4>
             </header>
-            <div className="normal-interest-summary">
-              <h4> Interest </h4>
-              <table
-                className="table table-striped table-hover table-responsive"
-                style={{ width: "100%" }}
-              >
-                <thead>
-                  <tr>
-                    <th>Year</th>
-                    <th>Interest </th>
-                  </tr>
-                </thead>
+            <div className="flex justify-between shadow-lg p-4">
+              <div>
+                <table className="table-auto w-full shadow-md p-4">
+                  <thead>
+                    <tr className="bg-green-900 text-white">
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Year
+                      </th>
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Interest{" "}
+                      </th>
+                    </tr>
+                  </thead>
 
-                <tbody>
-                  {yearlyInterestSummationInjection.map((amort, index) => (
-                    <tr key={index}>
-                      <td> {index + 1} </td>
-                      <td>{roundAmount(amort)}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                  <tbody>
+                    {yearlyInterestSummationInjection.map((amort, index) => (
+                      <tr
+                        key={index}
+                        className="p-4 bg-white
+                border-b border-green-200 hover:bg-green-200"
+                      >
+                        <td className=" border-green-300 py-2 px-4 col-span-4">
+                          {" "}
+                          {index + 1}{" "}
+                        </td>
+                        <td className=" border-green-300 py-2 px-4 col-span-4">
+                          {roundAmount(amort)}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
 
-            <div className="normal-principal-summary">
-              <h4> Principal </h4>
-              <table className="table table-striped table-hover table-responsive">
-                <thead>
-                  <tr>
-                    <th>Year</th>
-                    <th>Principal </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {yearlyPrincipalSummationInjection.map((amort, index) => (
-                    <tr key={index}>
-                      <td> {index + 1} </td>
-                      <td>{roundAmount(amort)}</td>
+              <div className="normal-principal-summary">
+                <table className="table-auto w-full shadow-md p-4">
+                  <thead>
+                    <tr className="bg-green-900 text-white">
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Year
+                      </th>
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Principal{" "}
+                      </th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <div className=" normal-cash-flow-summary">
-              <h4> Cashflow </h4>
-              <table className="table table-striped table-hover">
-                <thead>
-                  <tr>
-                    <th>Year</th>
-                    <th>Cashflow </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {yearlyScheduledPaymentInjection.map((amort, index) => (
-                    <tr key={index}>
-                      <td> {index + 1} </td>
-                      <td>{roundAmount(amort)}</td>
+                  </thead>
+                  <tbody>
+                    {yearlyPrincipalSummationInjection.map((amort, index) => (
+                      <tr
+                        key={index}
+                        className="p-4 bg-white
+                border-b border-green-200 hover:bg-green-200"
+                      >
+                        <td className=" border-green-300 py-2 px-4 col-span-4">
+                          {" "}
+                          {index + 1}{" "}
+                        </td>
+                        <td className=" border-green-300 py-2 px-4 col-span-4">
+                          {roundAmount(amort)}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <div className=" normal-cash-flow-summary">
+                <table className="table-auto w-full shadow-md p-4">
+                  <thead>
+                    <tr className="bg-green-900 text-white">
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Year
+                      </th>
+                      <th className="border-green-300 py-2 px-4 col-span-4">
+                        Cashflow{" "}
+                      </th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {yearlyScheduledPaymentInjection.map((amort, index) => (
+                      <tr
+                        key={index}
+                        className="p-4 bg-white
+                border-b border-green-200 hover:bg-green-200"
+                      >
+                        <td className="border-green-300 py-2 px-4 col-span-4">
+                          {" "}
+                          {index + 1}{" "}
+                        </td>
+                        <td className="border-green-300 py-2 px-4 col-span-4">
+                          {roundAmount(amort)}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
@@ -6378,25 +6683,55 @@ const ViewLoanComponent = () => {
           showNPVWithForeclosureInGraph
       ) && (
         <div className="flex-container">
-          <div className="npv-graph">
-            <h5>NPV, Graphical Representation</h5>
+          <form className="flex justify-center pt-4">
+            <FormControl>
+              <InputLabel id="graph-type-label" color="success" size="small">
+                --Graph Type--
+              </InputLabel>
+              <Select
+                labelId="graph-type-label"
+                id="graph-type"
+                name="graph-type"
+                label="Graph Type"
+                variant="filled"
+                color="success"
+                size="small"
+                value={charType}
+                onChange={handleGraphType}
+              >
+                <MenuItem value="">None</MenuItem>
+                <MenuItem value="BarChart">Bar Chart</MenuItem>
+                <MenuItem value="PieChart">Pie Chart</MenuItem>
+                <MenuItem value="SimplePieChart">Simple Pie Chart</MenuItem>
+              </Select>
+              <FormHelperText> Select graph type </FormHelperText>
+            </FormControl>
+          </form>
+          <div className="p-5">
+            <h5 className="flex justify-center text-green-900 font-semibold">
+              NPV, Graphical Representation
+            </h5>
+            {charType === "" && (
+              <div className="npv-graph px-5 text-danger m-4">
+                Selected None
+              </div>
+            )}
+            {charType === "BarChart" && (
+              <div className="px-5 m-4 ">
+                <Chart data={visualizeDataInGrpah} />
+              </div>
+            )}
 
-            {
-              <div className="npv-graph">
-                <Chart data={visualizeDataInGrpah} />{" "}
+            {charType === "PieChart" && (
+              <div className="flex justify-center shadow-2xl p-2">
+                <PieChartComponent data={visualizeDataInGrpah} />
               </div>
-            }
-
-            {
-              <div className="npv-graph">
-                <PieChartComponent data={visualizeDataInGrpah} />{" "}
+            )}
+            {charType === "SimplePieChart" && (
+              <div className="flex justify-center shadow-2xl p-2">
+                <SimplePieChartComponent data={visualizeDataInGrpah} />
               </div>
-            }
-            {
-              <div className="npv-graph">
-                <SimplePieChartComponent data={visualizeDataInGrpah} />{" "}
-              </div>
-            }
+            )}
           </div>
         </div>
       )}
